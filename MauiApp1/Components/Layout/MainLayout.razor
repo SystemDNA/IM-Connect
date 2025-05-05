@@ -1,0 +1,46 @@
+﻿@inherits LayoutComponentBase
+@inject NavigationManager NavManager
+<div class="page-wrapper full-height">@* page *@
+    @* <div class="sidebar">
+        <NavMenu />
+    </div> *@
+    @* <header class="header header-fixed">
+        <div class="top-scroll-tab" id="tabNav">
+            <a href="#" class="active" data-target="events">IM<br> Events</a>
+            <a href="#" data-target="investor">IM<br> Investor</a>
+            <a href="#" data-target="yachting">IM<br> Yachting</a>
+            <a href="#" data-target="luxury">IM<br> Luxury</a>
+            <a href="#" data-target="tourist">IM<br> Tourist</a>
+        </div>
+    </header> *@
+    <main class="page-content">
+        @* <div class="header-curv"></div> *@
+        @* <div class="top-row px-4">
+            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+        </div> *@
+
+        <article class="page-transition @transitionClass">
+            @Body
+        </article>
+    </main>
+    @* <footer class="menubar-area footer-fixed">bottom-tabs
+        <div class="toolbar-inner menubar-nav bottom-scroll-tab">
+            <NavLink href="/" class="tab nav-link" activeClass="active-tab" Match="NavLinkMatch.All">IM<br />Dubai</NavLink>
+            <NavLink href="/singapore" class="tab nav-link" activeClass="active-tab">IM<br />Singapore</NavLink>
+            <!--<NavLink href="/weather" class="tab nav-link" activeClass="active-tab">Yacht sale</NavLink>
+            <NavLink href="/business" class="tab nav-link" activeClass="active-tab">Business</NavLink>-->
+        </div>
+    </footer>  *@
+</div>
+@code {
+    private string transitionClass = "";
+
+    protected override void OnInitialized()
+    {
+        NavManager.LocationChanged += (_, __) =>
+        {
+            transitionClass = "slide-in";
+            StateHasChanged();
+        };
+    }
+}
