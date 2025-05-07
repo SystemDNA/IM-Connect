@@ -25,12 +25,19 @@
         <ApplicationTitle>IM</ApplicationTitle>
 
         <!-- App Identifier -->
-        <ApplicationId>com.teamX.im</ApplicationId>
+        <ApplicationId>34MW9KXL9U.com.teamxit.com</ApplicationId>
+
+        <CodesignEntitlements>Platforms/iOS/Entitlements.plist</CodesignEntitlements>
 
         <!-- Versions -->
         <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
         <ApplicationVersion>1</ApplicationVersion>
 
+         <CodesignKey>Apple Distribution: Tirumaleswara Reddy Kareddy (34MW9KXL9U)</CodesignKey>
+        <CodesignTeamId>34MW9KXL9U</CodesignTeamId> <!-- Replace with your actual Team ID -->
+
+ 
+        <CodesignProvision>teamxconnectim</CodesignProvision>
         <!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
         <WindowsPackageType>None</WindowsPackageType>
 
@@ -41,7 +48,11 @@
         <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
     </PropertyGroup>
-
+<ItemGroup>
+  <None Include="Platforms/iOS/Entitlements.plist">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </None>
+</ItemGroup>
     <ItemGroup>
         <!-- App Icon -->
         <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#141414" />
