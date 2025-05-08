@@ -45,230 +45,30 @@
             <div class="swiper-pagination"></div>
         </div>
 </div>
-
+<div class="page-title d-flex px-3 py-3 align-items-center">
+    <h2>Cyprus<span class="fs-2">@GetSubtitle()</span></h2>
+    <NavLink class="btn btn-sm text-muted ms-auto" href="/"><i class="fas fa-home"></i> Home</NavLink>
+</div>
+<div class="notification-list img-list-btn" style="@GetListVisibility()">
+    <ul class="list-group gap-2">
+        <li class="list-group-item border-0" style="background-image:url(images/category/c_1.png)">
+            <NavLink @onclick="@(() => ShowTab("yachting"))" class="@GetTabClass("yachting")">
+                <div class="mask"></div>
+                <div class="image-caption">
+                    <h4>Yachting</h4>
+                </div>
+            </NavLink>
+        </li>
+    </ul>
+</div>
 <div class="tab-content content">
-    @if (activeTab == "events")
+    @if (activeTab == "yachting")
     {
-            <div class="py-2">
-            <div class="trending-topic">
-                <div class="container">
-                <div class="section-title">
-                    <h4>Trending Topis</h4>
-                </div>
-                <div class="swiper col-3-swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a class="news-button" @onclick="@(() => OpenPanel("news"))">
-                                <div class="mask"></div>
-                                <img src="images/luxury/luxury1.png" alt="">
-                                <div class="image-caption">
-                                    <h4>News</h4>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a class="news-button" @onclick="@(() => OpenPanel("editorial"))">
-                                <div class="mask"></div>
-                                <img src="images/luxury/luxury2.png" alt="">
-                                <div class="image-caption">
-                                    <h4>Editorial</h4>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a class="news-button" @onclick="@(() => OpenPanel("videos"))">
-                                <div class="mask"></div>
-                                <img src="images/luxury/luxury3.jpg" alt="">
-                                <div class="image-caption">
-                                    <h4>Videos</h4>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a class="news-button" @onclick="@(() => OpenPanel("mediaEvent"))">
-                                <div class="mask"></div>
-                                <img src="images/tourism/t1-1.jpg" alt="">
-                                <div class="image-caption">
-                                    <h4>Media Event</h4>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>            
-                </div>
-            </div>
-            <div class="content-section pt-4">
-            <div class="section-title px-3">
-                <h4>Latest News</h4>
-            </div>
-            <div class="notification-list">
-                <ul class="list-group gap-2">
-                    <li class="list-group-item border-0">
-                        <a href="#" class="media">
-                            <div class="media-100 rounded-3 border">
-                                <img src="images/events/apex-vid3.png" alt="">
-                            </div>
-                            <div class="list-content">
-                                <h6 class="title">Investor Montenegro - LUSTICA BAY</h6>
-                                <p class="m-0 small">Luštica Bay is a marina town offering waterfront residences, hotels, berths, golf &amp; lifestyle facilities...</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="list-group-item border-0">
-                        <a href="#" class="media">
-                            <div class="media-100 rounded-3 border">
-                                <img src="images/events/apex-vid2.png" alt="">
-                            </div>
-                            <div class="list-content">
-                                <h6 class="title">Investor Montenegro - THE CHEDI LUSTICA BAY</h6>
-                                <p class="m-0 small">Where tradition enchants and nature entices...</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="list-group-item border-0">
-                        <a href="#" class="media">
-                            <div class="media-100 rounded-3 border">
-                                <img src="images/events/apex-vid1.png" alt="">
-                            </div>
-                            <div class="list-content">
-                                <h6 class="title">Investor Montenegro</h6>
-                                <p class="m-0 small">TOWN IN THE MAKING, LUŠTICA BAY, PRESENTS MONTENEGRO'S FIRST GOLF RESIDENCES: THE PEAKS</p>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            </div>            
-            </div>
-    }
-    else if (activeTab == "investor")
-    {
-            <div id="investor" class="content-section">
-                <div class="title-bar">
-                        <h6 class="title">Investor</h6>
-                    </div>
-                <div class="notification-list">
-                        <ul class="list-group pdf-gallery">
-                            <li class="list-group-item">
-                                <a href="https://platformfactory.in/SDNA/IM/pdf/dubai/Family Office Investor.pdf" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
-                                    <div class="media-50 rounded-3 border">
-                                        <img src="assets/img/investor/inv-family.png" alt="">
-                                    </div>
-                                    <div class="list-content">
-                                        <h6 class="title">Family Office Investor</h6>
-                                        <p class="m-0 small">World-class superyacht marina.</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="https://platformfactory.in/SDNA/IM/pdf/dubai/BUPA healthcare.pdf" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
-                                    <div class="media-50 rounded-3 border">
-                                        <img src="assets/img/investor/icn-bupa.jpg" alt="">
-                                    </div>
-                                    <div class="list-content">
-                                        <h6 class="title">BUPA healthcare</h6>
-                                        <p class="m-0 small">More than healthcare this is lifecare our most extensive worldwide protection.</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="https://platformfactory.in/SDNA/IM/pdf/dubai/Carbon Credits.pdf" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
-                                    <div class="media-50 rounded-3 border">
-                                        <img src="assets/img/investor/icn-carbon.png" alt="">
-                                    </div>
-                                    <div class="list-content">
-                                        <h6 class="title">Carbon Credits</h6>
-                                        <p class="m-0 small">Is there credit in carbon removal?</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="https://platformfactory.in/SDNA/IM/pdf/dubai/Plastic straws.pdf" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
-                                    <div class="media-50 rounded-3 border">
-                                        <img src="assets/img/investor/icn-straw.jpg" alt="">
-                                    </div>
-                                    <div class="list-content">
-                                        <h6 class="title">Plastic straws</h6>
-                                        <p class="m-0 small">Closing the joy gap.</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="https://platformfactory.in/SDNA/IM/pdf/dubai/Oryzon Epsylon fund.pdf" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
-                                    <div class="media-50 rounded-3 border">
-                                        <img src="assets/img/investor/icn-orizon.jpg" alt="">
-                                    </div>
-                                    <div class="list-content">
-                                        <h6 class="title">Oryzon Epsylon fund</h6>
-                                        <p class="m-0 small">Adding value to Alternative Investment: Oryzon Epsilon Fund</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="https://platformfactory.in/SDNA/IM/pdf/dubai/Adopting sustainability.pdf" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
-                                    <div class="media-50 rounded-3 border">
-                                        <img src="assets/img/investor/icn-adopting.jpg" alt="">
-                                    </div>
-                                    <div class="list-content">
-                                        <h6 class="title">Adopting sustainability</h6>
-                                        <p class="m-0 small">Consumption is one of the most important aspects that require focus.</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="https://platformfactory.in/SDNA/IM/pdf/dubai/Igor real terms.pdf" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
-                                    <div class="media-50 rounded-3 border">
-                                        <img src="assets/img/investor/icn-igor.jpg" alt="">
-                                    </div>
-                                    <div class="list-content">
-                                        <h6 class="title">Igor real terms</h6>
-                                        <p class="m-0 small">Continuing our look at how best to protect your estate and wealth for future generations</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="https://platformfactory.in/SDNA/IM/pdf/dubai/Luxury asset watches.pdf" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
-                                    <div class="media-50 rounded-3 border">
-                                        <img src="assets/img/investor/icn-luxury.jpg" alt="">
-                                    </div>
-                                    <div class="list-content">
-                                        <h6 class="title">Luxury asset watches</h6>
-                                        <p class="m-0 small">A new anniversary Breguet Marine to savour.</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="https://platformfactory.in/SDNA/IM/pdf/dubai/Venture Capital.pdf" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
-                                    <div class="media-50 rounded-3 border">
-                                        <img src="assets/img/investor/icn-venture.jpg" alt="">
-                                    </div>
-                                    <div class="list-content">
-                                        <h6 class="title">Venture Capital</h6>
-                                        <p class="m-0 small"> In contrast to the world we see emerging today, our second issue was largely written under lockdown.</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="https://platformfactory.in/SDNA/IM/pdf/dubai/XLX Capital - Mr Igor Zjalic.pdf" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
-                                    <div class="media-50 rounded-3 border">
-                                        <img src="assets/img/investor/icn-capital.jpg" alt="">
-                                    </div>
-                                    <div class="list-content">
-                                        <h6 class="title">XLX Capital</h6>
-                                        <p class="m-0 small">We speak to experienced asset manager and founder of XLX Capital...</p>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-            </div>
-    }
-    else if (activeTab == "yachting")
-    {
-            <div id="yachting" class="content-section">
+                <a class="back-btn-footer" @onclick="() => ShowTab(null)"><i class="fas fa-long-arrow-alt-left"></i></a>
+        <div>
                 <h5 class="header-sticky bg-black text-white p-3 mb-0">Yacht Management</h5>
                 <div class="image-holder">
-                    <div class="image-container" style="background-image: url(assets/img/yachting/yachting-header.jpg);padding-top: 38%;"></div>
+                    <div class="image-container" style="background-image: url(images/yachting/yachting-header.jpg);padding-top: 38%;"></div>
                 </div>
                 <div class="container bg-white">
                     <h6 class="title">Navigating the Luxu.ry Yacht Market</h6>
@@ -287,13 +87,13 @@
                     <p>Firstly, each flag state will have its own set of maritime laws and regulations and it is important to make sure these align with the intended use of the vessel. Choosing a politically stable country with a long-standing reputation of maritime excellence - such as Cayman, for instance - can be of enormous value both financially and practically, depending on the intended use of the yacht.</p>
                 </div>
                 <div class="p-3 bg-black text-light clearfix">
-                    <img src="assets/img/yachting/yachting1.jpg" class="rounded float-start me-3 mb-3" alt="..." style="max-width: 50%;">
+                    <img src="images/yachting/yachting1.jpg" class="rounded float-start me-3 mb-3" alt="..." style="max-width: 50%;">
                     <p>It is also prudent to seek advice on the varying tax requirements and implications including VAT, import duties, annual tax etc... as some jurisdictions will offer far more favorable tax conditions. Yacht owners and their advisers should also look to answer questions such as how easy the yacht registration process is in their chosen jurisdiction, whether there are any specific crew requirements imposed in that country, how easy it is to take out an insurance policy on a vessel registered under a particular flag etc.</p>
                     <p>The above are just a few of the vitally important considerations to evaluate before making a decision, but the full list of crosschecks is extensive. Even the size of the vessel will influence where a yacht can be registered - in some countries larger yachts may need to comply with additional safety and certification requirements. Longer vessels may also be prevented from docking in certain cities as was seen recently with Naples introducing a strict 75 meter length limit for yachts looking to dock in Italy's third-largest city, to the chagrin of many wealthy owners.</p>
                 </div>
                 <div class="container bg-white clearfix">
                     <h6 class="title">Ownership structures: charting the right course</h6>
-                    <img src="assets/img/yachting/yachting2.png" class="img-thumbnail rounded float-end ms-3" alt="..." style="max-width: 50%;max-height: 200px;">
+                    <img src="images/yachting/yachting2.png" class="img-thumbnail rounded float-end ms-3" alt="..." style="max-width: 50%;max-height: 200px;">
                     <p>The ownership structure of the yacht is another important aspect to get right. Holding the yacht in an appropriate legal structure - such as a trust - can provide significant benefits as compared to owning the vessel as an individual.</p>
                     <p>Trusts, for instance, have evolved as an estate-planning tool that can help families build and preserve generational wealth (and help break the so-called "shirtsleeves to shirtsleeves" curse).</p>
                     <p>Placing the yacht in a trust can make it much simpler to establish clear instructions for the management and transfer of the vessel to beneficiaries after the owner's passing. A proactive approach to estate planning can help avoid potential disputes among family members later down the line, and help ensure the continued upkeep and enjoyment of the yacht.</p>
@@ -305,7 +105,7 @@
                 </div>
                 <h5 class="header-sticky bg-black text-white p-3 mb-0">Yachting This is it</h5>
                 <div class="image-holder">
-                    <div class="image-container" style="background-image: url(assets/img/yachting/yachting-header2.jpg);padding-top: 50%;"></div>
+                    <div class="image-container" style="background-image: url(images/yachting/yachting-header2.jpg);padding-top: 50%;"></div>
                 </div>
                 <div class="container bg-black text-white">
                     <h4 class="title text-light">This Is It</h4>
@@ -364,7 +164,7 @@
                                 <div class="accordion-body">
                                     <p>The owner is considered as one of the best online marketers in the world. Therefore the concept of designing futuristic products (like a spaceship) that will conquer the market and people's attention is part of his everyday life. The name THIS IS IT explains every detail the owner wanted to express by building this yacht and its unique appearance.</p>
                                     <div class="image-holder mb-3">
-                                        <div class="image-container" style="background-image: url(assets/img/yachting/yachting3.jpg);padding-top: 33%;"></div>
+                                        <div class="image-container" style="background-image: url(images/yachting/yachting3.jpg);padding-top: 33%;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -391,7 +191,7 @@
                             </h2>
                             <div id="acoordYacht6" class="accordion-collapse collapse" aria-labelledby="headingAcoordYacht6" data-bs-parent="#luxury">
                                 <div class="accordion-body">
-                                    <img src="assets/img/yachting/yachting4.jpg" class="img-thumbnail rounded float-end ms-3 mb-3" alt="..." style="max-width: 50%;max-height: 200px;">
+                                    <img src="images/yachting/yachting4.jpg" class="img-thumbnail rounded float-end ms-3 mb-3" alt="..." style="max-width: 50%;max-height: 200px;">
                                     <p>THIS IS IT will be available for charter from April 2024</p>
                                 </div>
                             </div>
@@ -406,7 +206,7 @@
                             <div id="acoordYacht7" class="accordion-collapse collapse" aria-labelledby="headingAcoordYacht7" data-bs-parent="#luxury">
                                 <div class="accordion-body">
                                     <div class="image-holder">
-                                        <div class="image-container" style="background-image: url(assets/img/yachting/yachting4.jpg);padding-top: 50%;"></div>
+                                        <div class="image-container" style="background-image: url(images/yachting/yachting4.jpg);padding-top: 50%;"></div>
                                     </div>
                                     <p>This Is It is a luxurious yacht with all the amenities needed to satisfy the most demanding clients. Floor-to-ceiling glass provides light and a futuristic look. Indoor and outdoor spaces flow effortlessly from one to the other, enhancing the feeling of space and providing an opportunity for all guests to enjoy all areas of the yacht without losing the feeling of being outside. She features a wellness area with a spa and a massage room where someone can enjoy a relaxing massage while watching the beautiful sea from a huge glass window. She also has an outdoor Jacuzzi, a cinema under the stars, an amazing bar with a well-trained crew providing all drink preferences, and spacious cabins with en-suites and clever storage solutions. The spectacular owner's suite features a large skylight with an extraordinary height of 3.3 meters, a superb panoramic terrace, and a unique vertical garden that spans two decks, giving the feeling of being in a seaside villa. The yacht will offer all the latest toys, including sea-bobs and jet skis. A 15-meter chasing rib by Technohull will provide guests a second place to party, relax or use as a transportation rib. This Is It also includes a 6-meter rescue rib by Castoldi</p>
                                 </div>
@@ -421,7 +221,7 @@
                             </h2>
                             <div id="acoordYacht8" class="accordion-collapse collapse" aria-labelledby="headingAcoordYacht8" data-bs-parent="#luxury">
                                 <div class="accordion-body">
-                                    <img src="assets/img/yachting/yachting4.jpg" class="img-thumbnail rounded float-end ms-3 mb-3" alt="..." style="max-width: 50%;max-height: 200px;">
+                                    <img src="images/yachting/yachting4.jpg" class="img-thumbnail rounded float-end ms-3 mb-3" alt="..." style="max-width: 50%;max-height: 200px;">
                                     <p>THIS IS IT is a fully custom motor catamaran providing memorable experiences to anyone who charters her. From the crew to the amenities and toys, the owner has carefully chosen each detail to satisfy every desire. The WOW effect prevails to anyone who sees her making her the most desirable yacht to have.</p>
                                     <a href="http://thisisityacht.com/">http://thisisityacht.com/</a>
                                     <p>The Italian Sea Group S.p.A.</p>
@@ -432,207 +232,7 @@
                     </div><!--Accord-->
                 </div>
             </div>
-    }
-    else if (activeTab == "luxury")
-    {
-            <div id="luxury" class="content-section">
-                <h5 class="header-sticky bg-black text-white p-3 mb-0">The Fine Watch Club</h5>
-                <div class="image-holder">
-                    <div class="image-container" style="background-image: url(assets/img/luxury/luxury-banner.jpg);padding-top: 50%;"></div>
-                </div>
-                <div class="container bg-white">
-                    <h6 class="title">A new anniversary Breguet Marine to savour</h6>
-                    <p>As Breguet prepares to mark a notable anniversary we take a look at one of its most spectacular and innovative pieces the Marine Tourbillon Équation Marchante 5887</p>
-                    <p>The year 2021 might be notable for many reasons, but in watchmaking terms it is honorably distinguished as the 220th anniversary of the tourbillon, an invention patented by Abraham-Louis Breguet on 26 June 1801.</p>
-                    <p>Breguet plans to release a commemorative model this autumn, something we are very much looking forward to. But while we are waiting, it is worth noting that the brand at the pinnacle of the Swatch Group pyramid has never ceased to celebrate its traditions, creating watches that pay homage to the past while being reinforced by the latest technologies.</p>
-                    <p>Last year in particular, the stunning Double Tourbillon Quai de l'Horloge from the Classique collection delighted collectors, while the Marine line evokes the triple his- torical expertise of the brand founder expressed through a more contemporary, slimmer and more efficient interpretation.</p>
-                    <h6 class="title">The Marine Tourbillon Équation Marchante 5887</h6>
-                    <table class="table table-striped">
-                        <tbody>
-                            <tr>
-                                <th>CASE:</th>
-                                <td>18k rose gold with fluted caseband, sapphire back, water-resistant to 100m</td>
-                            </tr>
-                            <tr>
-                                <th>DIAMETER:</th>
-                                <td>43.9mm</td>
-                            </tr>
-                            <tr>
-                                <th>MOVEMENT:</th>
-                                <td>mechanical self-winding (Caliber 581DPE, 80-hour power reserve), 563 components, silicon balance spring and escape wheel, numbered and signed Breguet</td>
-                            </tr>
-                            <tr>
-                                <th>FUNCTIONS:</th>
-                                <td>hours, minutes (civile and solar), equation of time, perpetual calendar, power-reserve indication (between 7 and 9 o'clock)</td>
-                            </tr>
-                            <tr>
-                                <th>DIAL:</th>
-                                <td>slate-colored dial in gold, hand-engraved on a rose engine, numbered and signed Breguet, luminescent 18K rose gold open- tipped Breguet hands, solar minutes with a faceted gold sun</td>
-                            </tr>
-                            <tr>
-                                <th>STRAP:</th>
-                                <td>brown alligator leather strap with rose gold triple folding clasp</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                </div>
-                <div class="p-3 bg-black text-light mb-4 clearfix">
-                    <img src="assets/img/luxury/luxury1.png" class="rounded float-start me-3" alt="..." style="max-width: 50%;">
-                    <p>Always intrinsically linked to the tourbillon, Breguet offers a reminder through this Marine model that its inventor was also appointed official watchmaker to the French Royal Navy. As such, sophisticated horological complications such as the perpetual calendar and the equation of time hold no secrets for the venerable brand.</p>
-                    <p>Derived from the ultra-thin self-winding Caliber 581 equipped with a tourbillon, this movement features an optimized design incorporating recent innovations such as a titanium carriage with a peripheral gear wheel driving its rota- tion, as well as a silicon balance-spring and escape-wheel.</p>
-                    <p>Similarly, Breguet's designers have achieved a one-quarter reduction in the barrel thickness by cutting a groove around the drum and holding it in place by means of three externally placed bearings.</p>
-                    <div class="image-container mb-3 rounded" style="padding-top: 50%;">
-                        <img src="assets/img/luxury/luxury2.png">
-                    </div>
-                    <p>Connoisseurs will recognize the function of the hand tipped with a sun, indicating the minutes of solar time (different from the minutes of civil time driven by the main gear train) thanks to differential gearing and a cam on a sapphire disk performing one revolution in a year, followed by a feeler that provides the value of the equation of time.</p>
-                    <p>As for the anchor-tipped hand, it provides a retrograde date display. So as to improve the legibility of all these indications, Breguet completes the perpetual calendar indications by apertures showing the day and month, which are unique in its collections. </p>
-                    <p>The power reserve is discreetly shown on an arc-shaped gauge at 8 o'clock. All this information is easily readable on the attractive anthracite dial featuring white and gold contrasts, above which the majestic tourbillon appears to be floating in mid-air.</p>
-                </div>
-                <h5 class="header-sticky bg-black text-white p-3 mb-0">The Maya Collection</h5>
-                <div class="image-container" style="padding-top: 50%;">
-                    <img src="assets/img/luxury/luxury-banner2.png">
-                </div>
-                <div class="container bg-white">
-                    <h4>The finest cuisine, views and experiences combine spectacularly</h4>
-                    <h6 class="title">In 2007, the J.V Pastor Group made its first venture into the world of high-end hospitality with the opening of the MayaBay restaurant in Monaco.</h6>
-                    <p>After having conquered the taste buds of Monegasques with its high quality Japanese cuisine, the gourmet MayaBay restaurant opened its doors to Thai cuisine in 2009. This was followed by the Mediterranean and Oriental restaurant Maya Jah in 2017 and the traditional Italian trattoria Maya Mia in 2018, all situated in the Principality of Monaco</p>
-                    <p> In 2019, They unveiled their first address in France, and a new chapter in the history book of Maya Collection began... Set in an exceptional natural landscape in Méribel, Refuge de la Traye is a luxurious mountain chalet providing the most refined destination for an exclusive holiday. </p>
-                    <p>Two years later, Maya Collection expanded its properties to the largest ski area in the world - the 3 valleys. At 2,300 meters high, the creation of a vibrent ski in - Ski out dining experience named Maya Altitute was popularised by the high-end brasserie style menu created  by Chef Stephane Desprez in collaboration with michelin starred chef Akrame. </p>
-                </div>
-                <div class="p-3 bg-black text-light clearfix">
-                    <div class="gallery mb-4">
-                        <div class="row g-2">
-                            <div class="col-6 col-md-6 col-lg-3 gallery-item">
-                                <a href="assets/img/events/gallery/event-g1.png" data-fancybox="gallery" data-caption="Image 1" class="img-box">
-                                    <img src="assets/img/events/gallery/event-g1.png" alt="Thumbnail 1">
-                                </a>
-                            </div>
-                            <div class="col-6 col-md-6 col-lg-3 gallery-item">
-                                <a href="assets/img/events/gallery/event-g2.png" data-fancybox="gallery" data-caption="Image 1" class="img-box">
-                                    <img src="assets/img/events/gallery/event-g2.png" alt="Thumbnail 2">
-                                </a>
-                            </div>
-                            <div class="col-6 col-md-6 col-lg-3 gallery-item">
-                                <a href="assets/img/events/gallery/event-g3.png" data-fancybox="gallery" data-caption="Image 1" class="img-box">
-                                    <img src="assets/img/events/gallery/event-g3.png" alt="Thumbnail 3">
-                                </a>
-                            </div>
-                            <div class="col-6 col-md-6 col-lg-3 gallery-item">
-                                <a href="assets/img/events/gallery/event-g4.png" data-fancybox="gallery" data-caption="Image 1" class="img-box">
-                                    <img src="assets/img/events/gallery/event-g4.png" alt="Thumbnail 4">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <p>2022 saw the concept of Mayabay Monaco exported internationally with the opening of MayaBay Dubai in Jumeirah Al Naseem. The success was such that another franchise will open in 2023: MayaBay Riyadh on the iconic Prince Turki Ibn Abdulaziz Al Awwal Road in the heart of the Saudi capital.</p>
-                    <p>In 2024 Maya Collection will unveil its premium boutique hotel in the undeniably glamorous ski resort of Courchevel in the French Alps. Although Maya Hotel Courchevel will host a limited number of suites for the privilaged few, its ground floor will simultaniously host its very own MayaBay restaurant.</p>
-                </div>
-            </div>
-    }
-    else if (activeTab == "tourist")
-    {
-            <div id="tourist" class="content-section">
-                <div class="image-container" style="padding-top: 33%;">
-                    <img src="assets/img/tourism/tourism-banner1.jpg">
-                </div>
-                <div class="container bg-white">
-                    <h4>TOWN IN THE MAKING, LUŠTICA BAY, PRESENTS MONTENEGRO'S FIRST GOLF RESIDENCES: THE PEAKS</h4>
-                    <p>In the heart of Luštica Bay this prime real estate offering is set to redefine tourism in Montenegro</p>
-                    <!-- Swiper -->
-                    <div class="swiper videoSwiper mb-4">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="assets/img/tourism/t1.jpg" alt="tourism 1" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="assets/img/tourism/t2.jpg" alt="tourism 2" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="assets/img/tourism/t3.jpg" alt="tourism 3" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="assets/img/tourism/t4.png" alt="tourism 4" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="assets/img/tourism/t5.jpg" alt="tourism 5" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="assets/img/tourism/t6.jpg" alt="tourism 6" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="assets/img/tourism/t7.jpg" alt="tourism 7" />
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Add Pagination -->
-                        <div class="swiper-pagination"></div>
-                    </div>
-                    <p>Luštica Bay, Montenegro, 31st May 2023: Luštica Bay, the emerging town in the making in Montenegro, developed by the renowned international developer, Orascom Development Holding (ODH), proudly introduces the country's first golf course and residences, The Peaks. </p>
-                    <p>The project signifies the introduction of the Adriatic coast's first 18-hole course and beautifully-designed residences, positioning Montenegro as an upcoming world-class golfing destination. The project offers an unparalleled investment opportunity, set to build on the country's 1.15 billion euros of foreign investment in 2022. </p>
-                    <p>The Peaks, designed by the internationally acclaimed architects, Block722, in collaboration with local design architecture firm NRA Atelier, showcases stunning architecture that seamlessly blends authentic Mediterranean influences with modern amenities. Drawing inspiration from the architecture of the region's traditional fishing villages, the architecture exudes charm and elegance, providing residents with contemporary comforts. </p>
-                    <p>Darren Turner, Director of Development at Luštica Bay says, "We are excited to introduce The Peaks, an exceptional property offer that represents a significant investment opportunity in an unparalleled majestic location. As the country's first golf residences, The Peaks will not only elevate the living experience but will also reinforce Montenegro as a premier luxury destination."</p>
-                </div>
-                <div class="image-container" style="padding-top: 33%;">
-                    <img src="assets/img/tourism/tourism-banner2.jpg">
-                </div>
-                <div class="container bg-white">
-                    <!-- Swiper -->
-                    <div class="swiper videoSwiper mb-4">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="assets/img/tourism/t1-1.jpg" alt="tourism 1" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="assets/img/tourism/t1-2.jpg" alt="tourism 2" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="assets/img/tourism/t1-3.jpg" alt="tourism 3" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="assets/img/tourism/t1-4.png" alt="tourism 4" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="assets/img/tourism/t1-5.jpg" alt="tourism 5" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="assets/img/tourism/t1-6.jpg" alt="tourism 6" />
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Add Pagination -->
-                        <div class="swiper-pagination"></div>
-                    </div>
-                    <p>Turner further emphasized, "With its remarkable contemporary coastal Adriatic architectural design and stunning views, The Peaks offers a unique opportunity for investors seeking to capitalise on Montenegro's thriving real estate market. The project's strategic location, combined with the strong capital appreciation of Montenegrin property, distinguishes The Peaks as a compelling choice for discerning investors looking for exceptional returns and long-term growth potential all whilst enjoying the outstanding amenities of our growing luxury destination." </p>
-                    <p>Botanika, the first neighbourhood within The Peaks, features a collection of apartments, townhouses, and villas. The location of Botanika ensures privacy and seclusion whilst offering proximity to Centrale, Luštica Bay's vibrant town centre. Surrounded by lush greenery and breath-taking views, Botanika epitomises tranquillity and serenity. </p>
-                    <p>With its elevated position between Boka Bay and the Adriatic Sea, The Peaks' 18-hole golf course boasts an unrivalled setting with picturesque vistas in every direction. Designed by the esteemed Gary Player Design, who are renowned for their ecological approach, the course seamlessly blends with its natural surroundings, creating a harmonious fusion between nature and sport. Each hole has been thoughtfully crafted to maximise the beauty of the landscape, providing golfers with a unique and unforgettable experience. This launch marks a significant milestone in the region's high-end real estate and tourism landscape. With its impeccable design, world-class amenities, and prime location. The Peaks sets a new standard of excellence and positions Montenegro as a sought-after investment destination. As Luštica Bay continues to redefine the Adriatic coast, we invite investors and enthusiasts alike to seize the unparalleled opportunities offered by The Peaks, where opulence, natural beauty, and investment potential converge in perfect harmony.</p>
-                </div>
-            </div>
-    }
+    }    
 </div>
 @if (openPanel != null)
 {
@@ -659,7 +259,7 @@
                         <main class="page-content space-top">
                         <div class="container">
                             <div class="image-holder">
-                                <div class="image-container mb-3" style="background-image: url(assets/img/events/event-h1.png);padding-top: 17%;"></div>
+                                <div class="image-container mb-3" style="background-image: url(images/events/event-h1.png);padding-top: 17%;"></div>
                             </div>
                             <h4><em>Apex Invest Abu Dhabi - The Capital of Capital</em></h4>
                             <p>18-19, November 2024</p>
@@ -671,7 +271,7 @@
                             <hr>
                             <div class="title-bar"><h6 class="title">Hilton, Yas Island, Abu Dhabi</h6></div>
                             <div class="image-holder">
-                                <div class="image-container" style="background-image: url(assets/img/events/abu-dhabi.png);padding-top: 50%;"></div>
+                                <div class="image-container" style="background-image: url(images/events/abu-dhabi.png);padding-top: 50%;"></div>
                             </div>
                             <p>Our event venue is an exquisite waterfront luxury hotel at Yas Island Abu Dhabi, one of the world's most exciting and exotic travel destinations.</p>
                         </div>
@@ -749,14 +349,23 @@
 }
 
 @code {
-    private string activeTab = "events";
+    private string activeTab = "";//events
     private string? openPanel = null;
     private bool isClosingPanel = false;
+
+    private readonly HashSet<string> tabsToHideList = new() { "events", "investor", "yachting", "luxury", "tourist" };
+
+    private string GetListVisibility()
+    {
+        return string.IsNullOrEmpty(activeTab) || !tabsToHideList.Contains(activeTab)
+        ? ""
+        : "display: none;";
+    }
 
     //void ShowTab(string tab) => activeTab = tab;
     async void ShowTab(string tab)
     {
-        activeTab = tab;
+        activeTab = tab ?? "";
 
         // Delay to allow Blazor to render new tab content
         await Task.Delay(50);
@@ -783,6 +392,19 @@
     }
 
     string GetTabClass(string tab) => activeTab == tab ? "active-tab" : "";
+
+    string GetSubtitle()
+    {
+        return activeTab switch
+        {
+            "events" => " / Events",
+            "investor" => " / Investor",
+            "yachting" => " / Yachting",
+            "luxury" => " / Luxury",
+            "tourist" => " / Tourist",
+            _ => ""
+        };
+    }
 }
 
 
