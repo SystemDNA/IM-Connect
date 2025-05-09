@@ -209,7 +209,8 @@ html {
     --bs-light-indigo: #ebf3fe;
     --bs-primary-rgb: 25, 103, 210;
     --bs-secondary-rgb: 37, 55, 77;
-    --bs-success-rgb: 60, 194, 156;
+    /*--bs-success-rgb: 60, 194, 156;*/
+    --bs-success-rgb: 25, 135, 84;
     --bs-info-rgb: 142, 85, 234;
     --bs-warning-rgb: 251, 173, 72;
     --bs-danger-rgb: 243, 107, 83;
@@ -2405,7 +2406,6 @@ textarea.form-control-lg {
     margin: auto;
     padding: 10px;
     background: #000;
-    border-radius: 10px;
     overflow: hidden;
     position: relative;
 }
@@ -2418,7 +2418,6 @@ textarea.form-control-lg {
     }
 
 .video-title {
-    margin-top: 5px;
     font-size: 14px;
     overflow: hidden;
     display: -webkit-box;
@@ -2718,11 +2717,30 @@ textarea.form-control-lg {
     bottom: 0;
     /*border-radius: 12px;*/
 }
-
+.slider .swiper-wrapper .swiper-slide > a {
+    overflow: hidden;
+    display: block;
+    position: relative;
+    background: #fff;
+    /* padding-top: 53.646%; */
+    padding-top: 46%;
+    width: 100%;
+}
 .slider .swiper-wrapper .swiper-slide img {
     width: 100%;
-    height:200px;
+    height: 200px;
     /*border-radius: 12px;*/
+    position: absolute;
+    top: 50%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    max-width: 100%;
+    /* max-height: 100%; */
+    width: 100%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 .slider .swiper-wrapper .swiper-slide .image-caption {
     position: absolute;
@@ -2741,7 +2759,7 @@ textarea.form-control-lg {
     bottom: -1px;
     left: 0;
     width: 100%;
-    height: 14px;
+    height: 8%;
     /*background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1440 100' xmlns='http://www.w3.org/2000/svg'><path d='M0,0 C480,100 960,100 1440,0 L1440,100 L0,100 Z' fill='%23ffffff'/></svg>");*/
     background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1440 100' xmlns='http://www.w3.org/2000/svg'><path d='M0,0 C480,50 960,50 1440,0 L1440,50 L0,50 Z' fill='%23ffffff'/></svg>");
     background-repeat: no-repeat;
@@ -2975,3 +2993,15 @@ textarea.form-control-lg {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.26);
     z-index: 99;
 }
+/*************************/
+.whatsapp-btn {
+    position: absolute;
+    z-index: 2;
+    top: 10px;
+    right: 1rem;
+    justify-content: end;
+}
+    .whatsapp-btn > * {
+        padding: 5px 9px !important;
+        font-size: 0.875rem !important;
+    }
