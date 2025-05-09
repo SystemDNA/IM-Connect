@@ -634,7 +634,7 @@ html, body {
     font-family: 'Poppins', sans-serif;
     height: 100%;
 }
-.page-wrapper {
+.page-content {
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
     padding-left: env(safe-area-inset-left);
@@ -3023,6 +3023,7 @@ textarea.form-control-lg {
     color: #fff;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.26);
     z-index: 99;
+    margin-bottom: calc(16px + env(safe-area-inset-bottom));
 }
 /*************************/
 .whatsapp-btn {
