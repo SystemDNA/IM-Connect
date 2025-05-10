@@ -634,7 +634,11 @@ html, body {
     font-family: 'Poppins', sans-serif;
     height: 100%;
 }
-.page-content {
+
+.page-wrapper {
+    position: relative;
+}
+.page-wrapper, .news-panel-overlay, .news-panel, header, .header-sticky {
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
     padding-left: env(safe-area-inset-left);
@@ -724,11 +728,11 @@ html, body {
     }
 
 .header {
-    background-color: #2A2D33;
+    background-color: #000000;
     min-height: var(--headheight);
     max-width: var(--headwidth);
     padding: 0 15px;
-    border-bottom: 1px solid #2A2D33;
+    border-bottom: 1px solid #000000;
 }
 
     .header .header-content {
@@ -795,7 +799,9 @@ header .top-scroll-tab {
     padding-left: 0;
     padding-right: 0;
 }
-
+.header-logo {
+    height: 50px;
+}
 .footer {
     height: auto;
     align-items: center;
