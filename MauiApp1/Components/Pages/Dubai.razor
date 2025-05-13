@@ -111,7 +111,7 @@
             <div class="swiper col-3-swiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <a class="news-button" @onclick="@(() => OpenPanel("news"))">
+                        <a class="news-button" @onclick="@(() => OpenPanel("news"))" @onclick:preventDefault>
                             <div class="mask"></div>
                             <img src="images/luxury/luxury1.png" alt="">
                             <div class="image-caption">
@@ -120,7 +120,7 @@
                         </a>
                     </div>
                     <div class="swiper-slide">
-                        <a class="news-button" @onclick="@(() => OpenPanel("editorial"))">
+                        <a class="news-button" @onclick="@(() => OpenPanel("editorial"))" @onclick:preventDefault>
                             <div class="mask"></div>
                             <img src="images/luxury/luxury2.png" alt="">
                             <div class="image-caption">
@@ -129,16 +129,16 @@
                         </a>
                     </div>
                     <div class="swiper-slide">
-                        <a class="news-button" @onclick="@(() => OpenPanel("videos"))">
+                        <div class="news-button" @onclick="@(() => OpenPanel("videos"))" @onclick:preventDefault>
                             <div class="mask"></div>
                             <img src="images/luxury/luxury3.jpg" alt="">
                             <div class="image-caption">
                                 <h4>Videos</h4>
                             </div>
-                        </a>
+                        </div>
                     </div>
                     <div class="swiper-slide">
-                        <a class="news-button" @onclick="@(() => OpenPanel("mediaEvent"))">
+                        <a class="news-button" @onclick="@(() => OpenPanel("mediaEvent"))" @onclick:preventDefault>
                             <div class="mask"></div>
                             <img src="images/tourism/t1-1.jpg" alt="">
                             <div class="image-caption">
@@ -695,7 +695,7 @@
 
             @if (openPanel == "news")
             {
-            <header class="header header-sticky" style="top:0;">
+            <header class="header header-sticky">
                 <div class="header-content">
                     <div class="left-content">
                 <a class="back-btn pf-icon d-flex align-items-center text-light py-3 pe-3" @onclick="ClosePanel" @onclick:preventDefault>
@@ -803,40 +803,26 @@
             </header>
             <main class="page-content">
                 <div class="row gap-3">
-                    <div class="col-md-4">
-                        <div class="main-video-container">
-                            <iframe src="https://www.youtube.com/embed/eNYHcc1_JCI" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="main-video-container">
-                                <iframe src="https://www.youtube.com/embed/lrMK9MUy3Go" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="main-video-container">
-                            <iframe src="https://www.youtube.com/embed/PF18-ZfkT68" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="main-video-container">
-                            <iframe src="https://www.youtube.com/embed/4TujUfarWcg" allowfullscreen></iframe>
-                        </div>
-                    </div>
+    @foreach (var (id, thumbnail) in videos)
+    {
+        <div class="col-md-4">
+            <div class="video-thumbnail" @onclick="() => OpenVideo(id)">
+                <img src="@thumbnail" alt="Video thumbnail" />
+                <div class="play-button">&#9658;</div>
+            </div>
+        </div>
+    }
+</div>
 
-                    @* <div class="col-md-4">
-                        <img src="https://img.youtube.com/vi/eNYHcc1_JCI/0.jpg" alt="Video 2" />
-                        <a href="https://apex.showpad.com/share/hoIyhisvZf5w4NA7B8JHm/0?uniqueid=55e7b7b6-3602-4afe-bc28-36b8348455cb;bfa5b75b-ed8e-4925-a17f-6aa8141f34e3" class="video-title container content-section pb-3">Apex Invest Abu Dhabi and Las Vegas Events Testimonials.mov</a>
-                    </div>
-                    <div class="col-md-4">
-                        <img src="https://img.youtube.com/vi/lrMK9MUy3Go/0.jpg" alt="Video 3" />
-                        <a href="https://apex.showpad.com/share/hoIyhisvZf5w4NA7B8JHm/0?uniqueid=f8d07f92-e511-49d0-a8cc-96743f564363;83900f79-a5f9-4fd9-b1ea-5e5ab3189015" class="video-title container content-section pb-3">Apex Invest Las Vegas and Abu Dhabi Promo Video .mov</a>
-                    </div>
-                    <div class="col-md-4">
-                        <img src="https://img.youtube.com/vi/PF18-ZfkT68/0.jpg" alt="Video 1" />
-                        <a href="https://apex.showpad.com/share/hoIyhisvZf5w4NA7B8JHm/0?uniqueid=5a3b34e2-aff3-4602-b4a2-73669faa6464;f90504f2-0c75-47dc-a448-51b3ccc4a1ff" class="video-title container content-section pb-4">Apex Invest Bahamas 2024 - Event Showcase Video.mov</a>
-                    </div> *@
-                </div>
+@if (!string.IsNullOrEmpty(currentVideoUrl))
+{
+    <div class="video-modal" @onclick="CloseVideo">
+        <div class="video-frame" @onclick:stopPropagation>
+            <iframe src="@currentVideoUrl" frameborder="0" allowfullscreen></iframe>
+            <button class="close-button" @onclick="CloseVideo">✖</button>
+        </div>
+    </div>
+}
             </main>
             }
             else if (openPanel == "mediaEvent")
@@ -993,4 +979,25 @@
             await JS.InvokeVoidAsync("initFancyBox");
         }
     }
+}
+@code {
+    private string? currentVideoUrl = null;
+
+    private void OpenVideo(string videoId)
+    {
+        currentVideoUrl = $"https://www.youtube.com/embed/{videoId}?autoplay=1";
+    }
+
+    private void CloseVideo()
+    {
+        currentVideoUrl = null;
+    }
+
+    private List<(string Id, string Thumbnail)> videos = new()
+    {
+        ("eNYHcc1_JCI", "https://img.youtube.com/vi/eNYHcc1_JCI/0.jpg"),
+        ("lrMK9MUy3Go", "https://img.youtube.com/vi/lrMK9MUy3Go/0.jpg"),
+        ("PF18-ZfkT68", "https://img.youtube.com/vi/PF18-ZfkT68/0.jpg"),
+        ("4TujUfarWcg", "https://img.youtube.com/vi/4TujUfarWcg/0.jpg")
+    };
 }

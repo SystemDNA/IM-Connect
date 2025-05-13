@@ -4,26 +4,23 @@
     @* <div class="sidebar">
         <NavMenu />
     </div> *@
-    @* <header class="header header-fixed">
-        <div class="top-scroll-tab" id="tabNav">
-            <a href="#" class="active" data-target="events">IM<br> Events</a>
-            <a href="#" data-target="investor">IM<br> Investor</a>
-            <a href="#" data-target="yachting">IM<br> Yachting</a>
-            <a href="#" data-target="luxury">IM<br> Luxury</a>
-            <a href="#" data-target="tourist">IM<br> Tourist</a>
+    <header class="header header-fixed">
+    <div class="header-content">
+        <div class="left-content">
+            <img src="images/logo-white.svg" alt="logo" class="header-logo" /><span class="text-light fw-bold"> IM Investor</span>
         </div>
-    </header> *@
+        <div class="mid-content"></div>
+        <div class="right-content"></div>
+    </div>
+</header>
     <main class="page-content">
-        <div class="input-group input-group-sm whatsapp-btn">
-            <div class="input-group-text bg-success text-white border-0"><i class="fab fa-whatsapp fs-3"></i></div>
-            <a href="https://api.whatsapp.com/send/?phone=%2B447979213225&amp;text=please+invite+me+to+the+Dubai+event&amp;type=phone_number&amp;app_absent=0" target="_blank" class="btn btn-success">Please invite me to the Dubai event</a>
-        </div>
-        @* <div class="header-curv"></div> *@
-        @* <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div> *@
-
         <article class="page-transition @transitionClass">
+            <div class="position-relative">
+            <div class="input-group input-group-sm whatsapp-btn">
+    <div class="input-group-text bg-success text-white border-0"><i class="fab fa-whatsapp fs-3"></i></div>
+    <a href="https://api.whatsapp.com/send/?phone=%2B447979213225&amp;text=please+invite+me+to+the+Dubai+event&amp;type=phone_number&amp;app_absent=0" target="_blank" class="btn btn-success">Please invite me to the Dubai event</a>
+</div>
+</div>
             @Body
         </article>
     </main>
