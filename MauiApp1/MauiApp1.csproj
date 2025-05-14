@@ -30,7 +30,7 @@
         <CodesignEntitlements>Platforms/iOS/Entitlements.plist</CodesignEntitlements>
 
         <!-- Versions -->
-        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+        <ApplicationDisplayVersion>1.4</ApplicationDisplayVersion>
         <ApplicationVersion>1</ApplicationVersion>
 
          <CodesignKey>Apple Distribution: Tirumaleswara Reddy Kareddy (34MW9KXL9U)</CodesignKey>
@@ -47,11 +47,6 @@
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
         <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
-
-		<TargetFramework>net8.0-android</TargetFramework>
-		<OutputType>Exe</OutputType>
-		<RootNamespace>MauiApp1</RootNamespace>
-		<AndroidPackageFormat>apk</AndroidPackageFormat>
     </PropertyGroup>
 <ItemGroup>
   <None Include="Platforms/iOS/Entitlements.plist">

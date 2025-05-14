@@ -1,0 +1,236 @@
+﻿@page "/montenegro"
+
+<div class="slider">
+    <div class="swiper col-1-swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <a href="#">
+                    <div class="mask"></div>
+                    <img src="images/events/abu-dhabi.png" />
+                    <div class="image-caption">
+                        <h4 class="title-post">Omaya Yachts celebrates a successful week at the International Multihull Show in La Grande-Motte</h4>
+                        <span class="category-tag">Yachts <i class="fas fa-circle"></i></span>
+                        <span class="date">25 April 2025</span>
+                    </div>
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="#">
+                    <div class="mask"></div>
+                    <img src="images/events/apex-vid1.png" />
+                    <div class="image-caption">
+                        <h4 class="title-post">SAY 52 Undergoing Final Preparations Ahead of Palma Boat Show</h4>
+                        <span class="category-tag">MEDIA ALERT <i class="fas fa-circle"></i></span>
+                        <span class="date">April, 2025</span>
+                    </div>
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="#">
+                    <div class="mask"></div>
+                    <img src="images/events/apex-vid2.png" />
+                    <div class="image-caption">
+                        <h4 class="title-post">This Earth Day, Arksen and 10% For The Ocean Announce Co-Production</h4>
+                        <span class="category-tag">News <i class="fas fa-circle"></i></span>
+                        <span class="date">22 April 2025</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- Optional navigation -->
+        @* <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div> *@
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+<div class="page-title d-flex px-3 py-3 align-items-center">
+    <h2>Montenegro<span class="fs-2">@GetSubtitle()</span></h2>
+    <NavLink class="btn btn-sm text-muted ms-auto" href="/"><i class="fas fa-home"></i> Home</NavLink>
+</div>
+@* <header class="header header-fixed">
+    <div class="top-scroll-tab">
+        <a @onclick="@(() => ShowTab("yachting"))" class="@GetTabClass("yachting")">IM<br /> Yachting</a>
+        <a @onclick="@(() => ShowTab("luxury"))" class="@GetTabClass("luxury")">IM<br /> Luxury</a>
+    </div>
+</header> *@
+<div class="notification-list img-list-btn" style="@GetListVisibility()">
+    <ul class="list-group gap-2">        
+        <li class="list-group-item border-0" style="background-image:url(images/category/c_2.png)">
+            <NavLink @onclick="@(() => ShowTab("investor"))" class="@GetTabClass("investor")">
+                <div class="mask"></div>
+                <div class="image-caption">
+                    <h4>Investor</h4>
+                </div>
+            </NavLink>
+        </li>
+    </ul>
+</div>
+<div class="tab-content content">
+    @if (activeTab == "investor")
+    {
+        <a class="back-btn-footer" @onclick="() => ShowTab(null)"><i class="fas fa-long-arrow-alt-left"></i></a>
+        <div>
+            <div class="notification-list">
+                <ul class="list-group pdf-gallery">
+                    <li class="list-group-item">
+                        <a class="media pdf-fancybox" data-fancybox data-type="iframe" data-src="https://docs.google.com/gview?embedded=true&url=https://platformfactory.in/SDNA/IM/pdf/Family-Office-Investor-Montenegro1.pdf" href="javascript:;">
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/icn-montenegro.jpg" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">Investor Montenegro - LUSTICA BAY</h6>
+                                <p class="m-0 small">Luštica Bay is a marina town offering waterfront residences, hotels, berths, golf & lifestyle facilities...</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a class="media pdf-fancybox" data-fancybox data-type="iframe" data-src="https://docs.google.com/gview?embedded=true&url=https://platformfactory.in/SDNA/IM/pdf/Family-Office-Investor-Montenegro2.pdf" href="javascript:;">
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/icn-montenegro2.jpg" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">Investor Montenegro - THE CHEDI LUSTICA BAY</h6>
+                                <p class="m-0 small">Where tradition enchants and nature entices...</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="https://platformfactory.in/SDNA/IM/pdf/Family-Office-Investor--Montenegro3.pdf" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/icn-montenegro3.jpg" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">Investor Montenegro</h6>
+                                <p class="m-0 small">TOWN IN THE MAKING, LUŠTICA BAY, PRESENTS MONTENEGRO'S FIRST GOLF RESIDENCES: THE PEAKS</p>
+                            </div>
+                        </a>
+                    </li>                                    
+                </ul>
+            </div>
+        </div>
+    }
+</div>
+@if (openPanel != null)
+{
+    <div class="news-panel-overlay" @onclick="ClosePanel">
+        <div class="news-panel @(isClosingPanel ? "slide-out" : "")" @onclick:stopPropagation>
+            <button class="close-btn" @onclick="ClosePanel">← Back</button>
+
+            @if (openPanel == "news")
+            {
+                <div class="container">
+                    <div class="image-holder">
+                        <div class="image-container mb-3" style="background-image: url(images/events/event-h1.png);padding-top: 17%;"></div>
+                    </div>
+                    <h4><em>Apex Invest Abu Dhabi - The Capital of Capital</em></h4>
+                    <p>18-19, November 2024</p>
+                    <p><b>Reach new heights in the investment industry</b></p>
+                    <div class="title-bar"><h6 class="title">A meticulously crafted event that fosters one-on-one connections between investors and managers</h6></div>
+                    <p>Uniting industry professionals interested in both traditional and alternative investments. Our diverse audience includes sovereign wealth funds, single family offices, funds of funds, consultants, pensions, endowments, foundations, RIAS, and high-net-worth individuals.</p>
+                    <p><b>The Ratio of Allocators to Managers is 2:1</b></p>
+                    <p>Experience a unique approach! Our events and investor relations team offer a tailored one-on-one meeting format for managers and allocators. Invest your time and funds wisely by meeting the right people and building relationships.</p>
+                    <hr>
+                    <div class="title-bar"><h6 class="title">Hilton, Yas Island, Abu Dhabi</h6></div>
+                    <div class="image-holder">
+                        <div class="image-container" style="background-image: url(images/events/abu-dhabi.png);padding-top: 50%;"></div>
+                    </div>
+                    <p>Our event venue is an exquisite waterfront luxury hotel at Yas Island Abu Dhabi, one of the world's most exciting and exotic travel destinations.</p>
+                </div>
+            }
+            else if (openPanel == "editorial")
+            {
+                <div class="container">
+                    <h3>Apex Invest & Investor Media are delighted to invite you to attend our event 18th and 19th November 2024</h3>
+                    <p>A two-days event with panel presentations on traditional and alternative investments, real estate, wealth management and luxury assets followed by networking and evening receptions.</p>
+                    <div class="p-3 bg-light">
+                        <h5>Venue: Hilton, Yas Island, Abu Dhabi</h5>
+                        <p>Our event venue is an exquisite waterfront luxury hotel at Yas Island Abu Dhabi, one of the world's most exciting and exotic travel destinations.</p>
+                        <p>To confirm your attendance, please rsvp: Xavier Calloc'h xavier@investor-media.com</p>
+                        <p><b>Contact details and profession required and you will receive your personal invitation.</b></p>
+                        <p>Solely confirmed guests will be permitted to attend the event</p>
+                    </div>
+                </div>
+            }
+            else if (openPanel == "videos")
+            {
+                <p>Video content slides in here...</p>
+            }
+            else if (openPanel == "mediaEvent")
+            {
+                <p>Video content slides in here...</p>
+            }
+        </div>
+    </div>
+}
+
+@code {
+    private string activeTab = "";//events
+    private string? openPanel = null;
+    private bool isClosingPanel = false;
+
+    private readonly HashSet<string> tabsToHideList = new() { "events", "investor", "yachting", "luxury", "tourist" };
+
+    private string GetListVisibility()
+    {
+        return string.IsNullOrEmpty(activeTab) || !tabsToHideList.Contains(activeTab)
+        ? ""
+        : "display: none;";
+    }
+
+    //void ShowTab(string tab) => activeTab = tab;
+    async void ShowTab(string tab)
+    {
+        activeTab = tab ?? "";
+
+        // Delay to allow Blazor to render new tab content
+        await Task.Delay(50);
+
+        // Re-initialize swiper after render
+        await JS.InvokeVoidAsync("initSwiper");
+    }
+
+    void OpenPanel(string panelName)
+    {
+        openPanel = panelName;
+        isClosingPanel = false;
+    }
+
+    async void ClosePanel()
+    {
+        isClosingPanel = true;
+        StateHasChanged(); // Trigger UI update to apply "slide-out"
+
+        await Task.Delay(300); // Match CSS animation time
+        openPanel = null;
+        isClosingPanel = false;
+        StateHasChanged(); // Refresh after closing
+    }
+
+    string GetTabClass(string tab) => activeTab == tab ? "active-tab" : "";
+
+    string GetSubtitle()
+    {
+        return activeTab switch
+        {
+            "events" => " / Events",
+            "investor" => " / Investor",
+            "yachting" => " / Yachting",
+            "luxury" => " / Luxury",
+            "tourist" => " / Tourist",
+            _ => ""
+        };
+    }
+}
+
+
+@inject IJSRuntime JS
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initSwiper");
+        }
+    }
+}
