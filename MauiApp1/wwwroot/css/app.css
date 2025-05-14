@@ -640,8 +640,12 @@ html, body {
 .page-wrapper {
     position: relative;
 }
+<<<<<<< HEAD
 
 .page-wrapper{
+=======
+.page-wrapper, .news-panel-overlay, .news-panel, header, .header-sticky {
+>>>>>>> 4e77c0b11580eb01baa4c83653ee31e1322f4049
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
     padding-left: env(safe-area-inset-left);
@@ -812,11 +816,17 @@ header .top-scroll-tab {
     padding-left: 0;
     padding-right: 0;
 }
+<<<<<<< HEAD
 
 .header-logo {
     height: 50px;
 }
 
+=======
+.header-logo {
+    height: 50px;
+}
+>>>>>>> 4e77c0b11580eb01baa4c83653ee31e1322f4049
 .footer {
     height: auto;
     align-items: center;
