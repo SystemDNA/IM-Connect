@@ -4,59 +4,52 @@
 @layout MauiApp1.Components.Layout.MainLayout
 @* @using Microsoft.AspNetCore.Components *@
 <div class="slider">
-        <div class="swiper col-1-swiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <a href="#">
-                        <div class="mask"></div>
-                        <img src="images/events/abu-dhabi.png" />
-                        <div class="image-caption">
-                            <h4 class="title-post">Omaya Yachts celebrates a successful week at the International Multihull Show in La Grande-Motte</h4>
-                            <span class="category-tag">Yachts <i class="fas fa-circle"></i></span>
-                            <span class="date">25 April 2025</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <div class="mask"></div>
-                        <img src="images/events/apex-vid1.png" />
-                        <div class="image-caption">
-                            <h4 class="title-post">SAY 52 Undergoing Final Preparations Ahead of Palma Boat Show</h4>
-                            <span class="category-tag">MEDIA ALERT <i class="fas fa-circle"></i></span>
-                            <span class="date">April, 2025</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <div class="mask"></div>
-                        <img src="images/events/apex-vid2.png" />
-                        <div class="image-caption">
-                            <h4 class="title-post">This Earth Day, Arksen and 10% For The Ocean Announce Co-Production</h4>
-                            <span class="category-tag">News <i class="fas fa-circle"></i></span>
-                            <span class="date">22 April 2025</span>
-                        </div>
-                    </a>
-                </div>
+    <div class="swiper col-1-swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <a href="#">
+                    <div class="mask"></div>
+                    <img src="images/events/abu-dhabi.png" />
+                    <div class="image-caption">
+                        <h4 class="title-post">Omaya Yachts celebrates a successful week at the International Multihull Show in La Grande-Motte</h4>
+                        <span class="category-tag">Yachts <i class="fas fa-circle"></i></span>
+                        <span class="date">25 April 2025</span>
+                    </div>
+                </a>
             </div>
-            <!-- Optional navigation -->
-        @* <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div> *@
-            <div class="swiper-pagination"></div>
+            <div class="swiper-slide">
+                <a href="#">
+                    <div class="mask"></div>
+                    <img src="images/events/apex-vid1.png" />
+                    <div class="image-caption">
+                        <h4 class="title-post">SAY 52 Undergoing Final Preparations Ahead of Palma Boat Show</h4>
+                        <span class="category-tag">MEDIA ALERT <i class="fas fa-circle"></i></span>
+                        <span class="date">April, 2025</span>
+                    </div>
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="#">
+                    <div class="mask"></div>
+                    <img src="images/events/apex-vid2.png" />
+                    <div class="image-caption">
+                        <h4 class="title-post">This Earth Day, Arksen and 10% For The Ocean Announce Co-Production</h4>
+                        <span class="category-tag">News <i class="fas fa-circle"></i></span>
+                        <span class="date">22 April 2025</span>
+                    </div>
+                </a>
+            </div>
         </div>
+        <!-- Optional navigation -->
+    @* <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div> *@
+        <div class="swiper-pagination"></div>
+    </div>
 </div>
 <div class="page-title d-flex px-3 py-3 align-items-center">
     <h2>Dubai<span class="fs-2">@GetSubtitle()</span></h2>
     <NavLink class="btn btn-sm text-muted ms-auto" href="/"><i class="fas fa-home"></i> Home</NavLink>
 </div>
-@* <div class="top-scroll-tab">
-    <a @onclick="@(() => ShowTab("events"))" class="@GetTabClass("events")">IM<br /> Events</a>
-    <a @onclick="@(() => ShowTab("investor"))" class="@GetTabClass("investor")">IM<br /> Investor</a>
-    <a @onclick="@(() => ShowTab("yachting"))" class="@GetTabClass("yachting")">IM<br /> Yachting</a>
-    <a @onclick="@(() => ShowTab("luxury"))" class="@GetTabClass("luxury")">IM<br /> Luxury</a>
-    <a @onclick="@(() => ShowTab("tourist"))" class="@GetTabClass("tourist")">IM<br /> Tourist</a>
-</div> *@
 <div class="notification-list img-list-btn" style="@GetListVisibility()">
     <ul class="list-group gap-2">
         <li class="list-group-item border-0" style="background-image:url(images/category/c_5.png)">
@@ -104,214 +97,214 @@
 <div class="tab-content content">
     @if (activeTab == "events")
     {
-            <a class="back-btn-footer" @onclick="() => ShowTab(null)"><i class="fas fa-long-arrow-alt-left"></i></a>
+    <a class="back-btn-footer" @onclick="() => ShowTab(null)"><i class="fas fa-long-arrow-alt-left"></i></a>
     <div>            
         <div class="trending-topic">
             <div class="container">
-            <div class="swiper col-3-swiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <a class="news-button" @onclick="@(() => OpenPanel("news"))">
-                            <div class="mask"></div>
-                            <img src="images/luxury/luxury1.png" alt="">
-                            <div class="image-caption">
-                                <h4>News</h4>
+                <div class="swiper col-3-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <a class="news-button" @onclick="@(() => OpenPanel("news"))" @onclick:preventDefault>
+                                <div class="mask"></div>
+                                <img src="images/luxury/luxury1.png" alt="">
+                                <div class="image-caption">
+                                    <h4>News</h4>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a class="news-button" @onclick="@(() => OpenPanel("editorial"))" @onclick:preventDefault>
+                                <div class="mask"></div>
+                                <img src="images/luxury/luxury2.png" alt="">
+                                <div class="image-caption">
+                                    <h4>Editorial</h4>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="news-button" @onclick="@(() => OpenPanel("videos"))" @onclick:preventDefault>
+                                <div class="mask"></div>
+                                <img src="images/luxury/luxury3.jpg" alt="">
+                                <div class="image-caption">
+                                    <h4>Videos</h4>
+                                </div>
                             </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a class="news-button" @onclick="@(() => OpenPanel("editorial"))">
-                            <div class="mask"></div>
-                            <img src="images/luxury/luxury2.png" alt="">
-                            <div class="image-caption">
-                                <h4>Editorial</h4>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="news-button" @onclick="@(() => OpenPanel("mediaEvent"))" @onclick:preventDefault>
+                                <div class="mask"></div>
+                                <img src="images/tourism/t1-1.jpg" alt="">
+                                <div class="image-caption">
+                                    <h4>Media Event</h4>
+                                </div>
                             </div>
-                        </a>
+                        </div>
                     </div>
-                    <div class="swiper-slide">
-                        <a class="news-button" @onclick="@(() => OpenPanel("videos"))">
-                            <div class="mask"></div>
-                            <img src="images/luxury/luxury3.jpg" alt="">
-                            <div class="image-caption">
-                                <h4>Videos</h4>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a class="news-button" @onclick="@(() => OpenPanel("mediaEvent"))">
-                            <div class="mask"></div>
-                            <img src="images/tourism/t1-1.jpg" alt="">
-                            <div class="image-caption">
-                                <h4>Media Event</h4>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>            
+                </div>            
             </div>
         </div>
         <div class="content-section">
-        <div class="section-title px-3">
-            <h4>Latest News</h4>
-        </div>
-        <div class="notification-list">
-            <ul class="list-group gap-2">
-                <li class="list-group-item border-0">
-                    <a href="#" class="media">
-                        <div class="media-100 rounded-3 border">
-                            <img src="images/events/apex-vid3.png" alt="">
-                        </div>
-                        <div class="list-content">
-                            <h6 class="title">Investor Montenegro - LUSTICA BAY</h6>
-                            <p class="m-0 small">Luštica Bay is a marina town offering waterfront residences, hotels, berths, golf &amp; lifestyle facilities...</p>
-                        </div>
-                    </a>
-                </li>
-                <li class="list-group-item border-0">
-                    <a href="#" class="media">
-                        <div class="media-100 rounded-3 border">
-                            <img src="images/events/apex-vid2.png" alt="">
-                        </div>
-                        <div class="list-content">
-                            <h6 class="title">Investor Montenegro - THE CHEDI LUSTICA BAY</h6>
-                            <p class="m-0 small">Where tradition enchants and nature entices...</p>
-                        </div>
-                    </a>
-                </li>
-                <li class="list-group-item border-0">
-                    <a href="#" class="media">
-                        <div class="media-100 rounded-3 border">
-                            <img src="images/events/apex-vid1.png" alt="">
-                        </div>
-                        <div class="list-content">
-                            <h6 class="title">Investor Montenegro</h6>
-                            <p class="m-0 small">TOWN IN THE MAKING, LUŠTICA BAY, PRESENTS MONTENEGRO'S FIRST GOLF RESIDENCES: THE PEAKS</p>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
+            <div class="section-title px-3">
+                <h4>Latest News</h4>
+            </div>
+            <div class="notification-list">
+                <ul class="list-group gap-2">
+                    <li class="list-group-item border-0">
+                        <a href="#" class="media">
+                            <div class="media-100 rounded-3 border">
+                                <img src="images/events/apex-vid3.png" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">Investor Montenegro - LUSTICA BAY</h6>
+                                <p class="m-0 small">Luštica Bay is a marina town offering waterfront residences, hotels, berths, golf &amp; lifestyle facilities...</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item border-0">
+                        <a href="#" class="media">
+                            <div class="media-100 rounded-3 border">
+                                <img src="images/events/apex-vid2.png" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">Investor Montenegro - THE CHEDI LUSTICA BAY</h6>
+                                <p class="m-0 small">Where tradition enchants and nature entices...</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item border-0">
+                        <a href="#" class="media">
+                            <div class="media-100 rounded-3 border">
+                                <img src="images/events/apex-vid1.png" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">Investor Montenegro</h6>
+                                <p class="m-0 small">TOWN IN THE MAKING, LUŠTICA BAY, PRESENTS MONTENEGRO'S FIRST GOLF RESIDENCES: THE PEAKS</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
     }
     else if (activeTab == "investor")
     {
-            <a class="back-btn-footer" @onclick="() => ShowTab(null)"><i class="fas fa-long-arrow-alt-left"></i></a>
+        <a class="back-btn-footer" @onclick="() => ShowTab(null)"><i class="fas fa-long-arrow-alt-left"></i></a>
         <div>
             <div class="notification-list">
-                    <ul class="list-group pdf-gallery">
-                        <li class="list-group-item">
+                <ul class="list-group pdf-gallery">
+                    <li class="list-group-item">
                         <a class="media pdf-fancybox" data-fancybox data-type="iframe" data-src="https://docs.google.com/gview?embedded=true&url=https://platformfactory.in/SDNA/IM/pdf/dubai/Family Office Investor.pdf" href="javascript:;">
-                                <div class="media-50 rounded-3 border">
-                                    <img src="images/investor/inv-family.png" alt="">
-                                </div>
-                                <div class="list-content">
-                                    <h6 class="title">Family Office Investor</h6>
-                                    <p class="m-0 small">World-class superyacht marina.</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/inv-family.png" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">Family Office Investor</h6>
+                                <p class="m-0 small">World-class superyacht marina.</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
                         <a class="media pdf-fancybox" data-fancybox data-type="iframe" data-src="https://docs.google.com/gview?embedded=true&url=https://platformfactory.in/SDNA/IM/pdf/dubai/BUPA healthcare.pdf" href="javascript:;">
-                                <div class="media-50 rounded-3 border">
-                                    <img src="images/investor/icn-bupa.jpg" alt="">
-                                </div>
-                                <div class="list-content">
-                                    <h6 class="title">BUPA healthcare</h6>
-                                    <p class="m-0 small">More than healthcare this is lifecare our most extensive worldwide protection.</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/icn-bupa.jpg" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">BUPA healthcare</h6>
+                                <p class="m-0 small">More than healthcare this is lifecare our most extensive worldwide protection.</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
                         <a class="media pdf-fancybox" data-fancybox data-type="iframe" data-src="https://docs.google.com/gview?embedded=true&url=https://platformfactory.in/SDNA/IM/pdf/dubai/Carbon Credits.pdf" href="javascript:;">
-                                <div class="media-50 rounded-3 border">
-                                    <img src="images/investor/icn-carbon.png" alt="">
-                                </div>
-                                <div class="list-content">
-                                    <h6 class="title">Carbon Credits</h6>
-                                    <p class="m-0 small">Is there credit in carbon removal?</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/icn-carbon.png" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">Carbon Credits</h6>
+                                <p class="m-0 small">Is there credit in carbon removal?</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
                         <a class="media pdf-fancybox" data-fancybox data-type="iframe" data-src="https://docs.google.com/gview?embedded=true&url=https://platformfactory.in/SDNA/IM/pdf/dubai/Plastic straws.pdf" href="javascript:;">
-                                <div class="media-50 rounded-3 border">
-                                    <img src="images/investor/icn-straw.jpg" alt="">
-                                </div>
-                                <div class="list-content">
-                                    <h6 class="title">Plastic straws</h6>
-                                    <p class="m-0 small">Closing the joy gap.</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/icn-straw.jpg" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">Plastic straws</h6>
+                                <p class="m-0 small">Closing the joy gap.</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
                         <a class="media pdf-fancybox" data-fancybox data-type="iframe" data-src="https://docs.google.com/gview?embedded=true&url=https://platformfactory.in/SDNA/IM/pdf/dubai/Oryzon Epsylon fund.pdf" href="javascript:;">
-                                <div class="media-50 rounded-3 border">
-                                    <img src="images/investor/icn-orizon.jpg" alt="">
-                                </div>
-                                <div class="list-content">
-                                    <h6 class="title">Oryzon Epsylon fund</h6>
-                                    <p class="m-0 small">Adding value to Alternative Investment: Oryzon Epsilon Fund</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/icn-orizon.jpg" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">Oryzon Epsylon fund</h6>
+                                <p class="m-0 small">Adding value to Alternative Investment: Oryzon Epsilon Fund</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
                         <a class="media pdf-fancybox" data-fancybox data-type="iframe" data-src="https://docs.google.com/gview?embedded=true&url=https://platformfactory.in/SDNA/IM/pdf/dubai/Adopting sustainability.pdf" href="javascript:;">
-                                <div class="media-50 rounded-3 border">
-                                    <img src="images/investor/icn-adopting.jpg" alt="">
-                                </div>
-                                <div class="list-content">
-                                    <h6 class="title">Adopting sustainability</h6>
-                                    <p class="m-0 small">Consumption is one of the most important aspects that require focus.</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/icn-adopting.jpg" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">Adopting sustainability</h6>
+                                <p class="m-0 small">Consumption is one of the most important aspects that require focus.</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
                         <a class="media pdf-fancybox" data-fancybox data-type="iframe" data-src="https://docs.google.com/gview?embedded=true&url=https://platformfactory.in/SDNA/IM/pdf/dubai/Igor real terms.pdf" href="javascript:;">
-                                <div class="media-50 rounded-3 border">
-                                    <img src="images/investor/icn-igor.jpg" alt="">
-                                </div>
-                                <div class="list-content">
-                                    <h6 class="title">Igor real terms</h6>
-                                    <p class="m-0 small">Continuing our look at how best to protect your estate and wealth for future generations</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/icn-igor.jpg" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">Igor real terms</h6>
+                                <p class="m-0 small">Continuing our look at how best to protect your estate and wealth for future generations</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
                         <a class="media pdf-fancybox" data-fancybox data-type="iframe" data-src="https://docs.google.com/gview?embedded=true&url=https://platformfactory.in/SDNA/IM/pdf/dubai/Luxury asset watches.pdf" href="javascript:;">
-                                <div class="media-50 rounded-3 border">
-                                    <img src="images/investor/icn-luxury.jpg" alt="">
-                                </div>
-                                <div class="list-content">
-                                    <h6 class="title">Luxury asset watches</h6>
-                                    <p class="m-0 small">A new anniversary Breguet Marine to savour.</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/icn-luxury.jpg" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">Luxury asset watches</h6>
+                                <p class="m-0 small">A new anniversary Breguet Marine to savour.</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
                         <a class="media pdf-fancybox" data-fancybox data-type="iframe" data-src="https://docs.google.com/gview?embedded=true&url=https://platformfactory.in/SDNA/IM/pdf/dubai/Venture Capital.pdf" href="javascript:;">
-                                <div class="media-50 rounded-3 border">
-                                    <img src="images/investor/icn-venture.jpg" alt="">
-                                </div>
-                                <div class="list-content">
-                                    <h6 class="title">Venture Capital</h6>
-                                    <p class="m-0 small"> In contrast to the world we see emerging today, our second issue was largely written under lockdown.</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/icn-venture.jpg" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">Venture Capital</h6>
+                                <p class="m-0 small"> In contrast to the world we see emerging today, our second issue was largely written under lockdown.</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
                         <a class="media pdf-fancybox" data-fancybox data-type="iframe" data-src="https://docs.google.com/gview?embedded=true&url=https://platformfactory.in/SDNA/IM/pdf/dubai/XLX Capital - Mr Igor Zjalic.pdf" href="javascript:;">
-                                <div class="media-50 rounded-3 border">
-                                    <img src="images/investor/icn-capital.jpg" alt="">
-                                </div>
-                                <div class="list-content">
-                                    <h6 class="title">XLX Capital</h6>
-                                    <p class="m-0 small">We speak to experienced asset manager and founder of XLX Capital...</p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/icn-capital.jpg" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">XLX Capital</h6>
+                                <p class="m-0 small">We speak to experienced asset manager and founder of XLX Capital...</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     }
     else if (activeTab == "yachting")
@@ -487,212 +480,210 @@
     }
     else if (activeTab == "luxury")
     {
-            <a class="back-btn-footer" @onclick="() => ShowTab(null)"><i class="fas fa-long-arrow-alt-left"></i></a>
+        <a class="back-btn-footer" @onclick="() => ShowTab(null)"><i class="fas fa-long-arrow-alt-left"></i></a>
         <div>
-                <h5 class="header-sticky bg-black text-white p-3 mb-0">The Fine Watch Club</h5>
-                <div class="image-holder">
-                    <div class="image-container" style="background-image: url(images/luxury/luxury-banner.jpg);padding-top: 50%;"></div>
+            <h5 class="header-sticky bg-black text-white p-3 mb-0">The Fine Watch Club</h5>
+            <div class="image-holder">
+                <div class="image-container" style="background-image: url(images/luxury/luxury-banner.jpg);padding-top: 50%;"></div>
+            </div>
+            <div class="container bg-white">
+                <h6 class="title">A new anniversary Breguet Marine to savour</h6>
+                <p>As Breguet prepares to mark a notable anniversary we take a look at one of its most spectacular and innovative pieces the Marine Tourbillon Équation Marchante 5887</p>
+                <p>The year 2021 might be notable for many reasons, but in watchmaking terms it is honorably distinguished as the 220th anniversary of the tourbillon, an invention patented by Abraham-Louis Breguet on 26 June 1801.</p>
+                <p>Breguet plans to release a commemorative model this autumn, something we are very much looking forward to. But while we are waiting, it is worth noting that the brand at the pinnacle of the Swatch Group pyramid has never ceased to celebrate its traditions, creating watches that pay homage to the past while being reinforced by the latest technologies.</p>
+                <p>Last year in particular, the stunning Double Tourbillon Quai de l'Horloge from the Classique collection delighted collectors, while the Marine line evokes the triple his- torical expertise of the brand founder expressed through a more contemporary, slimmer and more efficient interpretation.</p>
+                <h6 class="title">The Marine Tourbillon Équation Marchante 5887</h6>
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <th>CASE:</th>
+                            <td>18k rose gold with fluted caseband, sapphire back, water-resistant to 100m</td>
+                        </tr>
+                        <tr>
+                            <th>DIAMETER:</th>
+                            <td>43.9mm</td>
+                        </tr>
+                        <tr>
+                            <th>MOVEMENT:</th>
+                            <td>mechanical self-winding (Caliber 581DPE, 80-hour power reserve), 563 components, silicon balance spring and escape wheel, numbered and signed Breguet</td>
+                        </tr>
+                        <tr>
+                            <th>FUNCTIONS:</th>
+                            <td>hours, minutes (civile and solar), equation of time, perpetual calendar, power-reserve indication (between 7 and 9 o'clock)</td>
+                        </tr>
+                        <tr>
+                            <th>DIAL:</th>
+                            <td>slate-colored dial in gold, hand-engraved on a rose engine, numbered and signed Breguet, luminescent 18K rose gold open- tipped Breguet hands, solar minutes with a faceted gold sun</td>
+                        </tr>
+                        <tr>
+                            <th>STRAP:</th>
+                            <td>brown alligator leather strap with rose gold triple folding clasp</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="p-3 bg-black text-light mb-4 clearfix">
+                <img src="images/luxury/luxury1.png" class="rounded float-start me-3" alt="..." style="max-width: 50%;">
+                <p>Always intrinsically linked to the tourbillon, Breguet offers a reminder through this Marine model that its inventor was also appointed official watchmaker to the French Royal Navy. As such, sophisticated horological complications such as the perpetual calendar and the equation of time hold no secrets for the venerable brand.</p>
+                <p>Derived from the ultra-thin self-winding Caliber 581 equipped with a tourbillon, this movement features an optimized design incorporating recent innovations such as a titanium carriage with a peripheral gear wheel driving its rota- tion, as well as a silicon balance-spring and escape-wheel.</p>
+                <p>Similarly, Breguet's designers have achieved a one-quarter reduction in the barrel thickness by cutting a groove around the drum and holding it in place by means of three externally placed bearings.</p>
+                <div class="image-container mb-3 rounded" style="padding-top: 50%;">
+                    <img src="images/luxury/luxury2.png">
                 </div>
-                <div class="container bg-white">
-                    <h6 class="title">A new anniversary Breguet Marine to savour</h6>
-                    <p>As Breguet prepares to mark a notable anniversary we take a look at one of its most spectacular and innovative pieces the Marine Tourbillon Équation Marchante 5887</p>
-                    <p>The year 2021 might be notable for many reasons, but in watchmaking terms it is honorably distinguished as the 220th anniversary of the tourbillon, an invention patented by Abraham-Louis Breguet on 26 June 1801.</p>
-                    <p>Breguet plans to release a commemorative model this autumn, something we are very much looking forward to. But while we are waiting, it is worth noting that the brand at the pinnacle of the Swatch Group pyramid has never ceased to celebrate its traditions, creating watches that pay homage to the past while being reinforced by the latest technologies.</p>
-                    <p>Last year in particular, the stunning Double Tourbillon Quai de l'Horloge from the Classique collection delighted collectors, while the Marine line evokes the triple his- torical expertise of the brand founder expressed through a more contemporary, slimmer and more efficient interpretation.</p>
-                    <h6 class="title">The Marine Tourbillon Équation Marchante 5887</h6>
-                    <table class="table table-striped">
-                        <tbody>
-                            <tr>
-                                <th>CASE:</th>
-                                <td>18k rose gold with fluted caseband, sapphire back, water-resistant to 100m</td>
-                            </tr>
-                            <tr>
-                                <th>DIAMETER:</th>
-                                <td>43.9mm</td>
-                            </tr>
-                            <tr>
-                                <th>MOVEMENT:</th>
-                                <td>mechanical self-winding (Caliber 581DPE, 80-hour power reserve), 563 components, silicon balance spring and escape wheel, numbered and signed Breguet</td>
-                            </tr>
-                            <tr>
-                                <th>FUNCTIONS:</th>
-                                <td>hours, minutes (civile and solar), equation of time, perpetual calendar, power-reserve indication (between 7 and 9 o'clock)</td>
-                            </tr>
-                            <tr>
-                                <th>DIAL:</th>
-                                <td>slate-colored dial in gold, hand-engraved on a rose engine, numbered and signed Breguet, luminescent 18K rose gold open- tipped Breguet hands, solar minutes with a faceted gold sun</td>
-                            </tr>
-                            <tr>
-                                <th>STRAP:</th>
-                                <td>brown alligator leather strap with rose gold triple folding clasp</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                </div>
-                <div class="p-3 bg-black text-light mb-4 clearfix">
-                    <img src="images/luxury/luxury1.png" class="rounded float-start me-3" alt="..." style="max-width: 50%;">
-                    <p>Always intrinsically linked to the tourbillon, Breguet offers a reminder through this Marine model that its inventor was also appointed official watchmaker to the French Royal Navy. As such, sophisticated horological complications such as the perpetual calendar and the equation of time hold no secrets for the venerable brand.</p>
-                    <p>Derived from the ultra-thin self-winding Caliber 581 equipped with a tourbillon, this movement features an optimized design incorporating recent innovations such as a titanium carriage with a peripheral gear wheel driving its rota- tion, as well as a silicon balance-spring and escape-wheel.</p>
-                    <p>Similarly, Breguet's designers have achieved a one-quarter reduction in the barrel thickness by cutting a groove around the drum and holding it in place by means of three externally placed bearings.</p>
-                    <div class="image-container mb-3 rounded" style="padding-top: 50%;">
-                        <img src="images/luxury/luxury2.png">
-                    </div>
-                    <p>Connoisseurs will recognize the function of the hand tipped with a sun, indicating the minutes of solar time (different from the minutes of civil time driven by the main gear train) thanks to differential gearing and a cam on a sapphire disk performing one revolution in a year, followed by a feeler that provides the value of the equation of time.</p>
-                    <p>As for the anchor-tipped hand, it provides a retrograde date display. So as to improve the legibility of all these indications, Breguet completes the perpetual calendar indications by apertures showing the day and month, which are unique in its collections. </p>
-                    <p>The power reserve is discreetly shown on an arc-shaped gauge at 8 o'clock. All this information is easily readable on the attractive anthracite dial featuring white and gold contrasts, above which the majestic tourbillon appears to be floating in mid-air.</p>
-                </div>
-                <h5 class="header-sticky bg-black text-white p-3 mb-0">The Maya Collection</h5>
-                <div class="image-container" style="padding-top: 50%;">
-                    <img src="images/luxury/luxury-banner2.png">
-                </div>
-                <div class="container bg-white">
-                    <h4>The finest cuisine, views and experiences combine spectacularly</h4>
-                    <h6 class="title">In 2007, the J.V Pastor Group made its first venture into the world of high-end hospitality with the opening of the MayaBay restaurant in Monaco.</h6>
-                    <p>After having conquered the taste buds of Monegasques with its high quality Japanese cuisine, the gourmet MayaBay restaurant opened its doors to Thai cuisine in 2009. This was followed by the Mediterranean and Oriental restaurant Maya Jah in 2017 and the traditional Italian trattoria Maya Mia in 2018, all situated in the Principality of Monaco</p>
-                    <p> In 2019, They unveiled their first address in France, and a new chapter in the history book of Maya Collection began... Set in an exceptional natural landscape in Méribel, Refuge de la Traye is a luxurious mountain chalet providing the most refined destination for an exclusive holiday. </p>
-                    <p>Two years later, Maya Collection expanded its properties to the largest ski area in the world - the 3 valleys. At 2,300 meters high, the creation of a vibrent ski in - Ski out dining experience named Maya Altitute was popularised by the high-end brasserie style menu created  by Chef Stephane Desprez in collaboration with michelin starred chef Akrame. </p>
-                </div>
-                <div class="p-3 bg-black text-light clearfix">
-                    <div class="gallery mb-4">
-                        <div class="row g-2">
-                            <div class="col-6 col-md-6 col-lg-3 gallery-item">
-                                <a href="images/events/gallery/event-g1.png" data-fancybox="gallery" data-caption="Image 1" class="img-box">
-                                    <img src="images/events/gallery/event-g1.png" alt="Thumbnail 1">
-                                </a>
-                            </div>
-                            <div class="col-6 col-md-6 col-lg-3 gallery-item">
-                                <a href="images/events/gallery/event-g2.png" data-fancybox="gallery" data-caption="Image 1" class="img-box">
-                                    <img src="images/events/gallery/event-g2.png" alt="Thumbnail 2">
-                                </a>
-                            </div>
-                            <div class="col-6 col-md-6 col-lg-3 gallery-item">
-                                <a href="images/events/gallery/event-g3.png" data-fancybox="gallery" data-caption="Image 1" class="img-box">
-                                    <img src="images/events/gallery/event-g3.png" alt="Thumbnail 3">
-                                </a>
-                            </div>
-                            <div class="col-6 col-md-6 col-lg-3 gallery-item">
-                                <a href="images/events/gallery/event-g4.png" data-fancybox="gallery" data-caption="Image 1" class="img-box">
-                                    <img src="images/events/gallery/event-g4.png" alt="Thumbnail 4">
-                                </a>
-                            </div>
+                <p>Connoisseurs will recognize the function of the hand tipped with a sun, indicating the minutes of solar time (different from the minutes of civil time driven by the main gear train) thanks to differential gearing and a cam on a sapphire disk performing one revolution in a year, followed by a feeler that provides the value of the equation of time.</p>
+                <p>As for the anchor-tipped hand, it provides a retrograde date display. So as to improve the legibility of all these indications, Breguet completes the perpetual calendar indications by apertures showing the day and month, which are unique in its collections. </p>
+                <p>The power reserve is discreetly shown on an arc-shaped gauge at 8 o'clock. All this information is easily readable on the attractive anthracite dial featuring white and gold contrasts, above which the majestic tourbillon appears to be floating in mid-air.</p>
+            </div>
+            <h5 class="header-sticky bg-black text-white p-3 mb-0">The Maya Collection</h5>
+            <div class="image-container" style="padding-top: 50%;">
+                <img src="images/luxury/luxury-banner2.png">
+            </div>
+            <div class="container bg-white">
+                <h4>The finest cuisine, views and experiences combine spectacularly</h4>
+                <h6 class="title">In 2007, the J.V Pastor Group made its first venture into the world of high-end hospitality with the opening of the MayaBay restaurant in Monaco.</h6>
+                <p>After having conquered the taste buds of Monegasques with its high quality Japanese cuisine, the gourmet MayaBay restaurant opened its doors to Thai cuisine in 2009. This was followed by the Mediterranean and Oriental restaurant Maya Jah in 2017 and the traditional Italian trattoria Maya Mia in 2018, all situated in the Principality of Monaco</p>
+                <p> In 2019, They unveiled their first address in France, and a new chapter in the history book of Maya Collection began... Set in an exceptional natural landscape in Méribel, Refuge de la Traye is a luxurious mountain chalet providing the most refined destination for an exclusive holiday. </p>
+                <p>Two years later, Maya Collection expanded its properties to the largest ski area in the world - the 3 valleys. At 2,300 meters high, the creation of a vibrent ski in - Ski out dining experience named Maya Altitute was popularised by the high-end brasserie style menu created  by Chef Stephane Desprez in collaboration with michelin starred chef Akrame. </p>
+            </div>
+            <div class="p-3 bg-black text-light clearfix">
+                <div class="gallery mb-4">
+                    <div class="row g-2">
+                        <div class="col-6 col-md-6 col-lg-3 gallery-item">
+                            <a href="images/events/gallery/event-g1.png" data-fancybox="gallery" data-caption="Image 1" class="img-box">
+                                <img src="images/events/gallery/event-g1.png" alt="Thumbnail 1">
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-6 col-lg-3 gallery-item">
+                            <a href="images/events/gallery/event-g2.png" data-fancybox="gallery" data-caption="Image 1" class="img-box">
+                                <img src="images/events/gallery/event-g2.png" alt="Thumbnail 2">
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-6 col-lg-3 gallery-item">
+                            <a href="images/events/gallery/event-g3.png" data-fancybox="gallery" data-caption="Image 1" class="img-box">
+                                <img src="images/events/gallery/event-g3.png" alt="Thumbnail 3">
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-6 col-lg-3 gallery-item">
+                            <a href="images/events/gallery/event-g4.png" data-fancybox="gallery" data-caption="Image 1" class="img-box">
+                                <img src="images/events/gallery/event-g4.png" alt="Thumbnail 4">
+                            </a>
                         </div>
                     </div>
-                    <p>2022 saw the concept of Mayabay Monaco exported internationally with the opening of MayaBay Dubai in Jumeirah Al Naseem. The success was such that another franchise will open in 2023: MayaBay Riyadh on the iconic Prince Turki Ibn Abdulaziz Al Awwal Road in the heart of the Saudi capital.</p>
-                    <p>In 2024 Maya Collection will unveil its premium boutique hotel in the undeniably glamorous ski resort of Courchevel in the French Alps. Although Maya Hotel Courchevel will host a limited number of suites for the privilaged few, its ground floor will simultaniously host its very own MayaBay restaurant.</p>
                 </div>
+                <p>2022 saw the concept of Mayabay Monaco exported internationally with the opening of MayaBay Dubai in Jumeirah Al Naseem. The success was such that another franchise will open in 2023: MayaBay Riyadh on the iconic Prince Turki Ibn Abdulaziz Al Awwal Road in the heart of the Saudi capital.</p>
+                <p>In 2024 Maya Collection will unveil its premium boutique hotel in the undeniably glamorous ski resort of Courchevel in the French Alps. Although Maya Hotel Courchevel will host a limited number of suites for the privilaged few, its ground floor will simultaniously host its very own MayaBay restaurant.</p>
             </div>
+        </div>
     }
     else if (activeTab == "tourist")
     {
-            <a class="back-btn-footer" @onclick="() => ShowTab(null)"><i class="fas fa-long-arrow-alt-left"></i></a>
+        <a class="back-btn-footer" @onclick="() => ShowTab(null)"><i class="fas fa-long-arrow-alt-left"></i></a>
         <div>
-                <div class="image-container" style="padding-top: 33%;">
-                    <img src="images/tourism/tourism-banner1.jpg">
-                </div>
-                    <div class="container content-section bg-white">
-                    <h4>TOWN IN THE MAKING, LUŠTICA BAY, PRESENTS MONTENEGRO'S FIRST GOLF RESIDENCES: THE PEAKS</h4>
-                    <p>In the heart of Luštica Bay this prime real estate offering is set to redefine tourism in Montenegro</p>
-                    <!-- Swiper -->
-                        <div class="swiper col-3-swiper mb-4">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="images/tourism/t1.jpg" alt="tourism 1" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="images/tourism/t2.jpg" alt="tourism 2" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="images/tourism/t3.jpg" alt="tourism 3" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="images/tourism/t4.png" alt="tourism 4" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="images/tourism/t5.jpg" alt="tourism 5" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="images/tourism/t6.jpg" alt="tourism 6" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="images/tourism/t7.jpg" alt="tourism 7" />
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Add Pagination -->
-                        <div class="swiper-pagination"></div>
-                    </div>
-                    <p>Luštica Bay, Montenegro, 31st May 2023: Luštica Bay, the emerging town in the making in Montenegro, developed by the renowned international developer, Orascom Development Holding (ODH), proudly introduces the country's first golf course and residences, The Peaks. </p>
-                    <p>The project signifies the introduction of the Adriatic coast's first 18-hole course and beautifully-designed residences, positioning Montenegro as an upcoming world-class golfing destination. The project offers an unparalleled investment opportunity, set to build on the country's 1.15 billion euros of foreign investment in 2022. </p>
-                    <p>The Peaks, designed by the internationally acclaimed architects, Block722, in collaboration with local design architecture firm NRA Atelier, showcases stunning architecture that seamlessly blends authentic Mediterranean influences with modern amenities. Drawing inspiration from the architecture of the region's traditional fishing villages, the architecture exudes charm and elegance, providing residents with contemporary comforts. </p>
-                    <p>Darren Turner, Director of Development at Luštica Bay says, "We are excited to introduce The Peaks, an exceptional property offer that represents a significant investment opportunity in an unparalleled majestic location. As the country's first golf residences, The Peaks will not only elevate the living experience but will also reinforce Montenegro as a premier luxury destination."</p>
-                </div>
-                <div class="image-container" style="padding-top: 33%;">
-                    <img src="images/tourism/tourism-banner2.jpg">
-                </div>
-                    <div class="container content-section bg-white">
-                    <!-- Swiper -->
-                        <div class="swiper col-3-swiper mb-4">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="images/tourism/t1-1.jpg" alt="tourism 1" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="images/tourism/t1-2.jpg" alt="tourism 2" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="images/tourism/t1-3.jpg" alt="tourism 3" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="images/tourism/t1-4.png" alt="tourism 4" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="images/tourism/t1-5.jpg" alt="tourism 5" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container" style="padding-top: 50%;">
-                                    <img src="images/tourism/t1-6.jpg" alt="tourism 6" />
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Add Pagination -->
-                        <div class="swiper-pagination"></div>
-                    </div>
-                    <p>Turner further emphasized, "With its remarkable contemporary coastal Adriatic architectural design and stunning views, The Peaks offers a unique opportunity for investors seeking to capitalise on Montenegro's thriving real estate market. The project's strategic location, combined with the strong capital appreciation of Montenegrin property, distinguishes The Peaks as a compelling choice for discerning investors looking for exceptional returns and long-term growth potential all whilst enjoying the outstanding amenities of our growing luxury destination." </p>
-                    <p>Botanika, the first neighbourhood within The Peaks, features a collection of apartments, townhouses, and villas. The location of Botanika ensures privacy and seclusion whilst offering proximity to Centrale, Luštica Bay's vibrant town centre. Surrounded by lush greenery and breath-taking views, Botanika epitomises tranquillity and serenity. </p>
-                    <p>With its elevated position between Boka Bay and the Adriatic Sea, The Peaks' 18-hole golf course boasts an unrivalled setting with picturesque vistas in every direction. Designed by the esteemed Gary Player Design, who are renowned for their ecological approach, the course seamlessly blends with its natural surroundings, creating a harmonious fusion between nature and sport. Each hole has been thoughtfully crafted to maximise the beauty of the landscape, providing golfers with a unique and unforgettable experience. This launch marks a significant milestone in the region's high-end real estate and tourism landscape. With its impeccable design, world-class amenities, and prime location. The Peaks sets a new standard of excellence and positions Montenegro as a sought-after investment destination. As Luštica Bay continues to redefine the Adriatic coast, we invite investors and enthusiasts alike to seize the unparalleled opportunities offered by The Peaks, where opulence, natural beauty, and investment potential converge in perfect harmony.</p>
-                </div>
+            <div class="image-container" style="padding-top: 33%;">
+                <img src="images/tourism/tourism-banner1.jpg">
             </div>
+                <div class="container content-section bg-white">
+                <h4>TOWN IN THE MAKING, LUŠTICA BAY, PRESENTS MONTENEGRO'S FIRST GOLF RESIDENCES: THE PEAKS</h4>
+                <p>In the heart of Luštica Bay this prime real estate offering is set to redefine tourism in Montenegro</p>
+                <!-- Swiper -->
+                    <div class="swiper col-3-swiper mb-4">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="image-container" style="padding-top: 50%;">
+                                <img src="images/tourism/t1.jpg" alt="tourism 1" />
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="image-container" style="padding-top: 50%;">
+                                <img src="images/tourism/t2.jpg" alt="tourism 2" />
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="image-container" style="padding-top: 50%;">
+                                <img src="images/tourism/t3.jpg" alt="tourism 3" />
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="image-container" style="padding-top: 50%;">
+                                <img src="images/tourism/t4.png" alt="tourism 4" />
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="image-container" style="padding-top: 50%;">
+                                <img src="images/tourism/t5.jpg" alt="tourism 5" />
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="image-container" style="padding-top: 50%;">
+                                <img src="images/tourism/t6.jpg" alt="tourism 6" />
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="image-container" style="padding-top: 50%;">
+                                <img src="images/tourism/t7.jpg" alt="tourism 7" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+                <p>Luštica Bay, Montenegro, 31st May 2023: Luštica Bay, the emerging town in the making in Montenegro, developed by the renowned international developer, Orascom Development Holding (ODH), proudly introduces the country's first golf course and residences, The Peaks. </p>
+                <p>The project signifies the introduction of the Adriatic coast's first 18-hole course and beautifully-designed residences, positioning Montenegro as an upcoming world-class golfing destination. The project offers an unparalleled investment opportunity, set to build on the country's 1.15 billion euros of foreign investment in 2022. </p>
+                <p>The Peaks, designed by the internationally acclaimed architects, Block722, in collaboration with local design architecture firm NRA Atelier, showcases stunning architecture that seamlessly blends authentic Mediterranean influences with modern amenities. Drawing inspiration from the architecture of the region's traditional fishing villages, the architecture exudes charm and elegance, providing residents with contemporary comforts. </p>
+                <p>Darren Turner, Director of Development at Luštica Bay says, "We are excited to introduce The Peaks, an exceptional property offer that represents a significant investment opportunity in an unparalleled majestic location. As the country's first golf residences, The Peaks will not only elevate the living experience but will also reinforce Montenegro as a premier luxury destination."</p>
+            </div>
+            <div class="image-container" style="padding-top: 33%;">
+                <img src="images/tourism/tourism-banner2.jpg">
+            </div>
+                <div class="container content-section bg-white">
+                <!-- Swiper -->
+                    <div class="swiper col-3-swiper mb-4">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="image-container" style="padding-top: 50%;">
+                                <img src="images/tourism/t1-1.jpg" alt="tourism 1" />
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="image-container" style="padding-top: 50%;">
+                                <img src="images/tourism/t1-2.jpg" alt="tourism 2" />
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="image-container" style="padding-top: 50%;">
+                                <img src="images/tourism/t1-3.jpg" alt="tourism 3" />
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="image-container" style="padding-top: 50%;">
+                                <img src="images/tourism/t1-4.png" alt="tourism 4" />
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="image-container" style="padding-top: 50%;">
+                                <img src="images/tourism/t1-5.jpg" alt="tourism 5" />
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="image-container" style="padding-top: 50%;">
+                                <img src="images/tourism/t1-6.jpg" alt="tourism 6" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+                <p>Turner further emphasized, "With its remarkable contemporary coastal Adriatic architectural design and stunning views, The Peaks offers a unique opportunity for investors seeking to capitalise on Montenegro's thriving real estate market. The project's strategic location, combined with the strong capital appreciation of Montenegrin property, distinguishes The Peaks as a compelling choice for discerning investors looking for exceptional returns and long-term growth potential all whilst enjoying the outstanding amenities of our growing luxury destination." </p>
+                <p>Botanika, the first neighbourhood within The Peaks, features a collection of apartments, townhouses, and villas. The location of Botanika ensures privacy and seclusion whilst offering proximity to Centrale, Luštica Bay's vibrant town centre. Surrounded by lush greenery and breath-taking views, Botanika epitomises tranquillity and serenity. </p>
+                <p>With its elevated position between Boka Bay and the Adriatic Sea, The Peaks' 18-hole golf course boasts an unrivalled setting with picturesque vistas in every direction. Designed by the esteemed Gary Player Design, who are renowned for their ecological approach, the course seamlessly blends with its natural surroundings, creating a harmonious fusion between nature and sport. Each hole has been thoughtfully crafted to maximise the beauty of the landscape, providing golfers with a unique and unforgettable experience. This launch marks a significant milestone in the region's high-end real estate and tourism landscape. With its impeccable design, world-class amenities, and prime location. The Peaks sets a new standard of excellence and positions Montenegro as a sought-after investment destination. As Luštica Bay continues to redefine the Adriatic coast, we invite investors and enthusiasts alike to seize the unparalleled opportunities offered by The Peaks, where opulence, natural beauty, and investment potential converge in perfect harmony.</p>
+            </div>
+        </div>
     }
 </div>
 @if (openPanel != null)
 {
-        <div class="news-panel-overlay" @onclick="ClosePanel">
-            <div class="news-panel full-height @(isClosingPanel ? "slide-out" : "")" @onclick:stopPropagation>
-
+    <div class="news-panel-overlay" @onclick="ClosePanel">
+        <div class="news-panel full-height @(isClosingPanel ? "slide-out" : "")" @onclick:stopPropagation>
             @if (openPanel == "news")
             {
             <header class="header header-sticky">
@@ -801,42 +792,62 @@
                     </div>
                 </div>
             </header>
-            <main class="page-content">
-                <div class="row gap-3">
-                    <div class="col-md-4">
-                        <div class="main-video-container">
-                            <iframe src="https://www.youtube.com/embed/eNYHcc1_JCI" allowfullscreen></iframe>
+            <main class="page-content">                
+                @* <div class="row gap-3">
+                    @foreach (var (id, thumbnail) in videos)
+                    {
+                        <div class="col-md-4">
+                            <div class="image-holder">
+                            <div class="image-container" @onclick="() => OpenVideo(id)">
+                                <img src="@thumbnail" alt="Video thumbnail" />
+                                <div class="play-button"><i class="fab fa-youtube fs-12"></i></div>
+                            </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                @if (!string.IsNullOrEmpty(currentVideoUrl))
+                {
+                    <div class="video-modal" @onclick="CloseVideo">
+                        <div class="video-frame" @onclick:stopPropagation>
+                            <iframe src="@currentVideoUrl"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                            </iframe>
+                            <button class="close-button" @onclick="CloseVideo">✖</button>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="main-video-container">
-                                <iframe src="https://www.youtube.com/embed/lrMK9MUy3Go" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="main-video-container">
-                            <iframe src="https://www.youtube.com/embed/PF18-ZfkT68" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="main-video-container">
-                            <iframe src="https://www.youtube.com/embed/4TujUfarWcg" allowfullscreen></iframe>
-                        </div>
+                } *@
+                    <div class="row">
+                        @foreach (var (videoUrl, thumbnail, title) in videos)
+                        {
+                            <div class="col-md-4">
+                                <div class="image-holder">
+                                    <div class="image-container" @onclick="() => OpenVideo(videoUrl)">
+                                        <img src="@thumbnail" alt="Video thumbnail" />
+                                        <div class="play-button"><i class="fas fa-play-circle fs-12"></i></div>
+                                    </div>
+                                </div>
+                                <div class="video-title">@title</div>
+                            </div>
+                        }
                     </div>
 
-                    @* <div class="col-md-4">
-                        <img src="https://img.youtube.com/vi/eNYHcc1_JCI/0.jpg" alt="Video 2" />
-                        <a href="https://apex.showpad.com/share/hoIyhisvZf5w4NA7B8JHm/0?uniqueid=55e7b7b6-3602-4afe-bc28-36b8348455cb;bfa5b75b-ed8e-4925-a17f-6aa8141f34e3" class="video-title container content-section pb-3">Apex Invest Abu Dhabi and Las Vegas Events Testimonials.mov</a>
-                    </div>
-                    <div class="col-md-4">
-                        <img src="https://img.youtube.com/vi/lrMK9MUy3Go/0.jpg" alt="Video 3" />
-                        <a href="https://apex.showpad.com/share/hoIyhisvZf5w4NA7B8JHm/0?uniqueid=f8d07f92-e511-49d0-a8cc-96743f564363;83900f79-a5f9-4fd9-b1ea-5e5ab3189015" class="video-title container content-section pb-3">Apex Invest Las Vegas and Abu Dhabi Promo Video .mov</a>
-                    </div>
-                    <div class="col-md-4">
-                        <img src="https://img.youtube.com/vi/PF18-ZfkT68/0.jpg" alt="Video 1" />
-                        <a href="https://apex.showpad.com/share/hoIyhisvZf5w4NA7B8JHm/0?uniqueid=5a3b34e2-aff3-4602-b4a2-73669faa6464;f90504f2-0c75-47dc-a448-51b3ccc4a1ff" class="video-title container content-section pb-4">Apex Invest Bahamas 2024 - Event Showcase Video.mov</a>
-                    </div> *@
-                </div>
+                    @if (!string.IsNullOrEmpty(currentVideoUrl))
+                    {
+                        <div class="video-modal" @onclick="CloseVideo">
+                            <div class="video-frame" @onclick:stopPropagation>
+                                <video controls autoplay>
+                                    <source src="@currentVideoUrl" type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
+                                <button class="close-button" @onclick="CloseVideo">✖</button>
+                            </div>
+                        </div>
+                    }
+
             </main>
             }
             else if (openPanel == "mediaEvent")
@@ -904,25 +915,8 @@
                 </div>
             </main>
             }
-            else if (openPanel == "pdf-family")
-            {
-                <header class="header header-sticky">
-                                <div class="header-content">
-                                    <div class="left-content">
-                            <a class="back-btn pf-icon d-flex align-items-center text-light py-3 pe-3" @onclick="ClosePanel" @onclick:preventDefault>
-                                            <i class="fas fa-arrow-left fs-5"></i>
-                                        </a>
-                                    </div>
-                                            <div class="mid-content"><h6 class="title">Family Office Investor</h6></div>
-                                    <div class="right-content">
-                                        <NavLink href="/" class="pf-icon fs-5 icon-sm text-light py-3 ps-3"><i class="fas fa-home fs-5"></i></NavLink>
-                                    </div>
-                                </div>
-                            </header>
-                <iframe src="https://platformfactory.in/SDNA/IM/pdf/dubai/Family Office Investor.pdf" width="100%" height="500px" style="border: none;"></iframe>
-            }
-            </div>
         </div>
+    </div>
 }
 
 @code {
@@ -993,4 +987,46 @@
             await JS.InvokeVoidAsync("initFancyBox");
         }
     }
+}
+@* @code {
+    private string? currentVideoUrl = null;
+
+    private void OpenVideo(string videoId)
+    {
+        currentVideoUrl = $"https://www.youtube.com/embed/{videoId}?autoplay=1&playsinline=1&modestbranding=1&rel=0";
+    }
+
+    private void CloseVideo()
+    {
+        currentVideoUrl = null;
+    }
+
+    private List<(string Id, string Thumbnail)> videos = new()
+    {
+        ("eNYHcc1_JCI", "https://img.youtube.com/vi/eNYHcc1_JCI/0.jpg"),
+        ("lrMK9MUy3Go", "https://img.youtube.com/vi/lrMK9MUy3Go/0.jpg"),
+        ("PF18-ZfkT68", "https://img.youtube.com/vi/PF18-ZfkT68/0.jpg"),
+        ("4TujUfarWcg", "https://img.youtube.com/vi/4TujUfarWcg/0.jpg")
+    };
+} *@
+
+@code {
+    private string? currentVideoUrl = null;
+
+    private void OpenVideo(string videoUrl)
+    {
+        currentVideoUrl = videoUrl;
+    }
+
+    private void CloseVideo()
+    {
+        currentVideoUrl = null;
+    }
+
+    private List<(string VideoUrl, string Thumbnail, string Title)> videos = new()
+    {
+        ("https://oneplatformfactory.com/imapp/video/ApexInvestPlatform.mp4", "images/vid-thumb/vid-1.jpg", "Apex Invest Platform Promotional Video - Managers"),
+        ("", "images/vid-thumb/vid-2.jpg", "Apex Invest Abu Dhabi and Las Vegas Events Testimonials"),
+        ("", "images/vid-thumb/vid-3.jpg", "Apex Invest Bahamas 2024 - Event Showcase Video")
+    };
 }

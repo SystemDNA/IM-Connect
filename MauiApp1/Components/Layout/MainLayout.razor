@@ -1,10 +1,7 @@
 ﻿@inherits LayoutComponentBase
 @inject NavigationManager NavManager
-<div class="page-wrapper full-height">@* page *@
-    @* <div class="sidebar">
-        <NavMenu />
-    </div> *@
-    <header class="header header-sticky">
+<div class="page-wrapper full-height">
+    <header class="header header-fixed">
         <div class="header-content">
             <div class="left-content">
                 <img src="images/logo-white.svg" alt="logo" class="header-logo" /><span class="text-light fw-bold"> IM Investor</span>
@@ -12,21 +9,8 @@
             <div class="mid-content"></div>
             <div class="right-content"></div>
         </div>
-        @* <div class="top-scroll-tab" id="tabNav">
-            <a href="#" class="active" data-target="events">IM<br> Events</a>
-            <a href="#" data-target="investor">IM<br> Investor</a>
-            <a href="#" data-target="yachting">IM<br> Yachting</a>
-            <a href="#" data-target="luxury">IM<br> Luxury</a>
-            <a href="#" data-target="tourist">IM<br> Tourist</a>
-        </div> *@
     </header>
-    <main class="page-content">
-        
-        @* <div class="header-curv"></div> *@
-        @* <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div> *@
-
+    <main class="page-content space-top">
         <article class="position-relative page-transition @transitionClass">
             <div class="input-group input-group-sm whatsapp-btn">
                 <div class="input-group-text bg-success text-white border-0"><i class="fab fa-whatsapp fs-3"></i></div>
@@ -35,14 +19,6 @@
             @Body
         </article>
     </main>
-    @* <footer class="menubar-area footer-fixed">bottom-tabs
-        <div class="toolbar-inner menubar-nav bottom-scroll-tab">
-            <NavLink href="/" class="tab nav-link" activeClass="active-tab" Match="NavLinkMatch.All">IM<br />Dubai</NavLink>
-            <NavLink href="/singapore" class="tab nav-link" activeClass="active-tab">IM<br />Singapore</NavLink>
-            <!--<NavLink href="/weather" class="tab nav-link" activeClass="active-tab">Yacht sale</NavLink>
-            <NavLink href="/business" class="tab nav-link" activeClass="active-tab">Business</NavLink>-->
-        </div>
-    </footer>  *@
 </div>
 @code {
     private string transitionClass = "";
