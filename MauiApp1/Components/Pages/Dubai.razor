@@ -150,7 +150,7 @@
             <div class="notification-list">
                 <ul class="list-group gap-2">
                     <li class="list-group-item border-0">
-                        <a href="#" class="media">
+                            <a href="#" class="media" @onclick="@(() => OpenPanel("panel-1"))" @onclick:preventDefault>
                             <div class="media-100 rounded-3 border">
                                 <img src="images/events/apex-vid3.png" alt="">
                             </div>
@@ -161,7 +161,7 @@
                         </a>
                     </li>
                     <li class="list-group-item border-0">
-                        <a href="#" class="media">
+                            <a href="#" class="media" @onclick="@(() => OpenPanel("panel-2"))" @onclick:preventDefault>
                             <div class="media-100 rounded-3 border">
                                 <img src="images/events/apex-vid2.png" alt="">
                             </div>
@@ -172,7 +172,7 @@
                         </a>
                     </li>
                     <li class="list-group-item border-0">
-                        <a href="#" class="media">
+                            <a href="#" class="media" @onclick="@(() => OpenPanel("panel-3"))" @onclick:preventDefault>
                             <div class="media-100 rounded-3 border">
                                 <img src="images/events/apex-vid1.png" alt="">
                             </div>
@@ -915,6 +915,228 @@
                 </div>
             </main>
             }
+            else if (openPanel == "panel-1")
+            {
+                <header class="header header-sticky">
+                    <div class="header-content">
+                        <div class="left-content">
+                            <a class="back-btn pf-icon d-flex align-items-center text-light py-3 pe-3" @onclick="ClosePanel" @onclick:preventDefault>
+                                <i class="fas fa-arrow-left fs-5"></i>
+                            </a>
+                        </div>
+                        <div class="mid-content"><h6 class="title">LUSTICA BAY</h6></div>
+                        <div class="right-content">
+                            <NavLink href="/" class="pf-icon fs-5 icon-sm text-light py-3 ps-3"><i class="fas fa-home fs-5"></i></NavLink>
+                        </div>
+                    </div>
+                </header>
+                <main class="page-content">
+                    <div class="image-holder">
+                        <div class="image-container mb-3" style="background-image: url(images/montenegro/img1.jpg);"></div>
+                    </div>
+                    <div class="container content-section">
+                        <h4><em>ONE INVESTOR’S PARADISE. TEN REASONS WHY.</em></h4>
+                        <em>Nestled among Europe’s gems, Montenegro has swiftly evolved from a hidden treasure to the continent’s fastest-growing luxury investment hub. Reclaiming independence in 2006, the Adriatic pearl is now synonymous with steady capital appreciation and high-end tourism, capturing the attention of astute investors worldwide. Here are the top ten reasons why discerning investors are turning their gaze towards Montenegrin real estate: </em>
+                        <ul class="list-group list-group-flush unordered-list__wrapper">
+                            <li class="list-group-item unordered-list__item without-border pe-0">
+                                <h5>Unspoiled beauty, close to home</h5>
+                                <p>Cradled at the centre of the Balkan Peninsula, Montenegro gazes at southern Italy across the Adriatic Sea. Its strategic location offers proximity to European capitals within a 3-hour flight. International airports like Tivat and Podgorica, coupled with neighbouring Dubrovnik, ensure seamless travel connections. A favoured sailing destination, its coast, lined with charming beach towns including the famed Medieval town of Kotor, lies along the Corfu – Trieste cruising route.</p>
+                            </li>
+                            <li class="list-group-item unordered-list__item without-border pe-0">
+                                <h5>All the prosperity of the Eurozone</h5>
+                                <p>On the cusp of European Union membership, NATO’s youngest member welcomes investors with the security of no visa requirements for EU nationals. Montenegro stands as the only country outside the EU to adopt the Euro as its national currency, underscoring its commitment to economic stability and seamless integration into the broader European financial landscape.</p>
+                            </li>
+                            <li class="list-group-item unordered-list__item without-border pe-0">
+                                <h5>A perfect climate for investment</h5>
+                                <p>Offering foreign investors the same status as locals, Montenegro boasts low corporate taxes and a streamlined process for property ownership and business ventures. The tax landscape includes a 3% transfer tax on immovable property, 0% VAT on resale, a favourable 0.25-1% annual property tax and 15% tax on capital gain and lease. With EU-inspired legislation and no inheritance tax applicable to ‘next of kin’, Montenegro beckons as a sun-drenched tax haven conducive to long-term investments.</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="image-holder">
+                        <div class="image-container mb-3" style="background-image: url(images/montenegro/img2.jpg);"></div>
+                    </div>
+                    <div class="image-holder">
+                        <div class="image-container mb-3" style="background-image: url(images/montenegro/img3.jpg);"></div>
+                    </div>
+                    <div class="container content-section">
+                        <ul class="list-group list-group-flush unordered-list__wrapper">
+                            <li class="list-group-item unordered-list__item without-border pe-0">
+                                <h5>Renting on the rise </h5>
+                                <p>Montenegro’s thriving tourism sector unfolds opportunities for lucrative rental income, bolstered by an extended tourist season. With rising demand for rental properties, both short- and long-term rentals become an attractive avenue for investors, offering enticing yields and professional property management services.</p>
+                            </li>
+                            <li class="list-group-item unordered-list__item without-border pe-0">
+                                <h5>Paving the way to progress</h5>
+                                <p>Montenegro has prioritised its post-pandemic recovery through substantial investments in infrastructure. Strategic developments, such as active pursual in improving airport facilities, road networks and expanding highways, aim to amplify accessibility and convenience for tourists and investors alike. </p>
+                            </li>
+                            <li class="list-group-item unordered-list__item without-border pe-0">
+                                <h5>Year-round Mediterranean allure</h5>
+                                <p>Montenegro’s lifestyle effortlessly captures the essence of its revered location, embodying the vibrant spirit at the heart of the Mediterranean. Ideal for both vacationers and those seeking a second home, with approximately 270 days of sunshine each year, the country offers a harmonious blend of outdoor living, organic cuisine, and pristine natural landscapes.</p>
+                            </li>
+                            <li class="list-group-item unordered-list__item without-border pe-0">
+                                <h5>New ventures amidst preserved terrains</h5>
+                                <p>In 1991, Montenegro proudly declared itself the world’s first ecological state, a commitment that echoes through its postcard-perfect landscapes. Hosting five national parks that safeguard 8% of its territory and boasting four UNESCO World Heritage Sites, Montenegro stands out.</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="image-holder">
+                        <div class="image-container mb-3" style="background-image: url(images/montenegro/img4.jpg);"></div>
+                    </div>
+                    <div class="container content-section">
+                        <p>Europe’s southernmost fjord, Boka Bay, is a UNESCO -protected jewel rivalling Italy’s Lake Como.This picturesque sanctuary serves as the epicentre for three major development projects.Totalling €5 billion, these initiatives breathe new life into former military and naval bases, transforming them into opulent tourism sites.Among these, a colossal project on the peninsula bridging Boka Bay and the Adriatic Sea, is ranked among the most substantial investment initiatives in south-eastern Europe – Luštica Bay.</p>
+                        <p>Developed by the seasoned hands of Orascom Development Holding, Luštica Bay sleepily nuzzled between two stretches of water, is bright with warmth and life.With over 40 nationalities already calling it home, this thriving town is a sun-kissed mosaic of serenity, culture and entertainment.</p>
+                        <p>Luštica Bay embraces its natural surroundings, with the new town set to develop on a mere 10% of its vast 7 million m2 site.Surrounded by national parks, UNESCO World Heritage Sites, hiking trails and ancient olive groves, the wonders of Montenegrin nature are practically on the town’s doorstep.In harmony with this natural splendour, the town boasts four tranquil beaches, three sea lounges, and is poised to introduce the country’s inaugural golf course, each hole showcasing an unparalleled sea view– elevating its allure as a luxurious destination for year-round travel.</p>
+                        <p>Although its heart is young, the town’s soul is steeped in antiquity.Thoughtfully designed new residences seamlessly blend with the Mediterranean architectural heritage and natural beauty of their surroundings, giving Luštica Bay a discreet yet desirable charm.Three distinct neighbourhoods offer residents access to spectacular beaches, exquisite dining options, unparalleled shopping experiences, world-class amenities and a vibrant marina village.A safe and inviting community where crystal blue waters and ultimate convenience work hand in hand.</p>
+                        <p>Boasting almost 600 residences delivered to date, the town offers a unique value proposition, catering to those seeking a second home as well as those interested in a rental investment.The rental programme, coupled with tailor-made customer service and concierge facilities, adds a further layer of support for residents.</p>
+                        <p>Navigating the property market at Luštica Bay is as simple as it is spectacular.The acquisition process is smooth, with no transfer tax for first-time buyers.The town offers interest-free prolonged payment plans spanning several years, allowing flexibility for residents to move in or rent during different phases of the payment-plan duration. Marked by a capital infusion exceeding €1.5 billion and backed by a robust track record of capital appreciation, Luštica Bay stands out as both aesthetically pleasing and a hugely attractive financial prospect.As well as being an excellent place of investment, Luštica Bay is also a place to discover.A place to connect.</p>
+                    </div>
+                    <div class="image-holder">
+                        <div class="image-container mb-3" style="background-image: url(images/montenegro/img5.jpg);"></div>
+                    </div>
+                </main>
+            }
+            else if (openPanel == "panel-2")
+            {
+                <header class="header header-sticky">
+                    <div class="header-content">
+                        <div class="left-content">
+                            <a class="back-btn pf-icon d-flex align-items-center text-light py-3 pe-3" @onclick="ClosePanel" @onclick:preventDefault>
+                                <i class="fas fa-arrow-left fs-5"></i>
+                            </a>
+                        </div>
+                        <div class="mid-content"><h6 class="title">LUSTICA BAY</h6></div>
+                        <div class="right-content">
+                            <NavLink href="/" class="pf-icon fs-5 icon-sm text-light py-3 ps-3"><i class="fas fa-home fs-5"></i></NavLink>
+                        </div>
+                    </div>
+                </header>
+                <div class="container content-section">
+                    <h3>Apex Invest & Investor Media are delighted to invite you to attend our event 18th and 19th November 2024</h3>
+                    <p>A two-days event with panel presentations on traditional and alternative investments, real estate, wealth management and luxury assets followed by networking and evening receptions.</p>
+                    <div class="p-3 bg-light">
+                        <h5>Venue: Hilton, Yas Island, Abu Dhabi</h5>
+                        <p>Our event venue is an exquisite waterfront luxury hotel at Yas Island Abu Dhabi, one of the world's most exciting and exotic travel destinations.</p>
+                        <p>To confirm your attendance, please rsvp: Xavier Calloc'h xavier@investor-media.com</p>
+                        <p><b>Contact details and profession required and you will receive your personal invitation.</b></p>
+                        <p>Solely confirmed guests will be permitted to attend the event</p>
+                    </div>
+                </div>
+            }
+            else if (openPanel == "panel-3")
+            {
+                <header class="header header-sticky">
+                    <div class="header-content">
+                        <div class="left-content">
+                            <a class="back-btn pf-icon d-flex align-items-center text-light py-3 pe-3" @onclick="ClosePanel" @onclick:preventDefault>
+                                <i class="fas fa-arrow-left fs-5"></i>
+                            </a>
+                        </div>
+                        <div class="mid-content"><h6 class="title">FIRST GOLF RESIDENCES</h6></div>
+                        <div class="right-content">
+                            <NavLink href="/" class="pf-icon fs-5 icon-sm text-light py-3 ps-3"><i class="fas fa-home fs-5"></i></NavLink>
+                        </div>
+                    </div>
+                </header>
+                <main class="page-content">
+                    <div class="image-container" style="padding-top: 33%;">
+                        <img src="images/tourism/tourism-banner1.jpg">
+                    </div>
+                    <div class="container content-section bg-white">
+                        <h4>TOWN IN THE MAKING, LUŠTICA BAY, PRESENTS MONTENEGRO'S FIRST GOLF RESIDENCES: THE PEAKS</h4>
+                        <p>In the heart of Luštica Bay this prime real estate offering is set to redefine tourism in Montenegro</p>
+                        <!-- Swiper -->
+                        <div class="swiper col-3-swiper mb-4">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="image-container" style="padding-top: 50%;">
+                                        <img src="images/tourism/t1.jpg" alt="tourism 1" />
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image-container" style="padding-top: 50%;">
+                                        <img src="images/tourism/t2.jpg" alt="tourism 2" />
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image-container" style="padding-top: 50%;">
+                                        <img src="images/tourism/t3.jpg" alt="tourism 3" />
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image-container" style="padding-top: 50%;">
+                                        <img src="images/tourism/t4.png" alt="tourism 4" />
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image-container" style="padding-top: 50%;">
+                                        <img src="images/tourism/t5.jpg" alt="tourism 5" />
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image-container" style="padding-top: 50%;">
+                                        <img src="images/tourism/t6.jpg" alt="tourism 6" />
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image-container" style="padding-top: 50%;">
+                                        <img src="images/tourism/t7.jpg" alt="tourism 7" />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Add Pagination -->
+                            <div class="swiper-pagination"></div>
+                        </div>
+                        <p>Luštica Bay, Montenegro, 31st May 2023: Luštica Bay, the emerging town in the making in Montenegro, developed by the renowned international developer, Orascom Development Holding (ODH), proudly introduces the country's first golf course and residences, The Peaks. </p>
+                        <p>The project signifies the introduction of the Adriatic coast's first 18-hole course and beautifully-designed residences, positioning Montenegro as an upcoming world-class golfing destination. The project offers an unparalleled investment opportunity, set to build on the country's 1.15 billion euros of foreign investment in 2022. </p>
+                        <p>The Peaks, designed by the internationally acclaimed architects, Block722, in collaboration with local design architecture firm NRA Atelier, showcases stunning architecture that seamlessly blends authentic Mediterranean influences with modern amenities. Drawing inspiration from the architecture of the region's traditional fishing villages, the architecture exudes charm and elegance, providing residents with contemporary comforts. </p>
+                        <p>Darren Turner, Director of Development at Luštica Bay says, "We are excited to introduce The Peaks, an exceptional property offer that represents a significant investment opportunity in an unparalleled majestic location. As the country's first golf residences, The Peaks will not only elevate the living experience but will also reinforce Montenegro as a premier luxury destination."</p>
+                    </div>
+                    <div class="image-container" style="padding-top: 33%;">
+                        <img src="images/tourism/tourism-banner2.jpg">
+                    </div>
+                    <div class="container content-section bg-white">
+                        <!-- Swiper -->
+                        <div class="swiper col-3-swiper mb-4">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="image-container" style="padding-top: 50%;">
+                                        <img src="images/tourism/t1-1.jpg" alt="tourism 1" />
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image-container" style="padding-top: 50%;">
+                                        <img src="images/tourism/t1-2.jpg" alt="tourism 2" />
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image-container" style="padding-top: 50%;">
+                                        <img src="images/tourism/t1-3.jpg" alt="tourism 3" />
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image-container" style="padding-top: 50%;">
+                                        <img src="images/tourism/t1-4.png" alt="tourism 4" />
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image-container" style="padding-top: 50%;">
+                                        <img src="images/tourism/t1-5.jpg" alt="tourism 5" />
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image-container" style="padding-top: 50%;">
+                                        <img src="images/tourism/t1-6.jpg" alt="tourism 6" />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Add Pagination -->
+                            <div class="swiper-pagination"></div>
+                        </div>
+                        <p>Turner further emphasized, "With its remarkable contemporary coastal Adriatic architectural design and stunning views, The Peaks offers a unique opportunity for investors seeking to capitalise on Montenegro's thriving real estate market. The project's strategic location, combined with the strong capital appreciation of Montenegrin property, distinguishes The Peaks as a compelling choice for discerning investors looking for exceptional returns and long-term growth potential all whilst enjoying the outstanding amenities of our growing luxury destination." </p>
+                        <p>Botanika, the first neighbourhood within The Peaks, features a collection of apartments, townhouses, and villas. The location of Botanika ensures privacy and seclusion whilst offering proximity to Centrale, Luštica Bay's vibrant town centre. Surrounded by lush greenery and breath-taking views, Botanika epitomises tranquillity and serenity. </p>
+                        <p>With its elevated position between Boka Bay and the Adriatic Sea, The Peaks' 18-hole golf course boasts an unrivalled setting with picturesque vistas in every direction. Designed by the esteemed Gary Player Design, who are renowned for their ecological approach, the course seamlessly blends with its natural surroundings, creating a harmonious fusion between nature and sport. Each hole has been thoughtfully crafted to maximise the beauty of the landscape, providing golfers with a unique and unforgettable experience. This launch marks a significant milestone in the region's high-end real estate and tourism landscape. With its impeccable design, world-class amenities, and prime location. The Peaks sets a new standard of excellence and positions Montenegro as a sought-after investment destination. As Luštica Bay continues to redefine the Adriatic coast, we invite investors and enthusiasts alike to seize the unparalleled opportunities offered by The Peaks, where opulence, natural beauty, and investment potential converge in perfect harmony.</p>
+                    </div>
+                </main>
+            }
         </div>
     </div>
 }
@@ -945,10 +1167,18 @@
         await JS.InvokeVoidAsync("initSwiper");
     }
 
-    void OpenPanel(string panelName)
+    async void OpenPanel(string panelName)
     {
         openPanel = panelName;
         isClosingPanel = false;
+        StateHasChanged(); // Trigger UI update
+
+        // Wait for DOM to update, then initialize Swiper only for panel3
+        if (panelName == "panel3")
+        {
+            await Task.Delay(100); // Delay allows Blazor to render the DOM
+            await JS.InvokeVoidAsync("initSwiper");
+        }
     }
 
     async void ClosePanel()

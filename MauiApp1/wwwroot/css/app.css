@@ -2874,7 +2874,6 @@ textarea.form-control-lg {
     /*background: #eee;
     box-shadow: 0 0 5px rgba(0,0,0,0.2);*/
     /*margin-right: 10px;*/
-    margin-top:-2px;
 }
 
 .slider .swiper-wrapper .swiper-slide .mask {
@@ -2932,7 +2931,7 @@ textarea.form-control-lg {
 .slider .swiper:after {
     content: "";
     position: absolute;
-    bottom: -1px;
+    bottom: -3px;
     left: 0;
     width: 100%;
     height: 8%;
