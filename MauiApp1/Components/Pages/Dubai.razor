@@ -792,8 +792,8 @@
                     </div>
                 </div>
             </header>
-            <main class="page-content">                
-                @* <div class="row gap-3">
+                <main class="page-content @(currentVideoUrl !=null ? "no-scroll" : "" )">
+                    @* <div class="row gap-3">
                     @foreach (var (id, thumbnail) in videos)
                     {
                         <div class="col-md-4">
@@ -1025,8 +1025,12 @@
 
     private List<(string VideoUrl, string Thumbnail, string Title)> videos = new()
     {
-        ("https://oneplatformfactory.com/imapp/video/1.mp4", "images/vid-thumb/vid-1.jpg", "Apex Invest Platform Promotional Video - Managers"),
-        ("https://oneplatformfactory.com/imapp/video/2.mp4", "images/vid-thumb/vid-2.jpg", "Apex Invest Abu Dhabi and Las Vegas Events Testimonials"),
-        ("https://oneplatformfactory.com/imapp/video/3.mp4", "images/vid-thumb/vid-3.jpg", "Apex Invest Bahamas 2024 - Event Showcase Video")
+        ("https://oneplatformfactory.com/imapp/video/1.mp4", "images/vid-thumb/vid-1.jpg", "Investor Media - London Winter Event 2023"),
+        ("https://oneplatformfactory.com/imapp/video/2.mp4", "images/vid-thumb/vid-2.jpg", "Investor Media event Monaco Yacht Show 2023"),
+        ("https://oneplatformfactory.com/imapp/video/3.mp4", "images/vid-thumb/vid-3.jpg", "Investor Media Dubai Event 2020"),
+        ("https://oneplatformfactory.com/imapp/video/4.mp4", "images/vid-thumb/vid-4.jpg", "investor media"),
+        ("https://oneplatformfactory.com/imapp/video/5.mp4", "images/vid-thumb/vid-5.jpg", "Apex Invest Platform Promotional Video - Managers"),
+        // ("https://oneplatformfactory.com/imapp/video/6.mp4", "images/vid-thumb/vid-6.jpg", "Apex Invest Abu Dhabi and Las Vegas Events Testimonials"),
+        // ("https://oneplatformfactory.com/imapp/video/7.mp4", "images/vid-thumb/vid-7.jpg", "Apex Invest Bahamas 2024 - Event Showcase Video")
     };
 }
