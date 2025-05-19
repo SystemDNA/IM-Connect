@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MauiApp1.Services;
+using Microsoft.Extensions.Logging;
 
 namespace MauiApp1
 {
@@ -14,6 +15,8 @@ namespace MauiApp1
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 });
 
+            builder.Services.AddSingleton<BiometricAuthService>();
+            builder.Services.AddSingleton<UserLocationService>();
             builder.Services.AddMauiBlazorWebView();
 #if DEBUG
             builder.Services.AddBlazorWebViewDeveloperTools();

@@ -32,5 +32,10 @@
    <string>im</string>
     <key>CFBundleIdentifier</key>
     <string>com.teamxit.com</string>
+<key>NSFaceIDUsageDescription</key>
+<string>This app uses Face ID to protect your data.</string>
+
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>This app needs your location to provide local suggestions.</string>
 </dict>
 </plist>

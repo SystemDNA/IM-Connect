@@ -1,4 +1,5 @@
-﻿@inherits LayoutComponentBase
+﻿@using MauiApp1.Services
+@inherits LayoutComponentBase
 @inject NavigationManager NavManager
 <div class="page-wrapper full-height">
     <header class="header header-fixed">
@@ -23,12 +24,27 @@
 @code {
     private string transitionClass = "";
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         NavManager.LocationChanged += (_, __) =>
         {
             transitionClass = "slide-in";
             StateHasChanged();
         };
+
+        if (!SessionManager.IsAuthenticated)
+        {
+            var authService = new BiometricAuthService();
+            bool success = await authService.AuthenticateAsync();
+
+            if (success)
+            {
+                SessionManager.SetAuthenticated();
+            }
+            else
+            {
+
+            }
+        }
     }
 }
