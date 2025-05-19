@@ -1,50 +1,53 @@
 ﻿@page "/"
+@using MauiApp1.Services
 @* @using Microsoft.AspNetCore.Components *@
 @inject NavigationManager Navigation
 @inject IJSRuntime JS
 @layout MauiApp1.Components.Layout.MainLayout
+@inject UserLocationService LocationService
+
 <div class="slider">
-        <div class="swiper col-1-swiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <a href="#">
-                        <div class="mask"></div>
-                        <img src="images/events/abu-dhabi.png" />
-                        <div class="image-caption">
-                            <h4 class="title-post">Omaya Yachts celebrates a successful week at the International Multihull Show in La Grande-Motte</h4>
-                            <span class="category-tag">Yachts <i class="fas fa-circle"></i></span>
-                            <span class="date">25 April 2025</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <div class="mask"></div>
-                        <img src="images/events/apex-vid1.png" />
-                        <div class="image-caption">
-                            <h4 class="title-post">SAY 52 Undergoing Final Preparations Ahead of Palma Boat Show</h4>
-                            <span class="category-tag">MEDIA ALERT <i class="fas fa-circle"></i></span>
-                            <span class="date">April, 2025</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <div class="mask"></div>
-                        <img src="images/events/apex-vid2.png" />
-                        <div class="image-caption">
-                            <h4 class="title-post">This Earth Day, Arksen and 10% For The Ocean Announce Co-Production</h4>
-                            <span class="category-tag">News <i class="fas fa-circle"></i></span>
-                            <span class="date">22 April 2025</span>
-                        </div>
-                    </a>
-                </div>
+    <div class="swiper col-1-swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <a href="#">
+                    <div class="mask"></div>
+                    <img src="images/events/abu-dhabi.png" />
+                    <div class="image-caption">
+                        <h4 class="title-post">Omaya Yachts celebrates a successful week at the International Multihull Show in La Grande-Motte</h4>
+                        <span class="category-tag">Yachts <i class="fas fa-circle"></i></span>
+                        <span class="date">25 April 2025</span>
+                    </div>
+                </a>
             </div>
-            <!-- Optional navigation -->
-            @* <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div> *@
-            <div class="swiper-pagination"></div>
+            <div class="swiper-slide">
+                <a href="#">
+                    <div class="mask"></div>
+                    <img src="images/events/apex-vid1.png" />
+                    <div class="image-caption">
+                        <h4 class="title-post">SAY 52 Undergoing Final Preparations Ahead of Palma Boat Show</h4>
+                        <span class="category-tag">MEDIA ALERT <i class="fas fa-circle"></i></span>
+                        <span class="date">April, 2025</span>
+                    </div>
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="#">
+                    <div class="mask"></div>
+                    <img src="images/events/apex-vid2.png" />
+                    <div class="image-caption">
+                        <h4 class="title-post">This Earth Day, Arksen and 10% For The Ocean Announce Co-Production</h4>
+                        <span class="category-tag">News <i class="fas fa-circle"></i></span>
+                        <span class="date">22 April 2025</span>
+                    </div>
+                </a>
+            </div>
         </div>
+        <!-- Optional navigation -->
+        @* <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div> *@
+        <div class="swiper-pagination"></div>
+    </div>
 </div>
 <div class="container pt-3">
     <div class="row feature-top">
@@ -56,49 +59,49 @@
 </div>
 <div class="content">
     <div class="content-section notification-list img-list-btn">
-    <ul class="list-group gap-2">
-        <li class="list-group-item border-0" style="background-image:url(images/country/dubai.png)">
-            <NavLink href="/dubai">
-                <div class="mask"></div>
-                <div class="image-caption">
-                    <h4>Dubai</h4>
-                </div>
-            </NavLink>
-        </li>
-        <li class="list-group-item border-0" style="background-image:url(images/country/singapore.png)">
-            <NavLink href="/singapore">
-                <div class="mask"></div>
-                <div class="image-caption">
-                    <h4>Singapore</h4>
-                </div>
-            </NavLink>
-        </li>
-        <li class="list-group-item border-0" style="background-image:url(images/country/monaco.png)">
-            <NavLink href="/monaco">
-                <div class="mask"></div>
-                <div class="image-caption">
-                    <h4>Monaco</h4>
-                </div>
-            </NavLink>
-        </li>
+        <ul class="list-group gap-2">
+            <li class="list-group-item border-0" style="background-image:url(images/country/dubai.png)">
+                <NavLink href="/dubai">
+                    <div class="mask"></div>
+                    <div class="image-caption">
+                        <h4>Dubai</h4>
+                    </div>
+                </NavLink>
+            </li>
+            <li class="list-group-item border-0" style="background-image:url(images/country/singapore.png)">
+                <NavLink href="/singapore">
+                    <div class="mask"></div>
+                    <div class="image-caption">
+                        <h4>Singapore</h4>
+                    </div>
+                </NavLink>
+            </li>
+            <li class="list-group-item border-0" style="background-image:url(images/country/monaco.png)">
+                <NavLink href="/monaco">
+                    <div class="mask"></div>
+                    <div class="image-caption">
+                        <h4>Monaco</h4>
+                    </div>
+                </NavLink>
+            </li>
             <li class="list-group-item border-0" style="background-image:url(images/country/montenegro.png)">
-            <NavLink href="/montenegro">
-                <div class="mask"></div>
-                <div class="image-caption">
-                    <h4>Montenegro</h4>
-                </div>
-            </NavLink>
-        </li>
+                <NavLink href="/montenegro">
+                    <div class="mask"></div>
+                    <div class="image-caption">
+                        <h4>Montenegro</h4>
+                    </div>
+                </NavLink>
+            </li>
             <li class="list-group-item border-0" style="background-image:url(images/country/cyprus.png)">
-            <NavLink href="/cyprus">
-                <div class="mask"></div>
-                <div class="image-caption">
-                    <h4>Cyprus</h4>
-                </div>
-            </NavLink>
-        </li>
-    </ul>
-</div>
+                <NavLink href="/cyprus">
+                    <div class="mask"></div>
+                    <div class="image-caption">
+                        <h4>Cyprus</h4>
+                    </div>
+                </NavLink>
+            </li>
+        </ul>
+    </div>
 </div>
 @* <header class="header header-fixed">
     <div class="top-scroll-tab">
@@ -114,7 +117,7 @@
     @if (activeTab == "events") {        
         <div class="pt-3">
             <div class="section-title px-3">
-            <h4>Latest News</h4>
+                <h4>Latest News</h4>
             </div>        
             <div class="notification-list">
                 <ul class="list-group gap-2">
@@ -159,124 +162,124 @@
     {
         <div id="investor" class="content-section">
             <div class="title-bar">
-                    <h6 class="title">Investor</h6>
-                </div>
+                <h6 class="title">Investor</h6>
+            </div>
             <div class="notification-list">
-                    <ul class="list-group pdf-gallery">
-                        <li class="list-group-item">
-                            <a href="#" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
-                                <div class="media-50 rounded-3 border">
-                                    <img src="images/investor/inv-family.png" alt="">
-                                </div>
-                                <div class="list-content">
-                                    <h6 class="title">Family Office Investor</h6>
-                                    <p class="m-0 small">World-class superyacht marina.</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
-                                <div class="media-50 rounded-3 border">
-                                    <img src="images/investor/icn-bupa.jpg" alt="">
-                                </div>
-                                <div class="list-content">
-                                    <h6 class="title">BUPA healthcare</h6>
-                                    <p class="m-0 small">More than healthcare this is lifecare our most extensive worldwide protection.</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
-                                <div class="media-50 rounded-3 border">
-                                    <img src="images/investor/icn-carbon.png" alt="">
-                                </div>
-                                <div class="list-content">
-                                    <h6 class="title">Carbon Credits</h6>
-                                    <p class="m-0 small">Is there credit in carbon removal?</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
-                                <div class="media-50 rounded-3 border">
-                                    <img src="images/investor/icn-straw.jpg" alt="">
-                                </div>
-                                <div class="list-content">
-                                    <h6 class="title">Plastic straws</h6>
-                                    <p class="m-0 small">Closing the joy gap.</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
-                                <div class="media-50 rounded-3 border">
-                                    <img src="images/investor/icn-orizon.jpg" alt="">
-                                </div>
-                                <div class="list-content">
-                                    <h6 class="title">Oryzon Epsylon fund</h6>
-                                    <p class="m-0 small">Adding value to Alternative Investment: Oryzon Epsilon Fund</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
-                                <div class="media-50 rounded-3 border">
-                                    <img src="images/investor/icn-adopting.jpg" alt="">
-                                </div>
-                                <div class="list-content">
-                                    <h6 class="title">Adopting sustainability</h6>
-                                    <p class="m-0 small">Consumption is one of the most important aspects that require focus.</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
-                                <div class="media-50 rounded-3 border">
-                                    <img src="images/investor/icn-igor.jpg" alt="">
-                                </div>
-                                <div class="list-content">
-                                    <h6 class="title">Igor real terms</h6>
-                                    <p class="m-0 small">Continuing our look at how best to protect your estate and wealth for future generations</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
-                                <div class="media-50 rounded-3 border">
-                                    <img src="images/investor/icn-luxury.jpg" alt="">
-                                </div>
-                                <div class="list-content">
-                                    <h6 class="title">Luxury asset watches</h6>
-                                    <p class="m-0 small">A new anniversary Breguet Marine to savour.</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
-                                <div class="media-50 rounded-3 border">
-                                    <img src="images/investor/icn-venture.jpg" alt="">
-                                </div>
-                                <div class="list-content">
-                                    <h6 class="title">Venture Capital</h6>
-                                    <p class="m-0 small"> In contrast to the world we see emerging today, our second issue was largely written under lockdown.</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
-                                <div class="media-50 rounded-3 border">
-                                    <img src="images/investor/icn-capital.jpg" alt="">
-                                </div>
-                                <div class="list-content">
-                                    <h6 class="title">XLX Capital</h6>
-                                    <p class="m-0 small">We speak to experienced asset manager and founder of XLX Capital...</p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="list-group pdf-gallery">
+                    <li class="list-group-item">
+                        <a href="#" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/inv-family.png" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">Family Office Investor</h6>
+                                <p class="m-0 small">World-class superyacht marina.</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/icn-bupa.jpg" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">BUPA healthcare</h6>
+                                <p class="m-0 small">More than healthcare this is lifecare our most extensive worldwide protection.</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/icn-carbon.png" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">Carbon Credits</h6>
+                                <p class="m-0 small">Is there credit in carbon removal?</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/icn-straw.jpg" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">Plastic straws</h6>
+                                <p class="m-0 small">Closing the joy gap.</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/icn-orizon.jpg" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">Oryzon Epsylon fund</h6>
+                                <p class="m-0 small">Adding value to Alternative Investment: Oryzon Epsilon Fund</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/icn-adopting.jpg" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">Adopting sustainability</h6>
+                                <p class="m-0 small">Consumption is one of the most important aspects that require focus.</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/icn-igor.jpg" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">Igor real terms</h6>
+                                <p class="m-0 small">Continuing our look at how best to protect your estate and wealth for future generations</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/icn-luxury.jpg" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">Luxury asset watches</h6>
+                                <p class="m-0 small">A new anniversary Breguet Marine to savour.</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/icn-venture.jpg" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">Venture Capital</h6>
+                                <p class="m-0 small"> In contrast to the world we see emerging today, our second issue was largely written under lockdown.</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="media pdf-fancybox" data-fancybox="pdf-gallery" data-type="iframe">
+                            <div class="media-50 rounded-3 border">
+                                <img src="images/investor/icn-capital.jpg" alt="">
+                            </div>
+                            <div class="list-content">
+                                <h6 class="title">XLX Capital</h6>
+                                <p class="m-0 small">We speak to experienced asset manager and founder of XLX Capital...</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        }
+    }
     else if (activeTab == "yachting")
     {
         <div id="yachting" class="content-section">
@@ -446,7 +449,7 @@
                 </div><!--Accord-->
             </div>
         </div>
-        }
+    }
     else if (activeTab == "luxury")
     {
         <div id="luxury" class="content-section">
@@ -543,7 +546,7 @@
                 <p>In 2024 Maya Collection will unveil its premium boutique hotel in the undeniably glamorous ski resort of Courchevel in the French Alps. Although Maya Hotel Courchevel will host a limited number of suites for the privilaged few, its ground floor will simultaniously host its very own MayaBay restaurant.</p>
             </div>
         </div>
-        }
+    }
     else if (activeTab == "tourist")
     {
         <div id="tourist" class="content-section">
@@ -653,7 +656,7 @@
 {
     <div class="news-panel-overlay" @onclick="ClosePanel">
         <div class="news-panel full-height @(isClosingPanel ? "slide-out" : "")" @onclick:stopPropagation>
-            
+
             @* <button class="close-btn" @onclick="ClosePanel">← Back</button> *@
 
             @if (openPanel == "panel1")
@@ -933,14 +936,21 @@
 }
 
 @code {
+
+    private string _country;
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
             await JS.InvokeVoidAsync("initSwiper");
             await JS.InvokeVoidAsync("initFancyBox");
+            await FetchLocation();
         }
     }
+    private async Task FetchLocation()
+    {
+         var _location = await LocationService.GetUserLocationAndCountryAsync();
+        _country = _location.Country;
+    }
 }
-
-

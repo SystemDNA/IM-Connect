@@ -1,4 +1,5 @@
-﻿@inherits LayoutComponentBase
+﻿@using MauiApp1.Services
+@inherits LayoutComponentBase
 @inject NavigationManager NavManager
 <div class="page-wrapper full-height">
     <header class="header header-fixed">
@@ -7,10 +8,10 @@
                 <img src="images/logo-white.svg" alt="logo" class="header-logo" /><span class="text-light fw-bold"> IM Investor</span>
             </div>
             <div class="mid-content"></div>
-            <div class="right-content"><i class="fa fa-ellipsis-v fs-7 text-light btn"></i></div>
+            <div class="right-content"></div>
         </div>
     </header>
-    <main class="page-content space-top space-bottom">
+    <main class="page-content space-top">
         <article class="position-relative page-transition @transitionClass">
             <div class="input-group input-group-sm whatsapp-btn">
                 <div class="input-group-text bg-success text-white border-0"><i class="fab fa-whatsapp fs-3"></i></div>
@@ -19,24 +20,31 @@
             @Body
         </article>
     </main>
-    <footer class="menubar-area footer-fixed bottom-tabs">
-        <div class="toolbar-inner menubar-nav bottom-scroll-tab">
-            <NavLink href="/" class="tab nav-link" activeClass="active-tab" Match="NavLinkMatch.All"><img src="images/icon/news-white.svg">News</NavLink>
-            <NavLink href="/singapore" class="tab nav-link" activeClass="active-tab"><img src="images/icon/event-white.svg">Event</NavLink>
-            <NavLink href="/weather" class="tab nav-link" activeClass="active-tab"><img src="images/icon/invest-white.svg">Invest</NavLink>
-            <NavLink href="/business" class="tab nav-link" activeClass="active-tab"><img src="images/icon/yatch-white.svg">Yatching</NavLink>
-        </div>
-    </footer>
 </div>
 @code {
     private string transitionClass = "";
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         NavManager.LocationChanged += (_, __) =>
         {
             transitionClass = "slide-in";
             StateHasChanged();
         };
+
+        if (!SessionManager.IsAuthenticated)
+        {
+            var authService = new BiometricAuthService();
+            bool success = await authService.AuthenticateAsync();
+
+            if (success)
+            {
+                SessionManager.SetAuthenticated();
+            }
+            else
+            {
+
+            }
+        }
     }
 }
