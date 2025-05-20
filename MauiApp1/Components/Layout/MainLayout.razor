@@ -3,7 +3,6 @@
 @inject NavigationManager NavManager
 @inject UserLocationService LocationService
 
-
 <div class="page-wrapper full-height">
     <header class="header header-fixed">
         <div class="header-content">
@@ -13,7 +12,7 @@
             <div class="mid-content"></div>
             <div class="right-content">
                 <span class="btn text-light btn-dark border btn-sm">@_country</span>
-                <span class="btn text-light btn-dark border btn-sm ms-1"><i class="far fa-clone fs-5"></i></span>
+                <a class="btn text-light btn-dark border btn-sm ms-1" @onclick="OpenModal"><i class="far fa-clone fs-5"></i></a>
             </div>
         </div>         
     </header>
@@ -25,6 +24,50 @@
             </div>
             @Body
         </article>
+        @if (showModal)
+        {
+            <div class="modal d-block" tabindex="-1" style="background-color: rgba(0, 0, 0, 0.5);">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content shadow-lg">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Yacht Emission Calculator</h5>
+                            <button type="button" class="btn-close" @onclick="CloseModal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="distanceNm" class="form-label">Distance Travelled (nm)</label>
+                                    <input type="number" class="form-control" id="distanceNm" placeholder="e.g., 150">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="fuelLPH" class="form-label">Fuel Consumption (L/hr)</label>
+                                    <input type="number" class="form-control" id="fuelLPH" placeholder="e.g., 100">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="speedKnots" class="form-label">Average Speed (knots)</label>
+                                    <input type="number" class="form-control" id="speedKnots" placeholder="e.g., 20">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="fuelType" class="form-label">Fuel Type</label>
+                                    <select class="form-select" id="fuelType">
+                                        <option disabled selected>Choose fuel type</option>
+                                        <option value="Diesel">Diesel</option>
+                                        <option value="Petrol">Petrol</option>
+                                        <option value="LNG">LNG</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" @onclick="CloseModal">Close</button>
+                            <button class="btn btn-primary">Calculate</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+
     </main>
     <footer class="menubar-area footer-fixed bottom-tabs">       
         <div class="toolbar-inner menubar-nav bottom-scroll-tab">
@@ -77,4 +120,11 @@
         var _location = await LocationService.GetUserLocationAndCountryAsync();
         _country = _location.Country;
     }
+}
+
+@code {
+    private bool showModal = false;
+
+    void OpenModal() => showModal = true;
+    void CloseModal() => showModal = false;
 }
