@@ -4,7 +4,6 @@
 @inject NavigationManager Navigation
 @inject IJSRuntime JS
 @layout MauiApp1.Components.Layout.MainLayout
-@inject UserLocationService LocationService
 
 <div class="slider">
     <div class="swiper col-1-swiper">
@@ -937,20 +936,15 @@
 
 @code {
 
-    private string _country;
-
+  
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
             await JS.InvokeVoidAsync("initSwiper");
             await JS.InvokeVoidAsync("initFancyBox");
-            await FetchLocation();
+           
         }
     }
-    private async Task FetchLocation()
-    {
-         var _location = await LocationService.GetUserLocationAndCountryAsync();
-        _country = _location.Country;
-    }
+   
 }
