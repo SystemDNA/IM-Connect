@@ -2448,11 +2448,19 @@ textarea.form-control-lg {
         bottom: 0;
         right: 0;
     }
-/***************************/
-.lightbox-container {
-    padding: 0 !important;
-    z-index: 9;
+
+.ellips1, .ellips2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
+    .ellips2{-webkit-line-clamp: 2;}
+    /***************************/
+    .lightbox-container {
+        padding: 0 !important;
+        z-index: 9;
+    }
 
 .lightbox-video-wrapper {
     width: 90vw;
@@ -3147,12 +3155,16 @@ textarea.form-control-lg {
 }
 
 .feature-top img {
-    height: 44px;
-    margin-bottom: 0.75rem;
+    /*height: 44px;
+    margin-bottom: 0.75rem;*/
 }
-/********************/
-.page-title {
-}
+    .feature-top img.banner {
+        height: auto;
+        padding: 0;
+    }
+    /********************/
+    .page-title {
+    }
 
     .page-title h2 {
         color: #000;
