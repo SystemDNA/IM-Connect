@@ -1,0 +1,29 @@
+@page "/login"
+@* @layout null *@
+@inject NavigationManager Navigation
+<div class="register-container">
+<div class="register-section">
+    <h5 class="text-white">Login</h5>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 d-flex flex-column gap-3">
+                <input class="form-control" placeholder="Enter username" @bind="username" />
+                <input class="form-control" type="password" placeholder="Enter password" @bind="password" />
+                <p class="m-0 text-end"><a href="#">Forgot password</a></p>
+                <button class="btn btn-primary w-100" @onclick="LoginUser">Login</button>
+            </div>
+        </div>
+    </div>
+</div>
+    <p class="m-0 p-3 text-muted text-center">New to IM Investor? <a href="#" class="btn-link">Register</a></p>
+</div>
+@code {
+    private string username;
+    private string password;
+
+    private void LoginUser()
+    {
+        // Simulate login (you can validate credentials here)
+        Navigation.NavigateTo("/verify");
+    }
+}

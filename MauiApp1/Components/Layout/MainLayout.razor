@@ -1,60 +1,102 @@
-﻿@using MauiApp1.Services
+﻿@inject IJSRuntime JS
+@implements IAsyncDisposable
+
+@using MauiApp1.Services
 @using MauiApp1.Components.Layout
 @inherits LayoutComponentBase
 @inject NavigationManager NavManager
 @inject UserLocationService LocationService
 
 <div class="page-wrapper full-height">
-    <header class="header header-fixed">
-        <div class="header-content">
-            <div class="left-content">
-                <img src="images/logo-white.svg" alt="logo" class="header-logo" /><span class="text-light fw-bold"> IM Investor</span>
+    
+        <header class="header header-fixed">
+            <div class="header-content">
+                <div class="left-content">
+                    <img src="images/logo-white.svg" alt="logo" class="header-logo" /><span class="text-light fw-bold"> IM Investor</span>
+                </div>
+            @if (!hideHeaderAndWhatsApp)
+            {
+                <div class="mid-content"></div>
+                <div class="right-content position-relative d-flex align-items-center">
+                    <span class="btn text-light btn-dark btn-sm">@_country</span>
+                    <a class="btn text-light btn-dark btn-sm ms-1" @onclick="() => showDialog = true"><i class="far fa-clone fs-4"></i></a>
+                    <!-- Dropdown container -->
+                    <div class="moreOption-wrapper ms-1" id="dropdownArea">
+                        <a class="btn text-light btn-dark btn-sm" @onclick="ToggleDropdown">
+                            <i class="fas fa-ellipsis-v fs-4"></i>
+                        </a>
+
+                        @if (showDropdown)
+                        {
+                            <ul class="moreOption-dropdown" id="dropdownMenu">
+                                <li @onclick="NavigateToDetails">
+                                    <i class="fas fa-info-circle me-2"></i> Details
+                                </li>
+                                <li @onclick="NavigateToCertificates">
+                                    <i class="fas fa-certificate me-2"></i> CO₂ Certificates
+                                </li>
+                                <li @onclick="Logout">
+                                    <i class="fas fa-sign-out-alt me-2"></i> Logout
+                                </li>
+                            </ul>
+                        }
+                    </div>
+                </div>
+            }
             </div>
-            <div class="mid-content"></div>
-            <div class="right-content">
-                <span class="btn text-light btn-dark border btn-sm">@_country</span>
-                <a class="btn text-light btn-dark border btn-sm ms-1" @onclick="() => showDialog = true"><i class="far fa-clone fs-5"></i></a>
-            </div>
-        </div>         
-    </header>
+        </header>
+    
     <main class="page-content space-top space-bottom">
         <article class="position-relative page-transition @transitionClass">
-            <div class="input-group input-group-sm whatsapp-btn">
-                <div class="input-group-text bg-success text-white border-0"><i class="fab fa-whatsapp fs-3"></i></div>
-                <a href="https://api.whatsapp.com/send/?phone=%2B447979213225&amp;text=please+invite+me+to+the+Dubai+event&amp;type=phone_number&amp;app_absent=0" target="_blank" class="btn btn-success">Please invite me to the Dubai event</a>
-            </div>
+            @if (!hideHeaderAndWhatsApp)
+            {
+                <div class="input-group input-group-sm whatsapp-btn">
+                    <a href="https://api.whatsapp.com/send/?phone=%2B447979213225&amp;text=please+invite+me+to+the+Dubai+event&amp;type=phone_number&amp;app_absent=0" target="_blank" class="btn btn-success d-flex align-items-center"><i class="fab fa-whatsapp fs-5 me-2"></i>Please invite me to the Dubai event</a>
+                </div>
+            }
             @Body
         </article>
-        <YachtEmissionDialog IsOpen="@showDialog" OnClose="@(() => showDialog = false)" />
+        @if (!hideHeaderAndWhatsApp)
+        {
+            <YachtEmissionDialog IsOpen="@showDialog" OnClose="@(() => showDialog = false)" />
+        }
     </main>
-    <footer class="menubar-area footer-fixed bottom-tabs">       
-        <div class="toolbar-inner menubar-nav bottom-scroll-tab">
-            <NavLink href="/" class="tab nav-link" activeClass="active-tab" Match="NavLinkMatch.All">
+    @if (!hideHeaderAndWhatsApp)
+    {
+        <footer class="menubar-area footer-fixed bottom-tabs">       
+            <div class="toolbar-inner menubar-nav bottom-scroll-tab">
+            <NavLink href="/home" class="tab nav-link" activeClass="active-tab" Match="NavLinkMatch.All">
                 <img src="images/icon/news-white.svg" /> News
                 </NavLink>
-            <NavLink href="/" class="tab nav-link" activeClass="active-tab">
+            <NavLink href="/dubai" class="tab nav-link" activeClass="active-tab">
                 <img src="images/icon/event-white.svg" /> Event
                 </NavLink>
-            <NavLink href="/" class="tab nav-link" activeClass="active-tab">
+            <NavLink href="/singapore" class="tab nav-link" activeClass="active-tab">
                 <img src="images/icon/invest-white.svg" />Invest
             </NavLink>
-            <NavLink href="/" class="tab nav-link" activeClass="active-tab">
+            <NavLink href="/monaco" class="tab nav-link" activeClass="active-tab">
                 <img src="images/icon/yatch-white.svg" /> Yatching
                 </NavLink>
         </div>
     </footer>
+    }
 </div>
 @code {
     private string transitionClass = "";
     private string _country;
     private bool showDialog = false;
+    private bool hideHeaderAndWhatsApp = false; //hideHeaderAndWhatsApp
 
     protected override async Task OnInitializedAsync()
     {
 
+        // Detect current route
+        UpdateVisibility();//hideHeaderAndWhatsApp
+
         NavManager.LocationChanged += (_, __) =>
         {
             transitionClass = "slide-in";
+            UpdateVisibility();//hideHeaderAndWhatsApp
             StateHasChanged();
         };
 
@@ -74,9 +116,64 @@
         }
         await FetchLocation();
     }
+
+    //Dropdown
+    private bool showDropdown = false;
+    private DotNetObjectReference<MainLayout>? dotNetRef;
+
+    private async void ToggleDropdown()
+    {
+        showDropdown = !showDropdown;
+
+        if (showDropdown)
+        {
+            dotNetRef?.Dispose(); // dispose any existing reference
+            dotNetRef = DotNetObjectReference.Create(this);
+            await JS.InvokeVoidAsync("dropdownHelper.registerOutsideClick", "dropdownArea", dotNetRef);
+        }
+    }
+
+    [JSInvokable]
+    public void CloseDropdown()
+    {
+        showDropdown = false;
+        StateHasChanged();
+    }
+
+    private void NavigateToDetails()
+    {
+        showDropdown = false;
+        NavManager.NavigateTo("/details");
+    }
+
+    private void NavigateToCertificates()
+    {
+        showDropdown = false;
+        NavManager.NavigateTo("/certificates");
+    }
+
+    private void Logout()
+    {
+        showDropdown = false;
+        SessionManager.ClearAuthentication();
+        NavManager.NavigateTo("/login", true);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        dotNetRef?.Dispose();
+    }
+    //hideHeaderAndWhatsApp
+    private void UpdateVisibility()
+    {
+        var currentUri = NavManager.Uri.ToLower();
+        hideHeaderAndWhatsApp = currentUri.Contains("/login") || currentUri.Contains("/verify");
+    }
+
     private async Task FetchLocation()
     {
         var _location = await LocationService.GetUserLocationAndCountryAsync();
         _country = _location.Country;
     }
+
 }

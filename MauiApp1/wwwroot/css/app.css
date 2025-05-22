@@ -121,19 +121,25 @@ a, .btn-link {
     color: #006bb7;
 }
 
-.btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-}
+
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
-
-.content {
-    /*padding-top: 1.1rem;*/
+.btn-primary {
+    color: #fff;
+    /*background-color: #1b6ec2;
+    border-color: #1861ac;*/
+    background-color: #e9501a;
+    border-color: #e9501a;
 }
+    .btn-check:focus + .btn-primary, .btn-primary:focus {
+        background-color: #e9501a;
+        border-color: #e9501a;
+    }
+    .content {
+        /*padding-top: 1.1rem;*/
+    }
 
 /*#endif*/
 h1:focus {
@@ -368,6 +374,38 @@ html {
 .rounded-xs {
     border-radius: var(--round-xs);
 }
+.moreOption-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.moreOption-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    color: #000;
+    min-width: 180px;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    padding: 0;
+    margin-top: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    list-style: none;
+    z-index: 1000;
+}
+
+    .moreOption-dropdown li {
+        padding: 10px 15px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        text-align: left;
+    }
+
+        .moreOption-dropdown li:hover {
+            background-color: #f2f2f2;
+        }
 
 /*h1, .h1 {
     font-size: 2.5rem;
@@ -3226,4 +3264,67 @@ textarea.form-control-lg {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+/******************/
+.register-container {
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.register-section {
+    background: #000;
+    position: relative;
+    display: block;
+    padding: 2rem 1rem 1rem;
+    height: 190px;
+}
+    .register-section > .container {
+        position: relative;
+        padding: 1.3rem 1rem;
+        background: #fff;
+        margin-bottom: -100px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        z-index:1;
+    }
+    .register-section:after {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 15px;
+        bottom: -15px;
+        left: 0;
+        content: "";
+        background-image: url(/images/bottom-curve.svg);
+    }
+    .register-section .btn, .register-section input {
+        padding: 0.875rem 1.5rem;
+        border-radius: 50px;
+    }
+.tab-headers {
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+    .tab-headers button {
+        flex: 1;
+        padding: 0.5rem 1.5rem;
+        background-color: transparent;
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        color: #333;
+        box-shadow: none;
+        border-radius: 50px;
+    }
+
+    .tab-headers .active-tab {
+        background-color: #000;
+        color: #fff;
+    }
+
+.tab-content {
+    margin-top: 1rem;
 }

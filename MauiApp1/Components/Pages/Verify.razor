@@ -1,0 +1,54 @@
+@page "/verify"
+@inject NavigationManager Navigation
+<div class="register-container">
+<div class="register-section">
+    <h5 class="text-white">Hi User</h5>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 d-flex flex-column gap-2">
+                    <div class="mb-2"><i class="fas fa-sign-in-alt"></i> Login to <span class="fw-bold">IM Investor</span></div>
+                <div class="tab-container mb-3">
+                        <div class="tab-headers py-2">
+                        <button class="btn @GetTabClass(0)" @onclick="@(() => ActiveTab = 0)">Fingerprint</button>
+                        <button class="btn @GetTabClass(1)" @onclick="@(() => ActiveTab = 1)">Password</button>
+                    </div>
+                    <div class="tab-content mt-3">
+                        @if (ActiveTab == 0)
+                        {
+                                <button class="btn btn-primary rounded-pill w-100 d-flex justify-content-center align-items-center" @onclick="LoginWithFingerprint"><i class="fas fa-fingerprint fs-8 me-2"></i> Login with Fingerprint</button>
+                        }
+                        else if (ActiveTab == 1)
+                        {
+                            <input class="form-control mb-2" type="password" placeholder="Enter password to verify" @bind="password" />
+                                <button class="btn btn-primary rounded-pill w-100 d-flex justify-content-center align-items-center" @onclick="VerifyUser">Continue</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="image-holder">
+    <div class="image-container" style="padding-top: 40%;">
+        <img src="images/banner1.png" />
+    </div>
+</div>
+</div>
+@code {
+    private string password;
+    private int ActiveTab = 0;
+
+    private void VerifyUser()
+    {
+        // Add your real verification logic
+        Navigation.NavigateTo("/home");
+    }
+
+    private void LoginWithFingerprint()
+    {
+        // Add fingerprint logic here (simulated for now)
+        Navigation.NavigateTo("/home");
+    }
+
+    private string GetTabClass(int tabIndex) => tabIndex == ActiveTab ? "active-tab" : "";
+}
