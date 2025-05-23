@@ -8,7 +8,8 @@
 @inject UserLocationService LocationService
 
 <div class="page-wrapper full-height">
-    
+    @if (!hideHeader)
+            {
         <header class="header header-fixed">
             <div class="header-content">
                 <div class="left-content">
@@ -19,10 +20,10 @@
                 <div class="mid-content"></div>
                 <div class="right-content position-relative d-flex align-items-center">
                     <span class="btn text-light btn-dark btn-sm">@_country</span>
-                    <a class="btn text-light btn-dark btn-sm ms-1" @onclick="() => showDialog = true"><i class="far fa-clone fs-4"></i></a>
+                    <a class="btn text-light btn-dark btn-sm ms-1" @onclick="() => showDialog = true"><i class="fas fa-calculator fs-4"></i></a>
                     <!-- Dropdown container -->
                     <div class="moreOption-wrapper ms-1" id="dropdownArea">
-                        <a class="btn text-light btn-dark btn-sm" @onclick="ToggleDropdown">
+                        <a class="btn text-primary btn-dark btn-sm px-3" @onclick="ToggleDropdown">
                             <i class="fas fa-ellipsis-v fs-4"></i>
                         </a>
 
@@ -45,7 +46,7 @@
             }
             </div>
         </header>
-    
+    }
     <main class="page-content space-top space-bottom">
         <article class="position-relative page-transition @transitionClass">
             @if (!hideHeaderAndWhatsApp)
@@ -86,6 +87,7 @@
     private string _country;
     private bool showDialog = false;
     private bool hideHeaderAndWhatsApp = false; //hideHeaderAndWhatsApp
+    private bool hideHeader = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -167,7 +169,9 @@
     private void UpdateVisibility()
     {
         var currentUri = NavManager.Uri.ToLower();
-        hideHeaderAndWhatsApp = currentUri.Contains("/login") || currentUri.Contains("/verify");
+        hideHeaderAndWhatsApp = currentUri.Contains("/login") || currentUri.Contains("/verify") || currentUri.Contains("/certificates") || currentUri.Contains("/certificatesGroup");
+        hideHeader = currentUri.Contains("/certificates") || currentUri.Contains("/certificatesGroup");
+
     }
 
     private async Task FetchLocation()

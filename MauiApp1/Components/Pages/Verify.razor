@@ -1,13 +1,14 @@
 @page "/verify"
 @inject NavigationManager Navigation
 <div class="register-container">
+    <div class="register-bg"></div>
 <div class="register-section">
     <h5 class="text-white">Hi User</h5>
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3 d-flex flex-column gap-2">
                     <div class="mb-2"><i class="fas fa-sign-in-alt"></i> Login to <span class="fw-bold">IM Investor</span></div>
-                <div class="tab-container mb-3">
+                <div class="tab-container">
                         <div class="tab-headers py-2">
                         <button class="btn @GetTabClass(0)" @onclick="@(() => ActiveTab = 0)">Fingerprint</button>
                         <button class="btn @GetTabClass(1)" @onclick="@(() => ActiveTab = 1)">Password</button>
@@ -19,7 +20,7 @@
                         }
                         else if (ActiveTab == 1)
                         {
-                            <input class="form-control mb-2" type="password" placeholder="Enter password to verify" @bind="password" />
+                            <input class="form-control mb-3" type="password" placeholder="Enter password to verify" @bind="password" />
                                 <button class="btn btn-primary rounded-pill w-100 d-flex justify-content-center align-items-center" @onclick="VerifyUser">Continue</button>
                         }
                     </div>
@@ -28,11 +29,26 @@
         </div>
     </div>
 </div>
-<div class="image-holder">
+    <div class="image-holder p-3 my-auto">
     <div class="image-container" style="padding-top: 40%;">
         <img src="images/banner1.png" />
     </div>
 </div>
+    <div class="card border-0 mt-auto">
+        <div class="card-body">
+            <div class="row g-1">
+                    <div class="col-3 text-center">
+                        <img src="images/icon/news.svg" style="height: 34px;margin-bottom: 0.5rem;"><br> News
+                    </div><div class="col-3 text-center">
+                        <img src="images/icon/event.svg" style="height: 34px;margin-bottom: 0.5rem;"><br> Event
+                    </div><div class="col-3 text-center">
+                        <img src="images/icon/invest.svg" style="height: 34px;margin-bottom: 0.5rem;"><br>Invest
+                    </div><div class="col-3 text-center">
+                        <img src="images/icon/yatch.svg" style="height: 34px;margin-bottom: 0.5rem;"><br> Yatching
+                    </div>
+                </div>            
+        </div>
+    </div>
 </div>
 @code {
     private string password;

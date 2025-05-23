@@ -1,0 +1,14 @@
+@inject IJSRuntime JS
+
+<div class="back-button">
+    <a class="back-btn pf-icon d-flex align-items-center text-light py-3 pe-3" @onclick="GoBack">
+        <i class="fas fa-arrow-left fs-5"></i>
+    </a>
+</div>
+
+@code {
+    private async Task GoBack()
+    {
+        await JS.InvokeVoidAsync("history.back");
+    }
+}

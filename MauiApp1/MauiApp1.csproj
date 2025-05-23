@@ -93,4 +93,9 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Components\NewFolder\" />
+      <Folder Include="Components\Pages\NewFolder\" />
+    </ItemGroup>
+
 </Project>

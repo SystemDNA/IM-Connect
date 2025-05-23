@@ -278,7 +278,8 @@ html {
     --bs-muted: #898C90;
     --bs-indigo: #6610f2;
     --bs-light-indigo: #ebf3fe;
-    --bs-primary-rgb: 25, 103, 210;
+    /*--bs-primary-rgb: 25, 103, 210;*/
+    --bs-primary-rgb: 233, 80, 26;
     --bs-secondary-rgb: 37, 55, 77;
     /*--bs-success-rgb: 60, 194, 156;*/
     --bs-success-rgb: 25, 135, 84;
@@ -3223,7 +3224,7 @@ textarea.form-control-lg {
             background: rgb(233, 80, 26);
         }
 /***********************/
-.back-btn-footer {
+.back-btn-footer,.add-btn-footer {
     position: fixed;
     display: flex;
     justify-content: center;
@@ -3240,14 +3241,17 @@ textarea.form-control-lg {
     z-index: 99;
     margin-bottom: calc(16px + env(safe-area-inset-bottom));
 }
-/*************************/ 
-.whatsapp-btn {
-    position: absolute;
-    z-index: 2;
-    top: 10px;
-    right: 1rem;
-    justify-content: end;
+.add-btn-footer {
+    bottom: 0rem;
 }
+    /*************************/
+    .whatsapp-btn {
+        position: absolute;
+        z-index: 2;
+        top: 10px;
+        right: 1rem;
+        justify-content: end;
+    }
 
     .whatsapp-btn > * {
         padding: 5px 9px !important;
@@ -3270,25 +3274,14 @@ textarea.form-control-lg {
     height: calc(100vh - 60px);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
-.register-section {
+.register-bg {
     background: #000;
     position: relative;
-    display: block;
-    padding: 2rem 1rem 1rem;
+    display: block;    
     height: 190px;
 }
-    .register-section > .container {
-        position: relative;
-        padding: 1.3rem 1rem;
-        background: #fff;
-        margin-bottom: -100px;
-        border-radius: 15px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        z-index:1;
-    }
-    .register-section:after {
+.register-bg:after {
         position: absolute;
         display: block;
         width: 100%;
@@ -3298,6 +3291,20 @@ textarea.form-control-lg {
         content: "";
         background-image: url(/images/bottom-curve.svg);
     }
+.register-section {
+    position: relative;
+    padding: 2rem 1rem 1rem;
+    margin-top: -190px;
+}
+.register-section > .container {
+    position: relative;
+    padding: 1.3rem 1rem;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+    
     .register-section .btn, .register-section input {
         padding: 0.875rem 1.5rem;
         border-radius: 50px;
@@ -3327,4 +3334,32 @@ textarea.form-control-lg {
 
 .tab-content {
     margin-top: 1rem;
+}
+/***********************/
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-container {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1rem;
+    max-width: 90%;
+}
+/************************/
+.search-container input[type="text"] {
+    padding-left: 50px;
+}
+.search-container .search-icn {
+    position: absolute;
+    padding: 19px;
 }

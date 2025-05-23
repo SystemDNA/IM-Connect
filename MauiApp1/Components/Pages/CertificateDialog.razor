@@ -1,0 +1,21 @@
+@using MauiApp1.Models
+@if (Visible)
+{
+    <div class="modal-backdrop">
+        <div class="modal-container">
+            <h5>@Certificate?.Title <button class="btn-close" @onclick="OnClose"></button></h5>
+            <img src="@Certificate?.ImageUrl" alt="Certificate" class="w-100" />
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public CertificateModel Certificate { get; set; }
+
+    [Parameter]
+    public bool Visible { get; set; }
+
+    [Parameter]
+    public EventCallback OnClose { get; set; }
+}

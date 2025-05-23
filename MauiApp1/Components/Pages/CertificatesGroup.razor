@@ -1,0 +1,76 @@
+@page "/certificates-group/{YachtId}"
+@using MauiApp1.Models
+@inject NavigationManager NavManager
+<header class="header header-fixed">
+                <div class="header-content">
+                    <div class="left-content">
+            <BackButton />
+                    </div>
+                    <div class="mid-content"><h6 class="title">@YachtId</h6></div>
+                    <div class="right-content">
+                        <NavLink href="/home" class="pf-icon fs-5 icon-sm text-light py-3 ps-3"><i class="fas fa-home fs-5"></i></NavLink>
+                    </div>
+                </div>
+            </header>
+            <main class="page-content">
+<div class="search-container header-sticky" style="top: 60px;">
+    <span class="search-icn fa fa-search"></span>
+    <input type="text" placeholder="certificates" class="form-control form-control-lg rounded-0" @bind="searchText" />
+</div>
+<div class="notification-list content-section">
+<ul class="list-group certificate-list">
+@foreach (var cert in FilteredCertificates)
+{
+    <li class="certificate-card border-bottom bg-white">
+        <div class="media">
+            <div class="media-50 rounded-3 border d-flex justify-content-center align-items-center">
+                <i class="fas fa-certificate fs-12 text-info"></i>
+                </div>
+            <div class="list-content w-100">
+                <div class="d-flex w-100">
+                    <strong>@cert.Title</strong>
+                    <small class="ms-auto">@cert.DateIssued.ToString("dd/MM/yyyy")</small>
+                </div>
+                <div class="d-flex w-100 align-items-center">
+                    <div>
+                        <p class="m-0">@cert.Description</p>
+                        <span class="text-muted">#@cert.Number</span>
+                    </div>
+                    <button class="btn btn-sm btn-warning ms-auto" @onclick="() => OpenCertificate(cert)">View</button>
+                </div>
+            </div>
+        </div>
+    </li>
+}
+</ul>
+</div>
+<CertificateDialog Certificate="selectedCertificate" Visible="isDialogOpen" OnClose="CloseDialog" />
+</main>
+@code {
+    [Parameter] public string YachtId { get; set; }
+    private string searchText;
+    private List<CertificateModel> Certificates = new()
+    {
+        new CertificateModel("Yacht Certificate 1", "Lorem ipsum...", "#54321", new DateTime(2025, 5, 21)),
+        new CertificateModel("Yacht Certificate 2", "Lorem ipsum...", "#12345", new DateTime(2024, 5, 21))
+    };
+
+    private List<CertificateModel> FilteredCertificates =>
+        string.IsNullOrEmpty(searchText)
+            ? Certificates
+            : Certificates.Where(c => c.Title.Contains(searchText, StringComparison.OrdinalIgnoreCase)).ToList();
+
+    private CertificateModel selectedCertificate;
+    private bool isDialogOpen;
+
+    private void OpenCertificate(CertificateModel cert)
+    {
+        selectedCertificate = cert;
+        isDialogOpen = true;
+    }
+
+    private void CloseDialog()
+    {
+        isDialogOpen = false;
+    }
+}

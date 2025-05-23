@@ -1,0 +1,49 @@
+@page "/certificates"
+@inject NavigationManager NavManager
+<header class="header header-fixed">
+                <div class="header-content">
+                    <div class="left-content">
+            <BackButton />
+                    </div>
+                    <div class="mid-content"><h6 class="title">Certificates</h6></div>
+                    <div class="right-content">
+                        <NavLink href="/home" class="pf-icon fs-5 icon-sm text-light py-3 ps-3"><i class="fas fa-home fs-5"></i></NavLink>
+                    </div>
+                </div>
+            </header>
+            <main class="page-content">
+<div class="certificates-popup">
+        <div class="search-container header-sticky" style="top: 60px;">
+            <span class="search-icn fa fa-search"></span>
+            <input type="text" placeholder="Search" class="form-control form-control-lg rounded-0" @bind="searchText" />
+    </div>
+        <div class="notification-list content-section">
+    <ul class="list-group yacht-list">
+        @foreach (var yacht in Yachts.Where(y => string.IsNullOrWhiteSpace(searchText) || y.Contains(searchText, StringComparison.OrdinalIgnoreCase)))
+        {
+            <li class="list-group-item yacht-item bg-white" @onclick="() => OpenYachtGroup(yacht)">
+                <div class="media align-items-center">
+                    <div class="media-50 rounded-3 border d-flex justify-content-center align-items-center">
+                        <i class="fas fa-layer-group fs-5 text-warning"></i>
+                        @* <img src="/images/yacht-icon.png" alt="Yacht" /> *@
+                        </div>
+                    <div class="d-flex align-items-center w-100">
+                        <strong>@yacht</strong><i class="fas fa-chevron-right ms-auto"></i>
+                        </div>                
+                </div>
+            </li>
+        }
+    </ul>
+    <a class="add-btn-footer"><i class="fas fa-plus"></i></a>
+    </div>
+</div>
+</main>
+@code {
+    private string searchText;
+    private List<string> Yachts = Enumerable.Range(1, 10).Select(i => $"Yacht {i}").ToList();
+
+    private void OpenYachtGroup(string yacht)
+    {
+        NavManager.NavigateTo($"/certificates-group/{yacht.Replace(" ", "")}");
+    }
+}
