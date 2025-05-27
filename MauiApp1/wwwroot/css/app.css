@@ -2902,6 +2902,63 @@ textarea.form-control-lg {
     .tab-pane.active {
         display: block;
     }
+/******************/
+.tabs-container {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 2px solid #eee;
+    background-color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.tab-button {
+    flex: 1;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #666;
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+    .tab-button.active {
+        color: #000;
+        border-bottom: 3px solid #ff6600;/* Use your primary theme color */
+        font-weight: 600;
+    }
+
+    .tab-button:hover {
+        background-color: #f9f9f9;
+        cursor: pointer;
+    }
+.dialog-header {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 1050;
+}
+
+.btn-close-tab {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #fff;
+    padding: 0 15px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e1551f;
+}
+
+    .btn-close-tab:hover {
+        color: #ff0000;
+    }
 
 
 /******************/

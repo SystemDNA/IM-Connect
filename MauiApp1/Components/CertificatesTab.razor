@@ -13,12 +13,12 @@
 </header> *@
 
 <main class="page-content">
-    <div class="certificates-popup">
-        <div class="search-container header-sticky" style="top: 60px;">
+    <div class="certificates-popup" style="overflow-y: auto;height: calc(100vh - 50px);">
+        <div class="search-container header-sticky">
             <span class="search-icn fa fa-search"></span>
             <input type="text" placeholder="Search" class="form-control form-control-lg rounded-0" @bind="searchText" />
         </div>
-        <div class="notification-list content-section">
+        <div class="notification-list">
             <ul class="list-group-flush yacht-list">
                 @foreach (var yacht in Yachts.Where(y => string.IsNullOrWhiteSpace(searchText) || y.Contains(searchText, StringComparison.OrdinalIgnoreCase)))
                 {
