@@ -1,0 +1,77 @@
+﻿@using MauiApp1.Services
+
+@* <div class="dialog-overlay">
+    <div class="dialog-content p-4 bg-white position-relative" style="max-width: 400px; width: 100%; height: 100%;">
+        <button class="btn-close position-absolute top-0 end-0 m-3" @onclick="ClearForm"></button> *@
+        <main class="page-content p-4">
+        <h5 class="mb-3">Yacht Emission Calculator</h5>
+
+        @if (!string.IsNullOrEmpty(errorMessage))
+        {
+            <div class="alert alert-danger">@errorMessage</div>
+        }
+
+        <div class="mb-3">
+            <label class="form-label">Distance Travelled (Nm)</label>
+            <input type="number" class="form-control" @bind="input.DistanceTravelledNm" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Fuel Consumption (L/hr)</label>
+            <input type="number" class="form-control" @bind="input.FuelConsumptionLPH" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Average Speed (Knots)</label>
+            <input type="number" class="form-control" @bind="input.AverageSpeedKnots" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Fuel Type</label>
+            <select class="form-select" @bind="input.FuelType">
+                <option>Diesel</option>
+                <option>Petrol</option>
+                <option>LNG</option>
+            </select>
+        </div>
+
+        <div class="d-flex gap-2">
+            <button class="btn w-50 btn-primary" @onclick="CalculateEmissions">Calculate</button>
+            <button class="btn w-50 btn-secondary" @onclick="ClearForm">Clear</button>
+        </div>
+
+        @if (result is not null)
+        {
+            <div class="mt-4">
+                <h6>Result:</h6>
+                <p><strong>Total Fuel:</strong> @result.TotalFuelConsumedL liters</p>
+                <p><strong>Total CO₂:</strong> @result.TotalCO2EmissionsKg kg</p>
+            </div>
+        }
+</main>
+@*     </div>
+</div> *@
+
+@code {
+    private YachtEmissionCalculator.EmissionInput input = new();
+    private YachtEmissionCalculator.EmissionResult? result;
+    private string? errorMessage;
+
+    private void CalculateEmissions()
+    {
+        try
+        {
+            result = YachtEmissionCalculator.CalculateCO2Emissions(input);
+            errorMessage = null;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = ex.Message;
+            result = null;
+        }
+    }
+
+    private void ClearForm()
+    {
+        input = new YachtEmissionCalculator.EmissionInput();
+        result = null;
+        errorMessage = null;
+    }
+}

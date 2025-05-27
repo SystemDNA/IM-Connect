@@ -20,7 +20,9 @@
                 <div class="mid-content"></div>
                 <div class="right-content position-relative d-flex align-items-center">
                     <span class="btn text-light btn-dark btn-sm">@_country</span>
-                    <a class="btn text-light btn-dark btn-sm ms-1" @onclick="() => showDialog = true"><i class="fas fa-calculator fs-4"></i></a>
+                    @* <a class="btn text-light btn-dark btn-sm ms-1" @onclick="() => showDialog = true"><i class="fas fa-calculator fs-4"></i></a> *@
+                        <a class="btn text-light btn-dark btn-sm ms-1" @onclick="ShowTools"><i class="fas fa-calculator fs-4"></i></a>
+                        @* <button class="btn btn-success" @onclick="ShowTools">Open Yacht Tools</button> *@
                     <!-- Dropdown container -->
                     <div class="moreOption-wrapper ms-1" id="dropdownArea">
                         <a class="btn text-primary btn-dark btn-sm px-3" @onclick="ToggleDropdown">
@@ -59,7 +61,23 @@
         </article>
         @if (!hideHeaderAndWhatsApp)
         {
-            <YachtEmissionDialog IsOpen="@showDialog" OnClose="@(() => showDialog = false)" />
+            @* <YachtEmissionDialog IsOpen="@showDialog" OnClose="@(() => showDialog = false)" />
+            <YachtToolsTabs OnClose="@(() => showTools = false)" style="@(!showTools ? "display:none;" : "")" /> *@
+        }
+        @* @if (showToolsDialog)
+        {
+            <YachtToolsTabs OnClose="HideTools" />
+            <YachtToolsTabs class="my-modal" style="z-index: 1050;" OnClose="HideTools" />
+        } *@
+        @if (showToolsDialog)
+        {
+            <div class="modal d-block" style="background-color: rgba(0,0,0,0.5); z-index: 1050;">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content p-4">
+                        <YachtToolsTabs OnClose="HideTools" />
+                    </div>
+                </div>
+            </div>
         }
     </main>
     @if (!hideHeaderAndWhatsApp)
@@ -85,9 +103,10 @@
 @code {
     private string transitionClass = "";
     private string _country;
-    private bool showDialog = false;
+    // private bool showDialog = false;
     private bool hideHeaderAndWhatsApp = false; //hideHeaderAndWhatsApp
     private bool hideHeader = false;
+    private bool showToolsDialog = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -178,6 +197,19 @@
     {
         var _location = await LocationService.GetUserLocationAndCountryAsync();
         _country = _location.Country;
+    }
+
+
+    private void ShowTools()
+    {
+        showToolsDialog = true;
+        StateHasChanged(); // optional
+    }
+
+    private void HideTools()
+    {
+        showToolsDialog = false;
+        StateHasChanged(); // optional
     }
 
 }
