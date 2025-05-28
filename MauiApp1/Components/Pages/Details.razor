@@ -1,0 +1,165 @@
+@page "/details"
+
+<header class="header header-fixed">
+    <div class="header-content">
+        <div class="left-content">
+            <BackButton />
+        </div>
+        <div class="mid-content"><h6 class="title">User details</h6></div>
+        <div class="right-content">
+            <NavLink href="/home" class="pf-icon fs-5 icon-sm text-light py-3 ps-3">
+                <i class="fas fa-home fs-5"></i>
+            </NavLink>
+        </div>
+    </div>
+</header>
+
+<main class="page-content">
+    <div class="p-4 content-section">
+        <div class="profile-area">
+            <!-- User Profile -->
+            <div class="pf-profile">
+                <div class="main-profile">
+                    <div class="user-image">
+                        <img src="images/avatar.jpg" alt="profile-image">
+                    </div>
+                    <div class="mid-content flex-1">
+                        <h5 class="name mb-1">abc xyz</h5>
+                        <p class="mb-0 text-primary fw-medium">Developer</p>
+                    </div>
+                    <button class="btn p-0 text-primary" @onclick="() => showEditBasic = true">
+                        <i class="fas fa-edit text-primary fs-5"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="profile-detail">
+                <ul class="row g-sm-3 g-md-3">
+                    <!-- BASIC DETAILS -->
+                    <li class="col-12 col-sm-6 col-lg-4">
+                        <div class="content-box style-2">
+                            <div class="top-area">
+                                <div class="left-content">
+                                    <div class="pf-icon fs-5"><i class="fas fa-user text-primary"></i></div>
+                                    <h4 class="title">Basic Details</h4>
+                                </div>
+                                <button class="btn p-0 text-primary" @onclick="() => showEditBasic = true">
+                                    <i class="fas fa-edit text-primary fs-5"></i>
+                                </button>
+                            </div>
+                            <div class="inner-content">
+                                <div class="specification-list style-2">
+                                    <ul>
+                                        <li><span class="name"><i class="fas fa-at"></i> Email</span><a href="#"><span class="property">info@immagazine.com</span></a></li>
+                                        <li><span class="name"><i class="fas fa-map-pin"></i> Location</span><span class="property">London, UK</span></li>
+                                        <li><span class="name"><i class="fas fa-phone-alt"></i> Phone</span><span class="property">+00 1234567890</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- PROFILE SUMMARY -->
+                    <li class="col-12 col-sm-6 col-lg-4">
+                        <div class="content-box style-2">
+                            <div class="top-area">
+                                <div class="left-content">
+                                    <div class="pf-icon fs-5"><i class="fas fa-file text-primary"></i></div>
+                                    <h6 class="title">Profile summary</h6>
+                                </div>
+                                <button class="btn p-0 text-primary" @onclick="() => showEditSummary = true">
+                                    <i class="fas fa-edit text-primary fs-5"></i>
+                                </button>
+                            </div>
+                            <div class="inner-content">
+                                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- PROFESSIONAL DETAILS -->
+                    <li class="col-12 col-sm-6 col-lg-4">
+                        <div class="content-box style-2">
+                            <div class="top-area">
+                                <div class="left-content">
+                                    <div class="pf-icon fs-5"><i class="fas fa-suitcase text-primary"></i></div>
+                                    <h6 class="title">Professional Details</h6>
+                                </div>
+                                <button class="btn p-0 text-primary" @onclick="() => showEditProfessional = true">
+                                    <i class="fas fa-edit text-primary fs-5"></i>
+                                </button>
+                            </div>
+                            <div class="inner-content">
+                                <div class="specification-list style-2">
+                                    <ul>
+                                        <li><span class="property">Company*</span><span class="name text-primary">IM Investor</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- DIALOGS -->
+@if (showEditBasic)
+{
+    <EditDetailsDialog Title="Edit Basic Details" OnClose="() => showEditBasic = false">
+        <FormContent>
+            <div class="mb-3">
+                <label>Email</label>
+                <input class="form-control" value="info@immagazine.com" />
+            </div>
+            <div class="mb-3">
+                <label>Location</label>
+                <input class="form-control" value="London, UK" />
+            </div>
+            <div class="mb-3">
+                <label>Phone</label>
+                <input class="form-control" value="+00 1234567890" />
+            </div>
+            <div class="text-end">
+                <button type="button" class="btn btn-primary" @onclick="() => showEditBasic = false">Save</button>
+            </div>
+        </FormContent>
+    </EditDetailsDialog>
+}
+
+@if (showEditSummary)
+{
+    <EditDetailsDialog Title="Edit Profile Summary" OnClose="() => showEditSummary = false">
+        <FormContent>
+            <div class="mb-3">
+                <label>Profile Summary</label>
+                <textarea class="form-control" rows="4">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</textarea>
+            </div>
+            <div class="text-end">
+                <button type="button" class="btn btn-primary" @onclick="() => showEditSummary = false">Save</button>
+            </div>
+        </FormContent>
+    </EditDetailsDialog>
+}
+
+@if (showEditProfessional)
+{
+    <EditDetailsDialog Title="Edit Professional Details" OnClose="() => showEditProfessional = false">
+        <FormContent>
+            <div class="mb-3">
+                <label>Company</label>
+                <input class="form-control" value="IM Investor" />
+            </div>
+            <div class="text-end">
+                <button type="button" class="btn btn-primary" @onclick="() => showEditProfessional = false">Save</button>
+            </div>
+        </FormContent>
+    </EditDetailsDialog>
+}
+
+@code {
+    private bool showEditBasic = false;
+    private bool showEditSummary = false;
+    private bool showEditProfessional = false;
+}

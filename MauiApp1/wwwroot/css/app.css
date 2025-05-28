@@ -1991,10 +1991,12 @@ textarea.form-control-lg {
 
             .profile-area .pf-profile .main-profile .user-image {
                 position: relative;
-                width: 120px;
-                padding: 16px;
-                min-width: 120px;
-                height: 120px;
+                display: flex;
+                align-items: center;
+                width: 100px;
+                /* padding: 16px; */
+                min-width: 100px;
+                height: 110px;
                 z-index: 1;
             }
 
@@ -2062,7 +2064,7 @@ textarea.form-control-lg {
 
     .content-box .title {
         margin-bottom: 0;
-        font-size: 15px;
+        font-size: 1.1rem;
     }
 
     .content-box.style-2 {
@@ -2080,7 +2082,7 @@ textarea.form-control-lg {
         }
 
         .content-box.style-2 .inner-content p {
-            font-size: 13px;
+            font-size: 1rem;
             font-weight: 500;
         }
 
@@ -2097,7 +2099,7 @@ textarea.form-control-lg {
 
         .content-box .info-bx span {
             display: block;
-            font-size: 12px;
+            font-size: 1rem;
             font-weight: 500;
         }
 
@@ -2158,11 +2160,11 @@ textarea.form-control-lg {
 }
 
     .specification-list.style-2 ul li {
-        font-size: 13px;
+        font-size: 1rem;
     }
 
         .specification-list.style-2 ul li i {
-            font-size: 16px;
+            font-size: 1rem;
         }
 
         .specification-list.style-2 ul li .property {

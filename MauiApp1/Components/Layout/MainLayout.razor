@@ -25,7 +25,7 @@
                         @* <button class="btn btn-success" @onclick="ShowTools">Open Yacht Tools</button> *@
                     <!-- Dropdown container -->
                     <div class="moreOption-wrapper ms-1" id="dropdownArea">
-                        <a class="btn text-primary btn-dark btn-sm px-3" @onclick="ToggleDropdown">
+                        <a class="btn btn-dark btn-sm px-3" @onclick="ToggleDropdown">
                             <i class="fas fa-ellipsis-v fs-4"></i>
                         </a>
 
@@ -188,7 +188,7 @@
     private void UpdateVisibility()
     {
         var currentUri = NavManager.Uri.ToLower();
-        hideHeaderAndWhatsApp = currentUri.Contains("/login") || currentUri.Contains("/verify") || currentUri.Contains("/certificates") || currentUri.Contains("/certificatesGroup");
+        hideHeaderAndWhatsApp = currentUri.Contains("/login") || currentUri.Contains("/verify") || currentUri.Contains("/certificates") || currentUri.Contains("/certificatesGroup") || currentUri.Contains("/details");
         hideHeader = currentUri.Contains("/certificates") || currentUri.Contains("/certificatesGroup");
 
     }

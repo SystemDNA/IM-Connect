@@ -1,0 +1,56 @@
+@using MauiApp1.Services
+@inherits LayoutComponentBase
+
+<div class="content-section">
+    @if (Result is null)
+    {
+        <div class="px-4">
+        <div class="alert alert-info d-flex align-items-center" role="alert">
+            <i class="fas fa-info-circle me-2"></i>
+            No result available. Please calculate emissions first.
+        </div>
+        </div>
+    }
+    else
+    {
+        <div class="card border-0">
+            <div class="card-header d-flex justify-content-between"><span class="fw-bold text-uppercase">User name</span><span class="text-muted">28-May-2025</span></div>
+            <div class="card-body">
+                    <h4 class="card-title mb-4 text-center">
+                    <i class="fas fa-chart-bar me-2"></i>Emission Results Summary
+                </h4>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="bg-light p-3 rounded-3 text-center border">
+                            <h6 class="text-muted">Total Fuel Consumed</h6>
+                            <h3 class="text-dark">@Result.TotalFuelConsumedL.ToString("0.##") <small class="text-secondary">liters</small></h3>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-3 mt-md-0">
+                        <div class="bg-light p-3 rounded-3 text-center border">
+                            <h6 class="text-muted">Total CO₂ Emissions</h6>
+                            <h3 class="text-dark">@Result.TotalCO2EmissionsKg.ToString("0.##") <small class="text-secondary">kg</small></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center pt-3" style="max-width:400px;">
+                        <button class="btn btn-success px-4 py-2 rounded-pill btn-lg w-100" @onclick="Register">
+                        <i class="fas fa-pen-square me-1"></i> Register
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public YachtEmissionCalculator.EmissionResult? Result { get; set; }
+
+    private void Register()
+    {
+        // Placeholder for actual registration logic or navigation
+        Console.WriteLine("Register button clicked.");
+    }
+}
