@@ -3422,3 +3422,108 @@ textarea.form-control-lg {
     position: absolute;
     padding: 19px;
 }
+/**************************/
+.modal-backdrop.certificate-container {
+    z-index: 2030;
+}
+
+certificate {
+    max-width: 900px;
+    margin: auto;
+    padding: 2rem;
+    background: #fff;
+    border: 10px double #2c3e50;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.certificate h1 {
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: #000;
+    font-weight:bold;
+}
+
+.certificate .content {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+    .certificate .content h2 {
+        margin-bottom: 0.5rem;
+        font-size: 1.3rem;
+        font-weight: normal;
+        color: #555;
+    }
+
+.certificate .name {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 1rem 0;
+    color: #b88900;
+}
+
+.certificate .footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+    .certificate .footer .signature {
+        text-align: center;
+        width: 50%;
+    }
+
+        .certificate .footer .signature hr {
+            width: 150px;
+            margin-top: 2rem;
+            border: none;
+            border-top: 1px solid #000;
+        }
+
+.certificate .qr {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+}
+
+    .certificate .qr img {
+        width: 90px;
+        height: 90px;
+        border: 2px solid #d4af37;
+        padding: 4px;
+        background: white;
+    }
+.svg-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    transform: rotate(180deg);
+}
+    .svg-bottom svg {
+        position: relative;
+        display: block;
+        width: calc(100% + 8.3px);
+        height: 40px;
+    }
+@media(max-width: 600px) {
+    .certificate {
+        position: relative;
+        padding: 1rem;
+        border: 5px double #d4af37;
+        background: #fffdf8;
+    }
+
+        .certificate .footer {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .certificate .qr {
+            position: static;
+            margin-top: 2rem;
+        }
+}
