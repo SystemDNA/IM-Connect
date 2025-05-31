@@ -70,6 +70,20 @@
         <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
         <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
     </ItemGroup>
+    <ItemGroup>
+      <AndroidResource Remove="Components\NewFolder\**" />
+      <AndroidResource Remove="Components\Pages\NewFolder\**" />
+      <Compile Remove="Components\NewFolder\**" />
+      <Compile Remove="Components\Pages\NewFolder\**" />
+      <Content Remove="Components\NewFolder\**" />
+      <Content Remove="Components\Pages\NewFolder\**" />
+      <EmbeddedResource Remove="Components\NewFolder\**" />
+      <EmbeddedResource Remove="Components\Pages\NewFolder\**" />
+      <MauiXaml Remove="Components\NewFolder\**" />
+      <MauiXaml Remove="Components\Pages\NewFolder\**" />
+      <None Remove="Components\NewFolder\**" />
+      <None Remove="Components\Pages\NewFolder\**" />
+    </ItemGroup>
 
     <ItemGroup>
       <None Remove="Resources\AppIcon\appiconfg.svg" />
@@ -91,11 +105,6 @@
       <Content Update="wwwroot\images\pdf\Family-Office-Investor-Monaco.pdf">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Components\NewFolder\" />
-      <Folder Include="Components\Pages\NewFolder\" />
     </ItemGroup>
 
 </Project>
