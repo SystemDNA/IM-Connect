@@ -13,7 +13,8 @@ namespace MauiApp1.Services
     public class BiometricAuthService
     {
         public async Task<bool> AuthenticateAsync()
-        {
+{
+
         if (DeviceInfo.Platform == DevicePlatform.iOS && DeviceInfo.DeviceType == DeviceType.Virtual)
         {
             Debug.WriteLine("Simulating successful biometric authentication in simulator.");
