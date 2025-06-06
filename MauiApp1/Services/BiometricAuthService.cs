@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection.Metadata;
+using System.Diagnostics;
 
 namespace MauiApp1.Services
 {
@@ -12,8 +14,14 @@ namespace MauiApp1.Services
     {
         public async Task<bool> AuthenticateAsync()
         {
-            var result = await CrossFingerprint.Current.AuthenticateAsync(new AuthenticationRequestConfiguration(
-                "Authenticate", "Use your fingerprint / Face ID to access the app")
+        if (DeviceInfo.Platform == DevicePlatform.iOS && DeviceInfo.DeviceType == DeviceType.Virtual)
+        {
+            Debug.WriteLine("Simulating successful biometric authentication in simulator.");
+            return true; // For simulator testing
+        }
+
+        var result = await CrossFingerprint.Current.AuthenticateAsync(
+            new AuthenticationRequestConfiguration("Authenticate", "Use your fingerprint / Face ID to access the app")
             {
                 AllowAlternativeAuthentication = true,
                 ConfirmationRequired = true,
@@ -21,7 +29,9 @@ namespace MauiApp1.Services
                 FallbackTitle = "Use Passcode"
             });
 
-            return result.Authenticated;
-        }
+        return result.Authenticated;
+    
+
+    }
     }
 }

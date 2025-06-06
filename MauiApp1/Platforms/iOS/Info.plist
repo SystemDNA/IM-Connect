@@ -38,4 +38,8 @@
 <key>NSLocationWhenInUseUsageDescription</key>
 <string>This app needs your location to provide local suggestions.</string>
 </dict>
+<key>UIBackgroundModes</key>
+<array>
+    <string>fetch</string>
+</array>
 </plist>

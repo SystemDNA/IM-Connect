@@ -16,6 +16,7 @@ namespace MauiApp1
                 });
 
             builder.Services.AddSingleton<BiometricAuthService>();
+           
             builder.Services.AddSingleton<UserLocationService>();
             builder.Services.AddMauiBlazorWebView();
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://platformfactory.uk:6888/") });
