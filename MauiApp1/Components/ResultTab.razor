@@ -1,56 +1,118 @@
+@page "/emission-result"
+@using Microsoft.Maui.Storage
+@using System.Text.Json
 @using MauiApp1.Services
+@inject NavigationManager Navigation
 @inherits LayoutComponentBase
 
 <div class="content-section">
     @if (Result is null)
     {
-        <div class="px-4">
-        <div class="alert alert-info d-flex align-items-center" role="alert">
-            <i class="fas fa-info-circle me-2"></i>
-            No result available. Please calculate emissions first.
-        </div>
-        </div>
+            <div class="px-4">
+                <div class="alert alert-info d-flex align-items-center" role="alert">
+                    <i class="fas fa-info-circle me-2"></i>
+                    No result available. Please calculate emissions first.
+                </div>
+            </div>
     }
     else
     {
-        <div class="card border-0">
-            <div class="card-header d-flex justify-content-between"><span class="fw-bold text-uppercase">User name</span><span class="text-muted">28-May-2025</span></div>
-            <div class="card-body">
-                    <h4 class="card-title mb-4 text-center">
-                    <i class="fas fa-chart-bar me-2"></i>Emission Results Summary
-                </h4>
-
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <div class="bg-light p-3 rounded-3 text-center border">
-                            <h6 class="text-muted">Total Fuel Consumed</h6>
-                            <h3 class="text-dark">@Result.TotalFuelConsumedL.ToString("0.##") <small class="text-secondary">liters</small></h3>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mt-3 mt-md-0">
-                        <div class="bg-light p-3 rounded-3 text-center border">
-                            <h6 class="text-muted">Total CO₂ Emissions</h6>
-                            <h3 class="text-dark">@Result.TotalCO2EmissionsKg.ToString("0.##") <small class="text-secondary">kg</small></h3>
-                        </div>
-                    </div>
+            <div class="card border-0">
+                <div class="card-header d-flex justify-content-between">
+                    <span class="fw-bold text-uppercase">Emission Profile</span>
+                    <span class="text-muted">@DateTime.Now.ToString("dd-MMM-yyyy")</span>
                 </div>
+                <div class="card-body">
+                    <h4 class="card-title mb-4 text-center">
+                        <i class="fas fa-chart-bar me-2"></i>Emission Results Summary
+                    </h4>
 
-                <div class="text-center pt-3" style="max-width:400px;">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="bg-light p-3 rounded-3 text-center border">
+                                <h6 class="text-muted">Total Fuel Consumed</h6>
+                                <h3 class="text-dark">@Result.TotalFuelConsumedL.ToString("0.##") <small class="text-secondary">liters</small></h3>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-3 mt-md-0">
+                            <div class="bg-light p-3 rounded-3 text-center border">
+                                <h6 class="text-muted">Total CO₂ Emissions</h6>
+                                <h3 class="text-dark">@Result.TotalCO2EmissionsKg.ToString("0.##") <small class="text-secondary">kg</small></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center pt-3" style="max-width:400px;">
+                        <input class="form-control mb-2" placeholder="Profile name" @bind="profileName" />
+                        <textarea class="form-control mb-3" rows="3" placeholder="Description" @bind="description"></textarea>
+
                         <button class="btn btn-success px-4 py-2 rounded-pill btn-lg w-100" @onclick="Register">
-                        <i class="fas fa-pen-square me-1"></i> Register
-                    </button>
+                            <i class="fas fa-pen-square me-1"></i> Register
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
     }
 </div>
 
 @code {
     [Parameter] public YachtEmissionCalculator.EmissionResult? Result { get; set; }
 
-    private void Register()
+    private string profileName = "";
+    private string description = "";
+
+    public class Certificate
     {
-        // Placeholder for actual registration logic or navigation
-        Console.WriteLine("Register button clicked.");
+        public string CertificateId { get; set; } = Guid.NewGuid().ToString();
+        public string Description { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now;
+        public double TotalFuelConsumedL { get; set; }
+        public double TotalCO2EmissionsKg { get; set; }
+    }
+
+    private async void Register()
+    {
+        if (string.IsNullOrWhiteSpace(profileName))
+        {
+            await Application.Current.Windows[0].Page.DisplayAlert("Error", "Profile name is required.", "OK");
+            return;
+        }
+
+        string key = $"certificates_{profileName}";
+        string existingJson = Preferences.Get(key, null);
+
+        var certificates = string.IsNullOrEmpty(existingJson)
+            ? new List<Certificate>()
+            : JsonSerializer.Deserialize<List<Certificate>>(existingJson) ?? new List<Certificate>();
+
+        certificates.Add(new Certificate
+            {
+                Description = description,
+                TotalFuelConsumedL = Result?.TotalFuelConsumedL ?? 0,
+                TotalCO2EmissionsKg = Result?.TotalCO2EmissionsKg ?? 0
+            });
+
+        string updatedJson = JsonSerializer.Serialize(certificates);
+        Preferences.Set(key, updatedJson);
+
+        // ✅ Append profile name to "profile_names" if not already there
+        var profileNamesCsv = Preferences.Get("profile_names", "");
+        var profileList = string.IsNullOrWhiteSpace(profileNamesCsv)
+            ? new List<string>()
+            : profileNamesCsv.Split(',').ToList();
+
+        if (!profileList.Contains(profileName))
+        {
+            profileList.Add(profileName);
+            Preferences.Set("profile_names", string.Join(",", profileList));
+        }
+
+        await Application.Current.Windows[0].Page.DisplayAlert("Success", "Certificate registered.", "OK");
+
+        // Clear inputs
+        profileName = "";
+        description = "";
+
+        Navigation.NavigateTo("/certificates");
     }
 }

@@ -19,31 +19,43 @@
     </div>
         <div class="notification-list content-section">
     <ul class="list-group yacht-list">
-        @foreach (var yacht in Yachts.Where(y => string.IsNullOrWhiteSpace(searchText) || y.Contains(searchText, StringComparison.OrdinalIgnoreCase)))
-        {
-            <li class="list-group-item yacht-item bg-white" @onclick="() => OpenYachtGroup(yacht)">
-                <div class="media align-items-center">
-                    <div class="media-50 rounded-3 border d-flex justify-content-center align-items-center">
-                        <i class="fas fa-layer-group fs-5 text-warning"></i>
-                        @* <img src="/images/yacht-icon.png" alt="Yacht" /> *@
+
+
+                @foreach (var profile in Profiles.Where(p => string.IsNullOrWhiteSpace(searchText) || p.Contains(searchText, StringComparison.OrdinalIgnoreCase)))
+                {
+                    <li class="list-group-item yacht-item bg-white" @onclick="() => OpenProfile(profile)">
+                        <div class="media align-items-center">
+                            <div class="media-50 rounded-3 border d-flex justify-content-center align-items-center">
+                                <i class="fas fa-layer-group fs-5 text-warning"></i>
+                            </div>
+                            <div class="d-flex align-items-center w-100">
+                                <strong>@profile</strong><i class="fas fa-chevron-right ms-auto"></i>
+                            </div>
                         </div>
-                    <div class="d-flex align-items-center w-100">
-                        <strong>@yacht</strong><i class="fas fa-chevron-right ms-auto"></i>
-                        </div>                
-                </div>
-            </li>
-        }
+                    </li>
+                }
+
+
     </ul>
    @*  <a class="add-btn-footer"><i class="fas fa-plus"></i></a> *@
     </div>
 </div>
 </main>
 @code {
+    private List<string> Profiles = new();
     private string searchText;
-    private List<string> Yachts = Enumerable.Range(1, 10).Select(i => $"Yacht {i}").ToList();
 
-    private void OpenYachtGroup(string yacht)
+    protected override void OnInitialized()
     {
-        NavManager.NavigateTo($"/certificates-group/{yacht.Replace(" ", "")}");
+        // Load profile list stored under "profile_names"
+        var profileNamesCsv = Preferences.Get("profile_names", "");
+        Profiles = string.IsNullOrWhiteSpace(profileNamesCsv)
+            ? new List<string>()
+            : profileNamesCsv.Split(',').ToList();
+    }
+
+    private void OpenProfile(string profile)
+    {
+        NavManager.NavigateTo($"/certificates-group/{Uri.EscapeDataString(profile)}");
     }
 }
