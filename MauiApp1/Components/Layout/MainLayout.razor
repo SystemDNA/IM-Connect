@@ -170,6 +170,7 @@
     {
         showDropdown = false;
         SecureStorage.Remove("username"); // remove username
+        SecureStorage.Remove("mpin");
         SessionManager.ClearAuthentication();
         NavManager.NavigateTo("/login", true);
     }
