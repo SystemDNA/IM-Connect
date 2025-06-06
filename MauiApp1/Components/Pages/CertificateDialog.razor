@@ -1,42 +1,52 @@
-@using MauiApp1.Models
-@if (Visible)
+﻿@using MauiApp1.Models
+
+@if (Visible && Certificate != null)
 {
-    <div class="modal-backdrop certificate-container">
-        <div class="modal-container">
-            <h5 class="d-flex justify-content-between align-items-center">@Certificate?.Title <button class="btn-close" @onclick="OnClose"></button></h5>
-            @* <img src="@Certificate?.ImageUrl" alt="Certificate" class="w-100" /> *@
-            <div class="certificate">
-                <div class="d-flex flex-column justify-content-center text-center certificate-header-logo gap-2 mb-2">
-                    <img src="images/logo.svg" alt="logo" class="header-logo">
-                    <div class="fw-bold"> IM Investor</div>
-                </div>
-                <h1>IM Investor Certificate</h1>
-                <div class="content">
-                    <h2>This certificate is proudly presented to</h2>
-                    <div class="name">Dan Simons</div>
-                    <h2>Lorem ipsum dolor sit amet, consectetur</h2>
-                    <div class="course">Lorem ipsum</div>
-                    <p>Date: <strong>May 29, 2025</strong></p>
-                </div>
-                <div class="footer">
-                    <div class="signature">
-                        <p>CEO Signature</p>
-                        <hr>
+        <div class="modal-backdrop certificate-container">
+            <div class="modal-container">
+                <h5 class="d-flex justify-content-between align-items-center">
+                @Certificate.Title
+                    <button class="btn-close" @onclick="OnClose"></button>
+                </h5>
+
+                <div class="certificate">
+                    <div class="d-flex flex-column justify-content-center text-center certificate-header-logo gap-2 mb-2">
+                        <img src="images/logo.svg" alt="logo" class="header-logo">
+                        <div class="fw-bold">IM Investor</div>
                     </div>
-                    <div class="signature">
-                        <p>Authorized By</p>
-                        <hr>
+
+                    <h1>IM Investor Certificate</h1>
+
+                    <div class="content">
+                        <h2>This certificate is proudly presented to</h2>
+                        <div class="name">@Certificate.Number</div> <!-- Or use recipient name if available -->
+                        <h2>@Certificate.Description</h2>
+                        <p>Date: <strong>@Certificate.DateIssued.ToString("dd-MMM-yyyy")</strong></p>
                     </div>
-                </div>
-                <div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?data=Certificate%20ID%3A%20123456789&amp;size=100x100" alt="QR Code"></div>
-                <div class="svg-bottom">
-                    <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                        <path d="M0,0V46.29c47.58,22.44,103.69,29,158,17.63,72.52-16,136.36-49.75,207-49.63,66.51.1,130.18,33.86,196,49.61,59.89,14.46,119.82,8,178-11.14C842.62,33.52,906,0,972,0s130.13,33.52,204,49.6V0Z" class="shape-fill" style="fill: #d4af37;"></path>
-                    </svg>
+
+                    <div class="footer">
+                        <div class="signature">
+                            <p>CEO Signature</p>
+                            <hr>
+                        </div>
+                        <div class="signature">
+                            <p>Authorized By</p>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div class="qr">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?data=Certificate%20ID%3A%20@Uri.EscapeDataString(Certificate.Number)&amp;size=100x100" alt="QR Code">
+                    </div>
+
+                    <div class="svg-bottom">
+                        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                            <path d="M0,0V46.29c47.58,22.44,103.69,29,158,17.63,72.52-16,136.36-49.75,207-49.63,66.51.1,130.18,33.86,196,49.61,59.89,14.46,119.82,8,178-11.14C842.62,33.52,906,0,972,0s130.13,33.52,204,49.6V0Z" class="shape-fill" style="fill: #d4af37;"></path>
+                        </svg>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 }
 
 @code {
