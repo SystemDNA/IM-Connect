@@ -2,6 +2,7 @@
 @* @layout null *@
 @inject HttpClient Http
 @inject NavigationManager Navigation
+
 <div class="register-container">
     <div class="register-bg"></div>
 <div class="register-section">
@@ -47,6 +48,8 @@
 
             if (response.IsSuccessStatusCode)
             {
+
+                await SecureStorage.SetAsync("username", username);
                 // You can read the token or result here if returned
                 // var result = await response.Content.ReadFromJsonAsync<YourResponseModel>();
                 Navigation.NavigateTo("/verify");

@@ -1,70 +1,96 @@
 @page "/verify"
+@using Microsoft.Maui.Storage
 @inject NavigationManager Navigation
+@using MauiApp1.Services
+@inject IJSRuntime JS
 <div class="register-container">
     <div class="register-bg"></div>
-<div class="register-section">
-    <h5 class="text-white">Hi User</h5>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3 d-flex flex-column gap-2">
+    <div class="register-section">
+        <h5 class="text-white">Hi @userName</h5>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3 d-flex flex-column gap-2">
                     <div class="mb-2"><i class="fas fa-sign-in-alt"></i> Login to <span class="fw-bold">IM Investor</span></div>
-                <div class="tab-container">
-                        <div class="tab-headers py-2">
-                        <button class="btn @GetTabClass(0)" @onclick="@(() => ActiveTab = 0)">Fingerprint</button>
-                        <button class="btn @GetTabClass(1)" @onclick="@(() => ActiveTab = 1)">Password</button>
+
+                    <!-- Fingerprint Login Only -->
+                    <div class="tab-container">
+                        <div class="tab-content mt-3">
+                            <button class="btn btn-primary rounded-pill w-100 d-flex justify-content-center align-items-center" @onclick="LoginWithFingerprint">
+                                <i class="fas fa-fingerprint fs-8 me-2"></i> Login with Fingerprint
+                            </button>
+                        </div>
                     </div>
-                    <div class="tab-content mt-3">
-                        @if (ActiveTab == 0)
-                        {
-                                <button class="btn btn-primary rounded-pill w-100 d-flex justify-content-center align-items-center" @onclick="LoginWithFingerprint"><i class="fas fa-fingerprint fs-8 me-2"></i> Login with Fingerprint</button>
-                        }
-                        else if (ActiveTab == 1)
-                        {
-                            <input class="form-control mb-3" type="password" placeholder="Enter password to verify" @bind="password" />
-                                <button class="btn btn-primary rounded-pill w-100 d-flex justify-content-center align-items-center" @onclick="VerifyUser">Continue</button>
-                        }
-                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="image-holder p-3 my-auto">
+        <div class="image-container" style="padding-top: 40%;">
+            <img src="images/banner1.png" />
+        </div>
+    </div>
+
+    <div class="card border-0 mt-auto">
+        <div class="card-body">
+            <div class="row g-1">
+                <div class="col-3 text-center">
+                    <img src="images/icon/news.svg" style="height: 34px;margin-bottom: 0.5rem;"><br> News
+                </div>
+                <div class="col-3 text-center">
+                    <img src="images/icon/event.svg" style="height: 34px;margin-bottom: 0.5rem;"><br> Event
+                </div>
+                <div class="col-3 text-center">
+                    <img src="images/icon/invest.svg" style="height: 34px;margin-bottom: 0.5rem;"><br> Invest
+                </div>
+                <div class="col-3 text-center">
+                    <img src="images/icon/yatch.svg" style="height: 34px;margin-bottom: 0.5rem;"><br> Yatching
                 </div>
             </div>
         </div>
     </div>
 </div>
-    <div class="image-holder p-3 my-auto">
-    <div class="image-container" style="padding-top: 40%;">
-        <img src="images/banner1.png" />
-    </div>
-</div>
-    <div class="card border-0 mt-auto">
-        <div class="card-body">
-            <div class="row g-1">
-                    <div class="col-3 text-center">
-                        <img src="images/icon/news.svg" style="height: 34px;margin-bottom: 0.5rem;"><br> News
-                    </div><div class="col-3 text-center">
-                        <img src="images/icon/event.svg" style="height: 34px;margin-bottom: 0.5rem;"><br> Event
-                    </div><div class="col-3 text-center">
-                        <img src="images/icon/invest.svg" style="height: 34px;margin-bottom: 0.5rem;"><br>Invest
-                    </div><div class="col-3 text-center">
-                        <img src="images/icon/yatch.svg" style="height: 34px;margin-bottom: 0.5rem;"><br> Yatching
-                    </div>
-                </div>            
-        </div>
-    </div>
-</div>
+
 @code {
-    private string password;
-    private int ActiveTab = 0;
+    public string userName = "Guest";
 
-    private void VerifyUser()
+    protected override async Task OnInitializedAsync()
     {
-        // Add your real verification logic
-        Navigation.NavigateTo("/home");
+        try
+        {
+            userName = await SecureStorage.GetAsync("username");
+            if (string.IsNullOrEmpty(userName))
+            {
+                Navigation.NavigateTo("/login");
+            }
+        }
+        catch
+        {
+            Navigation.NavigateTo("/login");
+        }
     }
 
-    private void LoginWithFingerprint()
+    private async Task LoginWithFingerprint()
     {
-        // Add fingerprint logic here (simulated for now)
-        Navigation.NavigateTo("/home");
-    }
 
-    private string GetTabClass(int tabIndex) => tabIndex == ActiveTab ? "active-tab" : "";
+        if (!SessionManager.IsAuthenticated)
+        {
+            var authService = new BiometricAuthService();
+            bool success = await authService.AuthenticateAsync();
+
+            if (success)
+            {
+                SessionManager.SetAuthenticated();
+                // Simulated fingerprint verification
+                Navigation.NavigateTo("/home");
+            }
+            else
+            {
+                await JS.InvokeVoidAsync("alert", "Fingerprint or PIN not enabled for your account.");
+                Navigation.NavigateTo("/home");
+            }
+        }
+
+    }
 }

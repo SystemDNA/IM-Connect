@@ -120,22 +120,15 @@
             UpdateVisibility();//hideHeaderAndWhatsApp
             StateHasChanged();
         };
-
-        if (!SessionManager.IsAuthenticated)
-        {
-            var authService = new BiometricAuthService();
-            bool success = await authService.AuthenticateAsync();
-
-            if (success)
-            {
-                SessionManager.SetAuthenticated();
-            }
-            else
-            {
-
-            }
-        }
         await FetchLocation();
+
+        var storedUsername = await SecureStorage.GetAsync("username");
+
+        if (!string.IsNullOrEmpty(storedUsername))
+        {
+            NavManager.NavigateTo("/verify");
+        }
+
     }
 
     //Dropdown
@@ -176,6 +169,7 @@
     private void Logout()
     {
         showDropdown = false;
+        SecureStorage.Remove("username"); // remove username
         SessionManager.ClearAuthentication();
         NavManager.NavigateTo("/login", true);
     }

@@ -1,4 +1,5 @@
 @page "/details"
+@using Microsoft.Maui.Storage
 
 <header class="header header-fixed">
     <div class="header-content">
@@ -24,8 +25,8 @@
                         <img src="images/avatar.jpg" alt="profile-image">
                     </div>
                     <div class="mid-content flex-1">
-                        <h5 class="name mb-1">abc xyz</h5>
-                        <p class="mb-0 text-primary fw-medium">Developer</p>
+                        <h5 class="name mb-1">@userName</h5>
+                        <p class="mb-0 text-primary fw-medium">@userName</p>
                     </div>
                     <button class="btn p-0 text-primary" @onclick="() => showEditBasic = true">
                         <i class="fas fa-edit text-primary fs-5"></i>
@@ -50,9 +51,9 @@
                             <div class="inner-content">
                                 <div class="specification-list style-2">
                                     <ul>
-                                        <li><span class="name"><i class="fas fa-at"></i> Email</span><a href="#"><span class="property">info@immagazine.com</span></a></li>
-                                        <li><span class="name"><i class="fas fa-map-pin"></i> Location</span><span class="property">London, UK</span></li>
-                                        <li><span class="name"><i class="fas fa-phone-alt"></i> Phone</span><span class="property">+00 1234567890</span></li>
+                                        <li><span class="name"><i class="fas fa-at"></i> Email</span><span class="property">@email</span></li>
+                                        <li><span class="name"><i class="fas fa-map-pin"></i> Location</span><span class="property">@location</span></li>
+                                        <li><span class="name"><i class="fas fa-phone-alt"></i> Phone</span><span class="property">@phone</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -65,14 +66,14 @@
                             <div class="top-area">
                                 <div class="left-content">
                                     <div class="pf-icon fs-5"><i class="fas fa-file text-primary"></i></div>
-                                    <h6 class="title">Profile summary</h6>
+                                    <h6 class="title">Profile Summary</h6>
                                 </div>
                                 <button class="btn p-0 text-primary" @onclick="() => showEditSummary = true">
                                     <i class="fas fa-edit text-primary fs-5"></i>
                                 </button>
                             </div>
                             <div class="inner-content">
-                                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <p class="mb-0">@summary</p>
                             </div>
                         </div>
                     </li>
@@ -92,7 +93,7 @@
                             <div class="inner-content">
                                 <div class="specification-list style-2">
                                     <ul>
-                                        <li><span class="property">Company*</span><span class="name text-primary">IM Investor</span></li>
+                                        <li><span class="property">Company*</span><span class="name text-primary">@company</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -104,55 +105,57 @@
     </div>
 </main>
 
-<!-- DIALOGS -->
+<!-- DIALOG: Edit Basic Details -->
 @if (showEditBasic)
 {
     <EditDetailsDialog Title="Edit Basic Details" OnClose="() => showEditBasic = false">
         <FormContent>
             <div class="mb-3">
                 <label>Email</label>
-                <input class="form-control" value="info@immagazine.com" />
+                <input class="form-control" @bind="email" />
             </div>
             <div class="mb-3">
                 <label>Location</label>
-                <input class="form-control" value="London, UK" />
+                <input class="form-control" @bind="location" />
             </div>
             <div class="mb-3">
                 <label>Phone</label>
-                <input class="form-control" value="+00 1234567890" />
+                <input class="form-control" @bind="phone" />
             </div>
             <div class="text-end">
-                <button type="button" class="btn btn-primary" @onclick="() => showEditBasic = false">Save</button>
+                <button class="btn btn-primary" @onclick="SaveBasicDetails">Save</button>
             </div>
         </FormContent>
     </EditDetailsDialog>
 }
 
+<!-- DIALOG: Edit Summary -->
 @if (showEditSummary)
 {
     <EditDetailsDialog Title="Edit Profile Summary" OnClose="() => showEditSummary = false">
         <FormContent>
             <div class="mb-3">
                 <label>Profile Summary</label>
-                <textarea class="form-control" rows="4">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</textarea>
+                <textarea class="form-control" rows="4" @bind="summary"></textarea>
             </div>
             <div class="text-end">
-                <button type="button" class="btn btn-primary" @onclick="() => showEditSummary = false">Save</button>
+                <button class="btn btn-primary" @onclick="SaveSummary">Save</button>
             </div>
         </FormContent>
     </EditDetailsDialog>
 }
 
+<!-- DIALOG: Edit Professional Details -->
 @if (showEditProfessional)
 {
     <EditDetailsDialog Title="Edit Professional Details" OnClose="() => showEditProfessional = false">
         <FormContent>
             <div class="mb-3">
                 <label>Company</label>
-                <input class="form-control" value="IM Investor" />
+                <input class="form-control" @bind="company" />
             </div>
             <div class="text-end">
-                <button type="button" class="btn btn-primary" @onclick="() => showEditProfessional = false">Save</button>
+                <button class="btn btn-primary" @onclick="SaveProfessional">Save</button>
             </div>
         </FormContent>
     </EditDetailsDialog>
@@ -162,4 +165,55 @@
     private bool showEditBasic = false;
     private bool showEditSummary = false;
     private bool showEditProfessional = false;
+
+    public string userName = "Guest";
+    public string email = "";
+    public string location = "";
+    public string phone = "";
+    public string company = "";
+    public string summary = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            userName = await SecureStorage.GetAsync("username") ?? "Guest";
+        }
+        catch (Exception)
+        {
+            userName = "Guest";
+        }
+
+        LoadUserData(); // Load other details from Preferences
+    }
+
+    private void LoadUserData()
+    {
+        email = Preferences.Get("email", "info@immagazine.com");
+        location = Preferences.Get("location", "London, UK");
+        phone = Preferences.Get("phone", "+00 1234567890");
+        company = Preferences.Get("company", "IM Investor");
+        summary = Preferences.Get("summary", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+    }
+
+    private void SaveBasicDetails()
+    {
+        Preferences.Set("email", email);
+        Preferences.Set("location", location);
+        Preferences.Set("phone", phone);
+        showEditBasic = false;
+    }
+
+    private void SaveSummary()
+    {
+        Preferences.Set("summary", summary);
+        showEditSummary = false;
+    }
+
+    private void SaveProfessional()
+    {
+        Preferences.Set("company", company);
+        showEditProfessional = false;
+    }
 }
+
