@@ -13,26 +13,30 @@ namespace MauiApp1.Services
     public class BiometricAuthService
     {
         public async Task<bool> AuthenticateAsync()
-{
-
-        if (DeviceInfo.Platform == DevicePlatform.iOS && DeviceInfo.DeviceType == DeviceType.Virtual)
         {
-            Debug.WriteLine("Simulating successful biometric authentication in simulator.");
-            return true; // For simulator testing
-        }
-
-        var result = await CrossFingerprint.Current.AuthenticateAsync(
-            new AuthenticationRequestConfiguration("Authenticate", "Use your fingerprint / Face ID to access the app")
+            try
             {
-                AllowAlternativeAuthentication = true,
-                ConfirmationRequired = true,
-                CancelTitle = "Cancel",
-                FallbackTitle = "Use Passcode"
-            });
+                if (DeviceInfo.Platform == DevicePlatform.iOS && DeviceInfo.DeviceType == DeviceType.Virtual)
+                {
+                    Debug.WriteLine("Simulating successful biometric authentication in simulator.");
+                    return true; // For simulator testing
+                }
 
-        return result.Authenticated;
-    
+                var result = await CrossFingerprint.Current.AuthenticateAsync(
+                    new AuthenticationRequestConfiguration("Authenticate", "Use your fingerprint / Face ID to access the app")
+                    {
+                        AllowAlternativeAuthentication = true,
+                        ConfirmationRequired = true,
+                        CancelTitle = "Cancel",
+                        FallbackTitle = "Use Passcode"
+                    });
 
-    }
+                return result.Authenticated;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

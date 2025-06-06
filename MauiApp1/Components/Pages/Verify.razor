@@ -1,8 +1,9 @@
 @page "/verify"
+@using MauiApp1.Services
 @using Microsoft.Maui.Storage
 @inject NavigationManager Navigation
-@using MauiApp1.Services
 @inject IJSRuntime JS
+
 <div class="register-container">
     <div class="register-bg"></div>
     <div class="register-section">
@@ -10,15 +11,33 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-md-3 d-flex flex-column gap-2">
-                    <div class="mb-2"><i class="fas fa-sign-in-alt"></i> Login to <span class="fw-bold">IM Investor</span></div>
+                    <div class="mb-2">
+                        <i class="fas fa-sign-in-alt"></i> Login to <span class="fw-bold">IM Investor</span>
+                    </div>
 
-                    <!-- Fingerprint Login Only -->
-                    <div class="tab-container">
-                        <div class="tab-content mt-3">
-                            <button class="btn btn-primary rounded-pill w-100 d-flex justify-content-center align-items-center" @onclick="LoginWithFingerprint">
-                                <i class="fas fa-fingerprint fs-8 me-2"></i> Login with Fingerprint
-                            </button>
+                    <div class="tab-container mt-3">
+                        <div class="d-flex justify-content-between gap-2">
+                            <input @ref="inputRef1" type="text" maxlength="1" inputmode="numeric" pattern="\d*" class="mpin-box form-control text-center"
+                            @bind="mpin1" @oninput="() => FocusNext(0)" />
+
+                            <input @ref="inputRef2" type="text" maxlength="1" inputmode="numeric" pattern="\d*" class="mpin-box form-control text-center"
+                            @bind="mpin2" @oninput="() => FocusNext(1)" />
+
+                            <input @ref="inputRef3" type="text" maxlength="1" inputmode="numeric" pattern="\d*" class="mpin-box form-control text-center"
+                            @bind="mpin3" @oninput="() => FocusNext(2)" />
+
+                            <input @ref="inputRef4" type="text" maxlength="1" inputmode="numeric" pattern="\d*" class="mpin-box form-control text-center"
+                            @bind="mpin4" />
                         </div>
+
+                        @if (IsMpinRegistered)
+                        {
+                            <button class="btn btn-primary rounded-pill w-100 mt-3" @onclick="ValidateMpin">Login with MPIN</button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-success rounded-pill w-100 mt-3" @onclick="RegisterMpin">Register MPIN</button>
+                        }
                     </div>
 
                 </div>
@@ -35,32 +54,54 @@
     <div class="card border-0 mt-auto">
         <div class="card-body">
             <div class="row g-1">
-                <div class="col-3 text-center">
-                    <img src="images/icon/news.svg" style="height: 34px;margin-bottom: 0.5rem;"><br> News
-                </div>
-                <div class="col-3 text-center">
-                    <img src="images/icon/event.svg" style="height: 34px;margin-bottom: 0.5rem;"><br> Event
-                </div>
-                <div class="col-3 text-center">
-                    <img src="images/icon/invest.svg" style="height: 34px;margin-bottom: 0.5rem;"><br> Invest
-                </div>
-                <div class="col-3 text-center">
-                    <img src="images/icon/yatch.svg" style="height: 34px;margin-bottom: 0.5rem;"><br> Yatching
-                </div>
+                <div class="col-3 text-center"><img src="images/icon/news.svg" style="height: 34px;margin-bottom: 0.5rem;"><br> News</div>
+                <div class="col-3 text-center"><img src="images/icon/event.svg" style="height: 34px;margin-bottom: 0.5rem;"><br> Event</div>
+                <div class="col-3 text-center"><img src="images/icon/invest.svg" style="height: 34px;margin-bottom: 0.5rem;"><br> Invest</div>
+                <div class="col-3 text-center"><img src="images/icon/yatch.svg" style="height: 34px;margin-bottom: 0.5rem;"><br> Yatching</div>
             </div>
         </div>
     </div>
 </div>
 
+<style>
+    .mpin-box {
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-shadow: none;
+    color:black;
+    }
+
+    .mpin-box:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+</style>
+
 @code {
     public string userName = "Guest";
+    private string mpin1 = "";
+    private string mpin2 = "";
+    private string mpin3 = "";
+    private string mpin4 = "";
+    private bool IsMpinRegistered = false;
+
+    private ElementReference inputRef1;
+    private ElementReference inputRef2;
+    private ElementReference inputRef3;
+    private ElementReference inputRef4;
+
+    private string InputMpin => string.Concat(mpin1, mpin2, mpin3, mpin4).Trim();
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            userName = await SecureStorage.GetAsync("username");
-            if (string.IsNullOrEmpty(userName))
+            userName = await SecureStorage.GetAsync("username") ?? "Guest";
+            var mpin = await SecureStorage.GetAsync("mpin");
+            IsMpinRegistered = !string.IsNullOrWhiteSpace(mpin);
+
+            if (string.IsNullOrWhiteSpace(userName))
             {
                 Navigation.NavigateTo("/login");
             }
@@ -71,25 +112,55 @@
         }
     }
 
-    private async Task LoginWithFingerprint()
+    private async Task RegisterMpin()
     {
-
-        if (!SessionManager.IsAuthenticated)
+        if (InputMpin.Length == 4 && InputMpin.All(char.IsDigit))
         {
-            var authService = new BiometricAuthService();
-            bool success = await authService.AuthenticateAsync();
-
-            if (success)
-            {
-                SessionManager.SetAuthenticated();
-                // Simulated fingerprint verification
-                Navigation.NavigateTo("/home");
-            }
-            else
-            {
-               Navigation.NavigateTo("/home");
-            }
+            await SecureStorage.SetAsync("mpin", InputMpin);
+            IsMpinRegistered = true;
+            await JS.InvokeVoidAsync("alert", "MPIN registered successfully.");
         }
+        else
+        {
+            await JS.InvokeVoidAsync("alert", "Please enter a valid 4-digit MPIN.");
+        }
+    }
 
+    private async Task ValidateMpin()
+    {
+        var savedMpin = await SecureStorage.GetAsync("mpin");
+
+        if (savedMpin == InputMpin)
+        {
+            SessionManager.SetAuthenticated();
+            Navigation.NavigateTo("/home");
+        }
+        else
+        {
+            mpin1 = "";
+            mpin2 = "";
+            mpin3 = "";
+            mpin4 = "";
+            await JS.InvokeVoidAsync("alert", "Invalid MPIN. Please try again.");
+        }
+    }
+
+    private async Task FocusNext(int index)
+    {
+        // Delay is necessary to wait for DOM update
+        await Task.Delay(50);
+
+        switch (index)
+        {
+            case 0:
+                if (!string.IsNullOrWhiteSpace(mpin1)) await inputRef2.FocusAsync();
+                break;
+            case 1:
+                if (!string.IsNullOrWhiteSpace(mpin2)) await inputRef3.FocusAsync();
+                break;
+            case 2:
+                if (!string.IsNullOrWhiteSpace(mpin3)) await inputRef4.FocusAsync();
+                break;
+        }
     }
 }

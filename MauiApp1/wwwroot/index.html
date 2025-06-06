@@ -47,6 +47,12 @@
             alert('Error: ' + msg + '\n' + error);
             return false;
         };
+
+        document.addEventListener('input', function (e) {
+            if (e.target.classList.contains('mpin-box')) {
+                e.target.value = e.target.value.replace(/[^0-9]/g, '').substring(0, 1);
+            }
+        });
     </script>
 </body>
 
