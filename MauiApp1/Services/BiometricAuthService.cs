@@ -12,16 +12,23 @@ namespace MauiApp1.Services
     {
         public async Task<bool> AuthenticateAsync()
         {
-            var result = await CrossFingerprint.Current.AuthenticateAsync(new AuthenticationRequestConfiguration(
-                "Authenticate", "Use your fingerprint / Face ID to access the app")
+            try
             {
-                AllowAlternativeAuthentication = true,
-                ConfirmationRequired = true,
-                CancelTitle = "Cancel",
-                FallbackTitle = "Use Passcode"
-            });
+                var result = await CrossFingerprint.Current.AuthenticateAsync(new AuthenticationRequestConfiguration(
+              "Authenticate", "Use your fingerprint / Face ID to access the app")
+                {
+                    AllowAlternativeAuthentication = true,
+                    ConfirmationRequired = true,
+                    CancelTitle = "Cancel",
+                    FallbackTitle = "Use Passcode"
+                });
 
-            return result.Authenticated;
+                return result.Authenticated;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }
