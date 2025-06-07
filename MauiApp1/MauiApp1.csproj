@@ -52,12 +52,12 @@
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
       <AndroidPackageFormat>apk</AndroidPackageFormat>
       <AndroidCreatePackagePerAbi>True</AndroidCreatePackagePerAbi>
-      <AndroidKeyStore>True</AndroidKeyStore>
+      <AndroidKeyStore>False</AndroidKeyStore>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android|AnyCPU'">
       <AndroidCreatePackagePerAbi>True</AndroidCreatePackagePerAbi>
-      <AndroidKeyStore>True</AndroidKeyStore>
+      <AndroidKeyStore>False</AndroidKeyStore>
     </PropertyGroup>
 <ItemGroup>
   <None Include="Platforms/iOS/Entitlements.plist">
