@@ -98,12 +98,20 @@
         try
         {
             userName = await SecureStorage.GetAsync("username") ?? "Guest";
-            var mpin = await SecureStorage.GetAsync("mpin");
-            IsMpinRegistered = !string.IsNullOrWhiteSpace(mpin);
+
+            var isMpinSetup = Preferences.Get("isMpinSetupCompleted", false);
+            var savedMpin = await SecureStorage.GetAsync("mpin");
+            IsMpinRegistered = !string.IsNullOrWhiteSpace(savedMpin);
 
             if (string.IsNullOrWhiteSpace(userName))
             {
                 Navigation.NavigateTo("/login");
+            }
+
+            // Redirect to home if MPIN already registered and flag is set
+            if (IsMpinRegistered && isMpinSetup)
+            {
+                Navigation.NavigateTo("/home");
             }
         }
         catch
@@ -117,12 +125,13 @@
         if (InputMpin.Length == 4 && InputMpin.All(char.IsDigit))
         {
             await SecureStorage.SetAsync("mpin", InputMpin);
+            Preferences.Set("isMpinSetupCompleted", true); // <-- Save one-time setup flag
             IsMpinRegistered = true;
-            await JS.InvokeVoidAsync("alert", "MPIN registered successfully.");
+            await Application.Current.Windows[0].Page.DisplayAlert("Success", "MPIN registered successfully.", "OK");
         }
         else
         {
-            await JS.InvokeVoidAsync("alert", "Please enter a valid 4-digit MPIN.");
+            await Application.Current.Windows[0].Page.DisplayAlert("Success", "Please enter a valid 4-digit MPIN.", "OK");
         }
     }
 
@@ -141,7 +150,7 @@
             mpin2 = "";
             mpin3 = "";
             mpin4 = "";
-            await JS.InvokeVoidAsync("alert", "Invalid MPIN. Please try again.");
+            await Application.Current.Windows[0].Page.DisplayAlert("Error", "Invalid MPIN. Please try again.", "OK");
         }
     }
 

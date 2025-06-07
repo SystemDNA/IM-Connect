@@ -18,17 +18,30 @@
 <main class="page-content">
     <div class="p-4 content-section">
         <div class="profile-area">
-            <!-- User Profile -->
             <div class="pf-profile">
-                <div class="main-profile">
+                <div class="main-profile d-flex gap-2 align-items-center">
                     <div class="user-image">
                         <img src="images/avatar.jpg" alt="profile-image">
                     </div>
-                    <div class="mid-content flex-1">
-                        <h5 class="name mb-1">@userName</h5>
-                        <p class="mb-0 text-primary fw-medium">@userName</p>
-                    </div>
-                    <button class="btn p-0 text-primary" @onclick="() => showEditBasic = true">
+                    @if (showEditName)
+                    {
+                        <div class="flex-grow-1">
+                            <input class="form-control mb-1" @bind="displayName" placeholder="Enter display name" />
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn-sm btn-success me-2" @onclick="SaveDisplayName">Save</button>
+                                <button class="btn btn-sm btn-secondary" @onclick="() => showEditName = false">Cancel</button>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="flex-grow-1">
+                            <h5 class="name mb-1">@displayName</h5>
+                            <p class="mb-0 text-primary fw-medium">@username</p>
+                        </div>
+                    }
+
+                    <button class="btn p-0 text-primary" @onclick="() => showEditName = true">
                         <i class="fas fa-edit text-primary fs-5"></i>
                     </button>
                 </div>
@@ -36,7 +49,7 @@
 
             <div class="profile-detail">
                 <ul class="row g-sm-3 g-md-3">
-                    <!-- BASIC DETAILS -->
+                    <!-- Basic Details -->
                     <li class="col-12 col-sm-6 col-lg-4">
                         <div class="content-box style-2">
                             <div class="top-area">
@@ -60,7 +73,7 @@
                         </div>
                     </li>
 
-                    <!-- PROFILE SUMMARY -->
+                    <!-- Profile Summary -->
                     <li class="col-12 col-sm-6 col-lg-4">
                         <div class="content-box style-2">
                             <div class="top-area">
@@ -78,7 +91,7 @@
                         </div>
                     </li>
 
-                    <!-- PROFESSIONAL DETAILS -->
+                    <!-- Professional Details -->
                     <li class="col-12 col-sm-6 col-lg-4">
                         <div class="content-box style-2">
                             <div class="top-area">
@@ -105,7 +118,7 @@
     </div>
 </main>
 
-<!-- DIALOG: Edit Basic Details -->
+<!-- Edit Basic Details -->
 @if (showEditBasic)
 {
     <EditDetailsDialog Title="Edit Basic Details" OnClose="() => showEditBasic = false">
@@ -129,7 +142,7 @@
     </EditDetailsDialog>
 }
 
-<!-- DIALOG: Edit Summary -->
+<!-- Edit Summary -->
 @if (showEditSummary)
 {
     <EditDetailsDialog Title="Edit Profile Summary" OnClose="() => showEditSummary = false">
@@ -145,7 +158,7 @@
     </EditDetailsDialog>
 }
 
-<!-- DIALOG: Edit Professional Details -->
+<!-- Edit Professional Details -->
 @if (showEditProfessional)
 {
     <EditDetailsDialog Title="Edit Professional Details" OnClose="() => showEditProfessional = false">
@@ -165,35 +178,39 @@
     private bool showEditBasic = false;
     private bool showEditSummary = false;
     private bool showEditProfessional = false;
+    private bool showEditName = false;
 
-    public string userName = "Guest";
+    public string username = "Guest";
     public string email = "";
     public string location = "";
     public string phone = "";
     public string company = "";
     public string summary = "";
+    public string displayName = "";
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            userName = await SecureStorage.GetAsync("username") ?? "Guest";
+            username = await SecureStorage.GetAsync("username") ?? Preferences.Get("username", "Guest");
+            displayName = Preferences.Get("displayName", username); // default to username
         }
-        catch (Exception)
+        catch
         {
-            userName = "Guest";
+            username = "Guest";
+            displayName = "Guest";
         }
 
-        LoadUserData(); // Load other details from Preferences
+        LoadUserData();
     }
 
     private void LoadUserData()
     {
-        email = Preferences.Get("email", "info@immagazine.com");
-        location = Preferences.Get("location", "London, UK");
-        phone = Preferences.Get("phone", "+00 1234567890");
-        company = Preferences.Get("company", "IM Investor");
-        summary = Preferences.Get("summary", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+        email = Preferences.Get("email", "helo@email.com");
+        location = Preferences.Get("location", "example");
+        phone = Preferences.Get("phone", "+ 123456789");
+        company = Preferences.Get("company", "Example");
+        summary = Preferences.Get("summary", "");
     }
 
     private void SaveBasicDetails()
@@ -215,5 +232,10 @@
         Preferences.Set("company", company);
         showEditProfessional = false;
     }
-}
 
+    private async Task SaveDisplayName()
+    {
+        Preferences.Set("displayName", displayName);
+        showEditName = false;
+    }
+}
