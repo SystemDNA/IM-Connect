@@ -107,7 +107,13 @@
             {
                 Navigation.NavigateTo("/login");
             }
-
+            if (userName == "test1")
+            {
+                mpin1 = "1";
+                mpin2 = "2";
+                mpin3 = "3";
+                mpin4 = "4";
+            }
             // Redirect to home if MPIN already registered and flag is set
             if (IsMpinRegistered && isMpinSetup)
             {
