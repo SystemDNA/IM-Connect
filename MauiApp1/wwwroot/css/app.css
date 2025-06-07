@@ -728,7 +728,7 @@ html, body {
     padding-right: env(safe-area-inset-right);*/
 }
 
-.news-panel {
+.news-panel , .modal{
     padding-top: env(safe-area-inset-top);
 }
 
