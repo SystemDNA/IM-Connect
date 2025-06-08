@@ -97,7 +97,7 @@
     {
         try
         {
-            userName = await SecureStorage.GetAsync("username") ?? "Guest";
+            userName = await SecureStorage.GetAsync("email") ?? "Guest";
 
             var isMpinSetup = Preferences.Get("isMpinSetupCompleted", false);
             var savedMpin = await SecureStorage.GetAsync("mpin");
@@ -107,7 +107,7 @@
             {
                 Navigation.NavigateTo("/login");
             }
-            if (userName == "test1")
+            if (userName == "test1@gmail.com")
             {
                 mpin1 = "1";
                 mpin2 = "2";

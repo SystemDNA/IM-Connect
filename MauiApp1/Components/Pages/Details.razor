@@ -192,7 +192,7 @@
     {
         try
         {
-            username = await SecureStorage.GetAsync("username") ?? Preferences.Get("username", "Guest");
+            username = await SecureStorage.GetAsync("email") ?? Preferences.Get("email", "Guest");
             displayName = Preferences.Get("displayName", username); // default to username
         }
         catch

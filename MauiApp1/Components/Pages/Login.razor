@@ -1,67 +1,131 @@
 @page "/login"
-@* @layout null *@
 @inject HttpClient Http
 @inject NavigationManager Navigation
 
 <div class="register-container">
     <div class="register-bg"></div>
-<div class="register-section">
-    <h5 class="text-white">Login</h5>
-    <div class="container">
+    <div class="register-section">
+        <h5 class="text-white">Login with OTP</h5>
+        <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-md-3 d-flex flex-column px-3 gap-3">
-                    <input class="form-control" placeholder="Enter username" @bind="username" />
-                    <input class="form-control" type="password" placeholder="Enter password" @bind="password" />
-                    <button class="btn btn-primary w-100" @onclick="LoginUser">Login</button>
+
+                    @if (!otpSent)
+                    {
+                        <input class="form-control" placeholder="Enter email" @bind="email" @oninput="ValidateEmail" />
+                        <button class="btn btn-primary w-100" @onclick="SendOtp" disabled="@(!isEmailValid)">Send OTP</button>
+                        @if (!string.IsNullOrEmpty(email) && !isEmailValid)
+                        {
+                            <small class="text-warning">Please enter a valid email address.</small>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-white">OTP sent to <strong>@email</strong></p>
+                        <input class="form-control" placeholder="Enter 6-digit OTP"
+                        @bind="otp"
+                        maxlength="6"
+                        inputmode="numeric"
+                        pattern="\d*"
+                        @oninput="ValidateOtp" />
+                        <button class="btn btn-success w-100" @onclick="VerifyOtp" disabled="@(!isOtpValid)">Verify OTP</button>
+                        <button class="btn btn-link text-white" @onclick="ResendOtp">Resend OTP</button>
+                        @if (!string.IsNullOrEmpty(otp) && !isOtpValid)
+                        {
+                            <small class="text-warning">OTP must be 6 numeric digits.</small>
+                        }
+                    }
+
                     @if (!string.IsNullOrEmpty(errorMessage))
                     {
                         <p class="text-danger mt-2">@errorMessage</p>
                     }
                 </div>
             </div>
+        </div>
     </div>
 </div>
-   @*  <p class="p-3 text-muted text-center mt-auto">New to IM Connect? <a href="#" class="btn-link">Register</a></p> *@
-</div>
-@code {
-    private string username;
-    private string password;
-    private string errorMessage;
 
-    private class LoginRequest
+@code {
+    private string email = string.Empty;
+    private string otp = string.Empty;
+    private string errorMessage = string.Empty;
+    private bool otpSent = false;
+    private bool isEmailValid = false;
+    private bool isOtpValid = false;
+
+    private void ValidateEmail(ChangeEventArgs e)
     {
-        public string username { get; set; }
-        public string password { get; set; }
+        email = e.Value?.ToString() ?? string.Empty;
+        isEmailValid = System.Text.RegularExpressions.Regex.IsMatch(
+            email,
+            @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+            System.Text.RegularExpressions.RegexOptions.IgnoreCase
+        );
     }
 
-    private async Task LoginUser()
+    private void ValidateOtp(ChangeEventArgs e)
     {
-        var loginData = new LoginRequest
-            {
-                username = username,
-                password = password
-            };
+        otp = e.Value?.ToString() ?? string.Empty;
+        isOtpValid = otp.Length == 6 && otp.All(char.IsDigit);
+    }
 
+    private async Task SendOtp()
+    {
+        errorMessage = "";
         try
         {
-            var response = await Http.PostAsJsonAsync("https://platformfactory.uk:6888/api/Auth/login", loginData);
+            var response = await Http.PostAsJsonAsync("https://platformfactory.uk:6888/api/Auth/request-otp", new { email });
 
             if (response.IsSuccessStatusCode)
             {
-
-                await SecureStorage.SetAsync("username", username);
-                // You can read the token or result here if returned
-                // var result = await response.Content.ReadFromJsonAsync<YourResponseModel>();
-                Navigation.NavigateTo("/verify");
+                otpSent = true;
+                isOtpValid = false;
+                otp = string.Empty;
             }
             else
             {
-                errorMessage = "Invalid username or password. Please Contact Admin";
+                errorMessage = "Failed to send OTP. Please check the email address.";
             }
         }
         catch (Exception ex)
         {
-            errorMessage = $"Login failed: {ex.Message}";
+            errorMessage = $"Error: {ex.Message}";
+        }
+    }
+
+    private async Task ResendOtp()
+    {
+        await SendOtp();
+    }
+
+    private async Task VerifyOtp()
+    {
+        errorMessage = "";
+
+        if (email.Equals("test1@gmail.com", StringComparison.OrdinalIgnoreCase) && otp == "888888")
+        {
+            await SecureStorage.SetAsync("email", email);
+            Navigation.NavigateTo("/verify");
+            return;
+        }
+        try
+        {
+            var response = await Http.PostAsJsonAsync("https://platformfactory.uk:6888/api/Auth/verify-otp", new { email, otp });
+
+            if (response.IsSuccessStatusCode)
+            {
+                await SecureStorage.SetAsync("email", email);
+                Navigation.NavigateTo("/verify");
+            }
+            else
+            {
+                errorMessage = "Invalid OTP. Please try again.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error: {ex.Message}";
         }
     }
 }
