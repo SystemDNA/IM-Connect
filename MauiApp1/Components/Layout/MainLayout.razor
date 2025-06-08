@@ -122,7 +122,7 @@
         };
         await FetchLocation();
 
-        var storedUsername = await SecureStorage.GetAsync("username");
+        var storedUsername = await SecureStorage.GetAsync("email");
 
         if (!string.IsNullOrEmpty(storedUsername))
         {
@@ -169,7 +169,7 @@
     private void Logout()
     {
         showDropdown = false;
-        SecureStorage.Remove("username"); // remove username
+        SecureStorage.Remove("email"); // remove username
         SecureStorage.Remove("mpin");
         SessionManager.ClearAuthentication();
         NavManager.NavigateTo("/login", true);
