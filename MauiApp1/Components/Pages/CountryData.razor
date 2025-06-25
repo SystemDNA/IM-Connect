@@ -1,0 +1,133 @@
+﻿@page "/countrydata/{id:int}/{countryname}"
+@using MauiApp1.Services
+@using MauiApp1.Components.Models
+@inject CountriesDataService ListofCountriesDataService
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
+@using Microsoft.AspNetCore.Components
+
+<div class="page-title d-flex px-3 py-3 align-items-center">
+    <h2>@countryname<span class="fs-2">@GetSubtitle()</span></h2>
+    <NavLink class="btn btn-sm text-muted ms-auto" href="/home"><i class="fas fa-home"></i> Home</NavLink>
+</div>
+
+<div class="notification-list img-list-btn" style="@GetListVisibility()">
+    <ul class="list-group gap-2">
+        @if (CountriesData == null)
+        {
+            <p>Loading...</p>
+        }
+        else if (CountriesData.Count == 0)
+        {
+            <p>No countries data found.</p>
+        }
+        else
+        {
+            foreach (var p in CountriesData)
+            {
+                <li class="list-group-item border-0">
+                    <img src="@p.ImagePath" alt="@p.sName" />
+                   @*  <NavLink @onclick="@(() => ShowTab(p.Name))" class="@GetTabClass(p.Name)">
+                        <div class="mask"></div>
+                        <div class="image-caption">
+                            <h4>@p.Name</h4>
+                        </div>
+                    </NavLink> *@
+                    <NavLink href="@($"/eventsdata/{p.ID}/{countryname}/{p.sName}")">
+                        <div class="mask"></div>
+                        <div class="image-caption">
+                            <h4>@p.sName</h4>
+                        </div>
+                    </NavLink>
+
+                </li>
+            }
+        }
+    </ul>
+    <NavLink href="/login">Back</NavLink>
+</div>
+
+
+@code {
+    [Parameter]
+    public int id { get; set; }
+    [Parameter] public string countryname { get; set; } = string.Empty;
+
+
+    private List<CountriesData> CountriesData;
+    private string activeTab = "";
+    private List<string> tabsdata = new();
+    private readonly HashSet<string> tabsToHideList = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            CountriesData = await ListofCountriesDataService.GetCountriesDataAsync(id);
+
+            if (CountriesData != null && CountriesData.Count > 0)
+            {
+                // foreach (var item in CountriesData)
+                // {
+                //     tabsdata.Add(item.Name);
+                //     tabsToHideList.Add(item.Name);
+                // }
+                var tabNames = CountriesData.Select(x => x.sName?.ToLower()).ToList();
+                // Open "events" tab by default if it exists
+                
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error fetching Countries: " + ex.Message);
+            CountriesData = new List<CountriesData>();
+        }
+    }
+    private async Task ShowTabAsync(string? tab)
+    {
+        activeTab = tab ?? "";
+        await Task.Delay(50);
+        await JS.InvokeVoidAsync("initSwiper");
+        StateHasChanged();
+    }
+    private string GetListVisibility()
+    {
+        return string.IsNullOrEmpty(activeTab) || !tabsToHideList.Contains(activeTab)
+            ? ""
+            : "display: none;";
+    }
+
+    private async void ShowTab(string tab)
+    {
+        activeTab = tab ?? "";
+        await Task.Delay(50);
+        await JS.InvokeVoidAsync("initSwiper");
+    }
+
+    private string GetTabClass(string tab)
+    {
+        return activeTab == tab ? "active-tab" : "";
+    }
+
+    private string GetSubtitle()
+    {
+        return activeTab switch
+        {
+            "events" => " / Events",
+            "investor" => " / Investor",
+            "yachting" => " / Yachting",
+            "luxury" => " / Luxury",
+            "tourist" => " / Tourist",
+            _ => ""
+        };
+    }
+
+    // Optional: Call swiper on first render
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initSwiper");
+        }
+    }
+}

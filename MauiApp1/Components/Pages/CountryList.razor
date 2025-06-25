@@ -1,0 +1,64 @@
+﻿@page "/countrylist"
+@using MauiApp1.Services
+@using MauiApp1.Components.Models
+@inject CountriesListService ListofCountriesService
+@inject SelectedCountryService SelectedCountryService
+@inject NavigationManager Navigation
+
+<div class="content">
+    <div class="content-section notification-list img-list-btn">
+        <ul class="list-group gap-2">
+            @if (CountriesList == null)
+            {
+                <p>Loading...</p>
+            }
+            else if (CountriesList.Count == 0)
+            {
+                <p>No countries found.</p>
+            }
+            else
+            @* @if (CountriesList != null && CountriesList.Any()) *@
+            {
+                foreach (var p in CountriesList)
+                {
+                    <li class="list-group-item border-0">
+                        <img src="@p.ImagePath" alt="@p.sCountryName" />
+                        <NavLink href="@($"/countrydata/{p.ID}/{Uri.EscapeDataString(string.IsNullOrWhiteSpace(p.sCountryName) ? "Unknown" : p.sCountryName)}")">
+                            <div class="mask"></div>
+                            <div class="image-caption">
+                                <h4>@(p.sCountryName ?? "Unknown")</h4>
+                            </div>
+                        </NavLink>
+                    </li>
+                } 
+            }
+        </ul>
+    </div>
+</div>
+<NavLink href="/login">Back</NavLink>
+@code {
+    private List<CountryLists> CountriesList;
+
+    // public string countryName = "";
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            CountriesList = await ListofCountriesService.GetCountriesAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error fetching Countries: " + ex.Message);
+            CountriesList = new List<CountryLists>();
+        }
+    }
+    // private void OnCountrySelected(CountryLists p)
+    // {
+    //     SelectedCountryService.SelectedCountryName = p.CountryName;
+    //     Navigation.NavigateTo($"/countrydata/{p.ID}");
+    // }
+    // private void SetSelectedCountry(string name)
+    // {
+    //     SelectedCountryService.SelectedCountryName = name;
+    // }
+}

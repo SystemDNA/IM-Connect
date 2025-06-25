@@ -19,8 +19,18 @@ namespace MauiApp1
            
             builder.Services.AddSingleton<UserLocationService>();
             builder.Services.AddMauiBlazorWebView();
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://platformfactory.uk:6888/") });
+            builder.Services.AddSingleton<ProductService>();
+            builder.Services.AddSingleton<CountriesListService>();
+            builder.Services.AddSingleton<CountriesDataService>();
+            builder.Services.AddScoped<EventsDataService>();
+            builder.Services.AddScoped<TemplateService>(); 
+            builder.Services.AddScoped<SelectedCountryService>();
+            builder.Services.AddSingleton<NewsService>();
+            //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://platformfactory.uk:6888/") });
+            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://oneplatformfactory.com/IM_API/") });
+            //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://oneplatformfactory.com/Converter/") });
 
+            //builder.Services.AddScoped<ProductService>();
 #if DEBUG
             builder.Services.AddBlazorWebViewDeveloperTools();
     		builder.Logging.AddDebug();

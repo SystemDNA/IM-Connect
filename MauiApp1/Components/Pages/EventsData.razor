@@ -1,0 +1,132 @@
+﻿@page "/eventsdata/{id:int}/{countryname}/{titlename}"
+@using MauiApp1.Services
+@using MauiApp1.Components.Models
+@inject EventsDataService ListofEventDataService
+@inject SelectedCountryService SelectedCountryService
+@inject NewsService NewsService
+
+
+<div class="page-title d-flex px-3 py-3 align-items-center">
+    <h2>@countryname<span class="fs-2">/@titlename</span></h2>
+    <NavLink class="btn btn-sm text-muted ms-auto" href="/countrylist"><i class="fas fa-home"></i> Home</NavLink>
+</div>
+
+@if (EventsDataList == null)
+{
+    <p>Loading events...</p>
+}
+else if (EventsDataList.Count > 0)
+{
+    <div class="trending-topic">
+        <div class="container">
+            <div class="swiper col-3-swiper">
+                <div class="swiper-wrapper">
+                    @foreach (var p in EventsDataList)
+                    {
+                        <div class="swiper-slide">
+                            <a href="@($"/templatecontent/{p.ID}/{p.FKiCountryDataId}/{countryname}/{@p.sTitle}")">
+                               
+                                <img src="@p.ImagePath" alt="" />
+                                @p.sTitle
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="latest-news-section">
+        <h4>Latest News</h4>
+        @if (newsItems == null)
+        {
+            <p>Loading latest news...</p>
+        }
+        else if (newsItems.Count > 0)
+        {
+            <div class="notification-list">
+                <ul class="list-group gap-2">
+            @foreach (var news in newsItems)
+                    {
+                        <li class="list-group-item border-0">
+                            @* <a href="#" class="media" @onclick="@(() => OpenPanel("panel-1"))" @onclick:preventDefault> *@
+                                <div class="media-50 rounded-3 border">
+                                @* <img src="images/events/@news.Images" alt=""> *@
+                                </div>
+                                <div class="list-content">
+                                    <h6 class="title ellips1">@news.sName</h6>
+                                <a href="@($"/latestnews/{@news.ID}/{news.FKiCountryID}/{countryname}/{titlename}")">
+                                    @news.sContent
+                                </a>
+                                @* <div @onclick="() => ToggleText(news)"
+                                     class="@GetCssClass(news)"
+                                     title="@news.Content">
+                                    @news.Content
+                                </div> *@
+                                </div>
+                            @* </a> *@
+                        </li>
+                    }
+                </ul>
+            </div>
+            
+        }
+    </div>
+
+}
+<style>
+    .truncate-text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+        width: 300px; /* adjust as needed */
+        cursor: pointer;
+    }
+
+    .expanded-text {
+        white-space: normal;
+        display: block;
+        width: 300px; /* match the width or make it auto */
+        cursor: pointer;
+    }
+</style>
+
+@code {
+    [Parameter] public int id { get; set; }
+    [Parameter] public string countryname { get; set; } = string.Empty;
+    [Parameter] public string titlename { get; set; } = string.Empty;
+
+    
+
+    private List<News> newsItems;
+    private List<EventItem> EventsDataList;
+    private Dictionary<string, string> tabDisplayNames = new();
+    private string activeTab = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            EventsDataList = await ListofEventDataService.GetEventsByCountryId(id);
+            newsItems = await NewsService.GetNewsAsync(id);
+            if (EventsDataList != null && EventsDataList.Count > 0)
+            {
+                activeTab = EventsDataList[0].sTitle.ToLower();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error loading events: " + ex.Message);
+            EventsDataList = new List<EventItem>();
+        }
+    }
+
+    string GetCssClass(News item)
+    {
+        return item.IsExpanded ? "expanded-text" : "truncate-text";
+    }
+    void ToggleText(News item)
+    {
+        item.IsExpanded = !item.IsExpanded;
+    }
+}

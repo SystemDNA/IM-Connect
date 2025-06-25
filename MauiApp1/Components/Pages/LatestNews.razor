@@ -1,0 +1,62 @@
+﻿@page "/latestnews/{id:int}/{fkicountryid:int}/{countryname}/{title}"
+@using MauiApp1.Services
+@using MauiApp1.Components.Models
+@inject NewsService NewsService
+
+@if (LatestNewsData == null)
+{
+    <p>Loading latest news...</p>
+}
+else if (LatestNewsData.Count > 0)
+{
+    <div class="notification-list">
+        <ul class="list-group gap-2">
+              <header class="header header-sticky">
+        <div class="header-content">
+            <div class="left-content">
+                @*  <a class="back-btn pf-icon d-flex align-items-center text-light py-3 pe-3" @onclick="ClosePanel" @onclick:preventDefault>
+                    <i class="fas fa-arrow-left fs-5"></i>
+                </a> *@
+                <NavLink href="@($"/eventsdata/{fkicountryid}/{countryname}/{title}")" class="back-btn pf-icon d-flex align-items-center text-light py-3 pe-3"><i class="fas fa-arrow-left fs-5"></i></NavLink>
+            </div>
+            <div class="mid-content"><h6 class="title"></h6></div>
+            <div class="right-content">
+                <NavLink href="/countrylist" class="pf-icon fs-5 icon-sm text-light py-3 ps-3"><i class="fas fa-home fs-5"></i></NavLink>
+            </div>
+        </div>
+    </header>
+            @foreach (var newsContent in LatestNewsData)
+            {
+                <div class="mid-content"><h6 class="title">@newsContent.sTitle</h6></div>
+                @((MarkupString)newsContent.sContent)
+            }
+        </ul>
+    </div>
+
+}
+
+
+
+@code {
+    [Parameter] public int id { get; set; }
+    [Parameter] public int fkicountryid { get; set; }
+    [Parameter] public string countryname { get; set; } = string.Empty;
+    [Parameter] public string title { get; set; } = string.Empty;
+
+
+    private List<NewsContent> LatestNewsData;
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            LatestNewsData = await NewsService.GetNewsContentAsync(id);
+            
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error loading events: " + ex.Message);
+            LatestNewsData = new List<NewsContent>();
+        }
+    }
+
+}

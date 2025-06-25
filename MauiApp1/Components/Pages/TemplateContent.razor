@@ -1,0 +1,109 @@
+﻿@page "/templatecontent/{id:int}/{fkicountryid:int}/{countryname}/{title}"
+@using MauiApp1.Services
+@using MauiApp1.Components.Models
+@inject TemplateService TemplateDataService
+
+<div class="page-title d-flex px-3 py-3 align-items-center">
+    <h2>@countryname<span class="fs-2">/@title</span></h2>
+    <NavLink class="btn btn-sm text-muted ms-auto" href="/countrylist"><i class="fas fa-home"></i> Home</NavLink>
+</div>
+
+@if (TemplateDataContent == null)
+{
+    <p>Loading content...</p>
+}
+else if (TemplateDataContent.Count == 0)
+{
+    <p>No content found.</p>
+}
+else
+{
+    <header class="header header-sticky">
+        <div class="header-content">
+            <div class="left-content">
+                @*  <a class="back-btn pf-icon d-flex align-items-center text-light py-3 pe-3" @onclick="ClosePanel" @onclick:preventDefault>
+                    <i class="fas fa-arrow-left fs-5"></i>
+                </a> *@
+                <NavLink href="@($"/eventsdata/{fkicountryid}/{countryname}/{title}")" class="back-btn pf-icon d-flex align-items-center text-light py-3 pe-3"><i class="fas fa-arrow-left fs-5"></i></NavLink>
+            </div>
+            <div class="mid-content"><h6 class="title">@title</h6></div>
+            <div class="right-content">
+                <NavLink href="/countrylist" class="pf-icon fs-5 icon-sm text-light py-3 ps-3"><i class="fas fa-home fs-5"></i></NavLink>
+            </div>
+        </div>
+    </header>
+  
+    <ul>
+      
+        @foreach (var item in TemplateDataContent)
+        {
+            @* @(item.sContent) *@
+            @((MarkupString)item.sContent)
+            @* <li>@item.sContent</li> *@
+        }
+    </ul>
+}
+
+
+
+@code {
+    [Parameter] public int id { get; set; }
+    [Parameter] public int fkicountryid { get; set; }
+    [Parameter] public string countryname { get; set; } = string.Empty;
+    [Parameter] public string title { get; set; } = string.Empty;
+
+
+    private List<TemplateDataContent> TemplateDataContent;
+    readonly Dictionary<string, string> ActiveTabs = new();
+
+
+    protected override async Task OnParametersSetAsync()
+    {
+        try
+        {
+            TemplateDataContent = null; // show loading
+            TemplateDataContent = await TemplateDataService.GetContentData(id, fkicountryid);
+            
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error loading template content: " + ex.Message);
+            TemplateDataContent = new List<TemplateDataContent>();
+        }
+    }
+//     readonly Dictionary<string, string> tabDisplayNames = new()
+// {
+//     { "events", "Events" },
+//     { "investor", "Investor" },
+//     { "yachting", "Yachting" },
+//     { "luxury", "Luxury" },
+//     { "tourist", "Tourist" },
+//     { "luxury_yachting", "Luxury Yachting" }
+// };
+
+    // string GetSubtitle()
+    // {
+    //     if (string.IsNullOrWhiteSpace(activeTab))
+    //         return string.Empty;
+
+    //     return tabDisplayNames.TryGetValue(activeTab.ToLower(), out var displayName)
+    //         ? $" / {displayName}"
+    //         : $" / {char.ToUpper(activeTab[0]) + activeTab.Substring(1)}";
+    // }
+
+    private string? openPanel = null;
+    private bool isClosingPanel = false;
+    async void ClosePanel()
+    {
+        isClosingPanel = true;
+        StateHasChanged(); // Trigger UI update to apply "slide-out"
+
+        await Task.Delay(300); // Match CSS animation time
+        openPanel = null;
+        isClosingPanel = false;
+        StateHasChanged(); // Refresh after closing
+    }
+
+
+}
