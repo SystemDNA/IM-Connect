@@ -11,13 +11,7 @@ using MauiApp1.Services;
 using Microsoft.Maui.Storage;
 using Plugin.Fingerprint;
 
-//namespace MauiApp1
-//{
-//    [Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize | ConfigChanges.Density)]
-//    public class MainActivity : MauiAppCompatActivity
-//    {
-//    }
-//}
+
 namespace MauiApp1
 {
     [Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true,
@@ -30,11 +24,14 @@ namespace MauiApp1
         {
             base.OnCreate(savedInstanceState);
 
-            CrossFingerprint.SetCurrentActivityResolver(() => this);
+
+
+
+
             #region "TOKEN"
 
             // Register the Firebase token retriever service to handle the retrieval and storage of the Firebase Cloud Messaging token.
-            DependencyService.Register<IFirebaseTokenRetriever>();
+            DependencyService.Register<FirebaseTokenRetriever>();
 
             // Get the application context. This is used to initialize FirebaseApp.
             var context = Android.App.Application.Context;
@@ -68,7 +65,7 @@ namespace MauiApp1
                 string fcmToken = (string)tokenResult;
 
                 // Save the FCM token for later use
-                var tokenRetriever = DependencyService.Get<IFirebaseTokenRetriever>();
+                var tokenRetriever = DependencyService.Get<FirebaseTokenRetriever>();
                 tokenRetriever.SaveToken(fcmToken);
 
                 // Log the FCM token for debugging purposes
@@ -155,7 +152,9 @@ namespace MauiApp1
                     Permissions.RequestAsync<Permissions.PostNotifications>();
                 }
             }
+
         }
+
         // Check if notifications are enabled.
         // For Android 8.0 (API level 26) and above, this means checking if any notification channels are disabled.
         // For Android 7.1 (API level 25) and below, this means checking if notifications are disabled at the app level.
