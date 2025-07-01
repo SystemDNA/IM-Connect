@@ -117,7 +117,8 @@
             // Redirect to home if MPIN already registered and flag is set
             if (IsMpinRegistered && isMpinSetup)
             {
-                Navigation.NavigateTo("/home");
+                 Navigation.NavigateTo("/home");
+               // Navigation.NavigateTo("/products");
             }
         }
         catch
@@ -148,7 +149,8 @@
         if (savedMpin == InputMpin)
         {
             SessionManager.SetAuthenticated();
-            Navigation.NavigateTo("/home");
+            // Navigation.NavigateTo("/home");
+            Navigation.NavigateTo("/products");
         }
         else
         {

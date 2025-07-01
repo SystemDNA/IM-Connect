@@ -18,6 +18,9 @@ namespace MauiApp1
             builder.Services.AddSingleton<BiometricAuthService>();
            
             builder.Services.AddSingleton<UserLocationService>();
+
+            builder.Services.AddSingleton<IDeviceRegistrationService, DeviceRegistrationService>();
+            builder.Services.AddSingleton<IFirebaseTokenRetriever, FirebaseTokenRetriever>();
             builder.Services.AddMauiBlazorWebView();
             builder.Services.AddSingleton<ProductService>();
             builder.Services.AddSingleton<CountriesListService>();
@@ -28,8 +31,17 @@ namespace MauiApp1
             builder.Services.AddSingleton<NewsService>();
             //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://platformfactory.uk:6888/") });
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://oneplatformfactory.com/IM_API/") });
+           // builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://platformfactory.uk/IM_Connect/") });
             //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://oneplatformfactory.com/Converter/") });
+            //builder.Services.AddHttpClient("Authentication", client =>
+            //{
+            //    client.BaseAddress = new Uri("https://platformfactory.uk:6888/");
+            //});
 
+            //builder.Services.AddHttpClient("DynamicData", client =>
+            //{
+            //    client.BaseAddress = new Uri("https://oneplatformfactory.com/IM_API/");
+            //});
             //builder.Services.AddScoped<ProductService>();
 #if DEBUG
             builder.Services.AddBlazorWebViewDeveloperTools();
