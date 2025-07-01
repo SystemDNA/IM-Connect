@@ -6,11 +6,16 @@
 @inject NavigationManager Navigation
 
 <div class="content">
-    <div class="content-section notification-list img-list-btn">
-        <ul class="list-group gap-2">
-            @if (CountriesList == null)
+    <div class="content-section container countryList">
+        @if (CountriesList == null)
             {
-                <p>Loading...</p>
+                @* <p>Loading...</p> *@
+                <div class="loader-container">
+                    <div class="im-loader">
+                        <span class="im-text">IM</span>
+                        <div class="im-spinner"></div>
+                    </div>
+                </div>
             }
             else if (CountriesList.Count == 0)
             {
@@ -19,23 +24,25 @@
             else
             @* @if (CountriesList != null && CountriesList.Any()) *@
             {
-                foreach (var p in CountriesList)
+            <h1 class="m-0 pb-4 text-center fw-bold">Yacht and Private Jet <span class="text-primary">CO2 emissions</span> for sustainable living</h1>
+            <ul class="row g-2">
+                @foreach (var p in CountriesList)
                 {
-                    <li class="list-group-item border-0">
-                        <img src="@p.ImagePath" alt="@p.sCountryName" />
+                <li class="col-6">
+                    <div class="countryListContent" style="background-image:url(@p.ImagePath)">
+                        @* <img src="@p.ImagePath" alt="@p.sCountryName" /> *@
                         <NavLink href="@($"/countrydata/{p.ID}/{Uri.EscapeDataString(string.IsNullOrWhiteSpace(p.sCountryName) ? "Unknown" : p.sCountryName)}")">
-                            <div class="mask"></div>
-                            <div class="image-caption">
-                                <h4>@(p.sCountryName ?? "Unknown")</h4>
-                            </div>
+                            @* <div class="mask"></div> *@
+                            <h4 class="fw-bold">@(p.sCountryName ?? "Unknown")</h4>                            
                         </NavLink>
-                    </li>
-                } 
+                    </div>
+                </li>
+                }
+            </ul>
             }
-        </ul>
     </div>
 </div>
-<NavLink href="/login">Back</NavLink>
+@* <NavLink href="/login">Back</NavLink> *@
 @code {
     private List<CountryLists> CountriesList;
 

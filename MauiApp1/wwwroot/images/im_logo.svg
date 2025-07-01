@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="152" viewBox="0 0 200 152">
+  <defs>
+    <clipPath id="clip-SPRK_default_preset_name_custom_1">
+      <rect width="200" height="152"/>
+    </clipPath>
+  </defs>
+  <g id="SPRK_default_preset_name_custom_1" data-name="SPRK_default_preset_name_custom – 1" clip-path="url(#clip-SPRK_default_preset_name_custom_1)">
+    <path id="Rectangle_1_-_Outline" data-name="Rectangle 1 - Outline" d="M-2.5-2.5h34v104h-34Z" transform="translate(2.5 51.259)" fill="#ff2854"/>
+    <path id="Rectangle_2_-_Outline" data-name="Rectangle 2 - Outline" d="M-2.5-2.5h34v34h-34Z" transform="translate(2.5 2.5)" fill="#ff2854"/>
+    <path id="Path_1_-_Outline" data-name="Path 1 - Outline" d="M274.676,160.487H241.834V64.469L198.5,128.983,118.295,8.506h35.257l44.8,67.963L243.631,8.5h31.045Z" transform="translate(-74.676 -8.5)" fill="#ff2854"/>
+  </g>
+</svg>

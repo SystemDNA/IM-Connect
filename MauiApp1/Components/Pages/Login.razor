@@ -3,13 +3,11 @@
 @inject NavigationManager Navigation
 
 <div class="register-container">
-    <div class="register-bg"></div>
-    <div class="register-section">
-        <h5 class="text-white">Login with OTP</h5>
+    <div class="register-section">        
         <div class="container">
+            <h5 class="mb-3"><i class="fas fa-sign-in-alt me-2"></i><span class="fw-bold">Login with OTP</span></h5>
             <div class="row">
                 <div class="col-md-6 offset-md-3 d-flex flex-column px-3 gap-3">
-
                     @if (!otpSent)
                     {
                         <input class="form-control" placeholder="Enter email" @bind="email" @oninput="ValidateEmail" />
@@ -43,7 +41,26 @@
                     }
                 </div>
             </div>
+            <footer class="menubar-area footer-fixed bottom-tabs">       
+            <div class="toolbar-inner menubar-nav bottom-scroll-tab">
+            <NavLink href="/dubai" class="tab nav-link" activeClass="active-tab" Match="NavLinkMatch.All">
+                <i class="fas fa-tv fs-10"></i> TV
+                </NavLink>
+            <NavLink href="/dubai" class="tab nav-link" activeClass="active-tab">
+                <i class="fas fa-edit fs-10"></i> Editorial
+                </NavLink>
+            <NavLink href="/home" class="tab nav-link" activeClass="active-tab">
+                <i class="fas fa-newspaper fs-10"></i> Interviews
+                </NavLink>
+            <NavLink href="/dubai" class="tab nav-link" activeClass="active-tab">
+                <i class="far fa-calendar-alt fs-10"></i> Event<br />Invitation
+                </NavLink>
+            <NavLink href="/dubai" class="tab nav-link" activeClass="active-tab">
+                <i class="far fa-calendar-alt fs-10"></i> Event<br />Update
+                </NavLink>            
         </div>
+    </footer>
+        </div>        
     </div>
 </div>
 

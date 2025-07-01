@@ -3,14 +3,19 @@
 @using MauiApp1.Components.Models
 @inject TemplateService TemplateDataService
 
-<div class="page-title d-flex px-3 py-3 align-items-center">
+@* <div class="page-title d-flex px-3 py-3 align-items-center">
     <h2>@countryname<span class="fs-2">/@title</span></h2>
     <NavLink class="btn btn-sm text-muted ms-auto" href="/countrylist"><i class="fas fa-home"></i> Home</NavLink>
-</div>
+</div> *@
 
 @if (TemplateDataContent == null)
 {
-    <p>Loading content...</p>
+    <div class="loader-container">
+        <div class="im-loader">
+            <span class="im-text">IM</span>
+            <div class="im-spinner"></div>
+        </div>
+    </div>
 }
 else if (TemplateDataContent.Count == 0)
 {
@@ -18,30 +23,32 @@ else if (TemplateDataContent.Count == 0)
 }
 else
 {
-    <header class="header header-sticky">
+    <header class="header header-fixed">
         <div class="header-content">
             <div class="left-content">
                 @*  <a class="back-btn pf-icon d-flex align-items-center text-light py-3 pe-3" @onclick="ClosePanel" @onclick:preventDefault>
                     <i class="fas fa-arrow-left fs-5"></i>
                 </a> *@
-                <NavLink href="@($"/eventsdata/{fkicountryid}/{countryname}/{title}")" class="back-btn pf-icon d-flex align-items-center text-light py-3 pe-3"><i class="fas fa-arrow-left fs-5"></i></NavLink>
+                <NavLink href="@($"/eventsdata/{fkicountryid}/{countryname}/{title}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
+                    <i class="fas fa-chevron-left fs-5"></i>
+                </NavLink>
+                <div>
+                    <h2 class="fw-bold m-0">@countryname</h2>
+                    <p class="m-0 small fw-bold text-primary">Events / @title</p>
+                </div>
             </div>
-            <div class="mid-content"><h6 class="title">@title</h6></div>
+            <div class="mid-content">@* <h6 class="title">@title</h6> *@</div>
             <div class="right-content">
-                <NavLink href="/countrylist" class="pf-icon fs-5 icon-sm text-light py-3 ps-3"><i class="fas fa-home fs-5"></i></NavLink>
+                <NavLink href="/countrylist" class="pf-icon fs-5 icon-sm py-3 ps-3"><i class="fas fa-home fs-5"></i></NavLink>
             </div>
         </div>
-    </header>
-  
-    <ul>
-      
-        @foreach (var item in TemplateDataContent)
-        {
-            @* @(item.sContent) *@
-            @((MarkupString)item.sContent)
-            @* <li>@item.sContent</li> *@
-        }
-    </ul>
+    </header>      
+    @foreach (var item in TemplateDataContent)
+    {
+        @* @(item.sContent) *@
+        @((MarkupString)item.sContent)
+        @* <li>@item.sContent</li> *@
+    }
 }
 
 

@@ -13,48 +13,62 @@
         <header class="header header-fixed">
             <div class="header-content">
                 <div class="left-content">
-                    <img src="images/logo-white.svg" alt="logo" class="header-logo" /><span class="text-light fw-bold"> IM Connect</span>
+                    <div class="gap-2 pt-2">
+                        <img src="images/im_logo.svg" alt="logo" class="header-logo" />
+                        <div class="text-muted fw-bold mt-2 lh-1 fs-4"> IM World</div>
+                    </div>                    
                 </div>
-            @if (!hideHeaderAndWhatsApp)
-            {
                 <div class="mid-content"></div>
                 <div class="right-content position-relative d-flex align-items-center">
-                    <span class="btn text-light btn-dark btn-sm">@_country</span>
-                    @* <a class="btn text-light btn-dark btn-sm ms-1" @onclick="() => showDialog = true"><i class="fas fa-calculator fs-4"></i></a> *@
-                        <a class="btn text-light btn-dark btn-sm ms-1" @onclick="ShowTools"><i class="fas fa-calculator fs-4"></i></a>
-                        @* <button class="btn btn-success" @onclick="ShowTools">Open Yacht Tools</button> *@
-                    <!-- Dropdown container -->
-                    <div class="moreOption-wrapper ms-1" id="dropdownArea">
-                        <a class="btn btn-dark btn-sm px-3" @onclick="ToggleDropdown">
-                            <i class="fas fa-ellipsis-v fs-4"></i>
-                        </a>
+                                        
+                @if (!hideHeaderAndWhatsApp)
+                    {
+                        <span class="btn btn-light btn-sm">@_country</span>
+                        @* <a class="btn text-light btn-dark btn-sm ms-1" @onclick="() => showDialog = true"><i class="fas fa-calculator fs-4"></i></a> *@
+                        <a class="btn btn-light btn-sm ms-1" @onclick="ShowTools"><i class="fas fa-calculator fs-4 me-2"></i>Calculate</a>
+                            @* <button class="btn btn-success" @onclick="ShowTools">Open Yacht Tools</button> *@
+                        <!-- Dropdown container -->
+                        <div class="moreOption-wrapper ms-1" id="dropdownArea">
+                            <a class="btn btn-light btn-sm px-3" @onclick="ToggleDropdown">
+                                <i class="fas fa-ellipsis-v fs-4"></i>
+                            </a>
 
-                        @if (showDropdown)
-                        {
-                            <ul class="moreOption-dropdown" id="dropdownMenu">
-                                <li @onclick="NavigateToDetails">
-                                    <i class="fas fa-info-circle me-2"></i> Details
-                                </li>
-                                <li @onclick="NavigateToCertificates">
-                                    <i class="fas fa-certificate me-2"></i> CO₂ Certificates
-                                </li>
-                                <li @onclick="Logout">
-                                    <i class="fas fa-sign-out-alt me-2"></i> Logout
-                                </li>
-                            </ul>
-                        }
+                            @if (showDropdown)
+                            {
+                                <ul class="moreOption-dropdown" id="dropdownMenu">
+                                    <li @onclick="NavigateToDetails">
+                                        <i class="fas fa-info-circle me-2"></i> Details
+                                    </li>
+                                    <li @onclick="NavigateToCertificates">
+                                        <i class="fas fa-certificate me-2"></i> View my Certificates
+                                    </li>
+                                    <li @onclick="NavigateToCertificates">
+                                        <i class="fas fa-certificate me-2"></i> My saved article
+                                    </li>
+                                    <li @onclick="Logout">
+                                        <i class="fas fa-sign-out-alt me-2"></i> Logout
+                                    </li>
+                                </ul>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                    <div class="text-start">
+                        <p class="fw-bold text-muted m-0">Hi,</p>
+                        <div class="fw-bold">User name</div>
                     </div>
+                    }
                 </div>
-            }
             </div>
         </header>
     }
     <main class="page-content space-top space-bottom">
         <article class="position-relative page-transition @transitionClass">
-            @if (!hideHeaderAndWhatsApp)
+            @if (!hideWhatsApp)
             {
-                <div class="input-group input-group-sm whatsapp-btn">
-                    <a href="https://api.whatsapp.com/send/?phone=%2B447979213225&amp;text=please+invite+me+to+the+Dubai+event&amp;type=phone_number&amp;app_absent=0" target="_blank" class="btn btn-success d-flex align-items-center"><i class="fab fa-whatsapp fs-5 me-2"></i>Please invite me to the Dubai event</a>
+                <div class="input-group whatsapp-btn py-3">
+                    <a href="https://api.whatsapp.com/send/?phone=%2B447979213225&amp;text=please+invite+me+to+the+Dubai+event&amp;type=phone_number&amp;app_absent=0" target="_blank" class="btn btn-success d-flex align-items-center"><i class="fab fa-whatsapp fs-10 me-2"></i>Please invite me to the event</a>
                 </div>
             }
             @Body
@@ -85,17 +99,29 @@
         <footer class="menubar-area footer-fixed bottom-tabs">       
             <div class="toolbar-inner menubar-nav bottom-scroll-tab">
             <NavLink href="/home" class="tab nav-link" activeClass="active-tab" Match="NavLinkMatch.All">
-                <img src="images/icon/news-white.svg" /> News
+                @* <img src="images/icon/news.svg" /> *@
+                <i class="fas fa-newspaper fs-8"></i> News
                 </NavLink>
             <NavLink href="/dubai" class="tab nav-link" activeClass="active-tab">
-                <img src="images/icon/event-white.svg" /> Event
+                @* <img src="images/icon/event.svg" /> *@
+                    <i class="far fa-calendar-alt fs-8"></i> Event
                 </NavLink>
-            <NavLink href="/singapore" class="tab nav-link" activeClass="active-tab">
-                <img src="images/icon/invest-white.svg" />Invest
+            <NavLink href="/dubai" class="tab nav-link" activeClass="active-tab">
+                @* <img src="images/icon/event.svg" /> *@
+                    <i class="fas fa-tv fs-8"></i> TV
+                </NavLink>
+            <NavLink href="/dubai" class="tab nav-link" activeClass="active-tab">
+                @* <img src="images/icon/event.svg" /> *@
+                    <i class="fas fa-edit fs-8"></i> Editorial
+                </NavLink>
+            @* <NavLink href="/singapore" class="tab nav-link" activeClass="active-tab">
+                <img src="images/icon/invest.svg" />
+                <i class="fas fa-euro-sign fs-10"></i> Invest
             </NavLink>
             <NavLink href="/monaco" class="tab nav-link" activeClass="active-tab">
-                <img src="images/icon/yatch-white.svg" /> Yatching
-                </NavLink>
+                <img src="images/icon/yatch.svg" />
+                <i class="fas fa-ship fs-10"></i> Yatching
+                </NavLink> *@
         </div>
     </footer>
     }
@@ -106,6 +132,7 @@
     // private bool showDialog = false;
     private bool hideHeaderAndWhatsApp = false; //hideHeaderAndWhatsApp
     private bool hideHeader = false;
+    private bool hideWhatsApp = false;
     private bool showToolsDialog = false;
 
     protected override async Task OnInitializedAsync()
@@ -184,8 +211,8 @@
     {
         var currentUri = NavManager.Uri.ToLower();
         hideHeaderAndWhatsApp = currentUri.Contains("/login") || currentUri.Contains("/verify") || currentUri.Contains("/certificates") || currentUri.Contains("/certificatesGroup") || currentUri.Contains("/details");
-        hideHeader = currentUri.Contains("/certificates") || currentUri.Contains("/certificatesGroup");
-
+        hideHeader = currentUri.Contains("/certificates") || currentUri.Contains("/certificatesGroup") || currentUri.Contains("/templatecontent");
+        hideWhatsApp = currentUri.Contains("/login") || currentUri.Contains("/verify") || currentUri.Contains("/certificates") || currentUri.Contains("/certificatesGroup") || currentUri.Contains("/details") || currentUri.Contains("/countrydata") || currentUri.Contains("/eventsdata") || currentUri.Contains("/templatecontent");
     }
 
     private async Task FetchLocation()

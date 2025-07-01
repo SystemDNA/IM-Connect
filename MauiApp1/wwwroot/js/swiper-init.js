@@ -17,7 +17,8 @@ function initSwiper() {
     new Swiper('.col-1-swiper', {
         loop: false,
         spaceBetween: 10, // Adjust based on preference
-        slidesPerView: 'auto',
+        //slidesPerView: 'auto',
+        slidesPerView: 1.1,
         centeredSlides: false,
         autoplay: {
             delay: 3000,
