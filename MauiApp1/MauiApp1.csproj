@@ -108,6 +108,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.6" />
         <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.70" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="9.0.70" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.5" />
@@ -119,6 +120,15 @@
       <Content Update="wwwroot\images\pdf\Family-Office-Investor-Monaco.pdf">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-android'">
+      <PackageReference Include="Xamarin.Firebase.Iid">
+        <Version>121.1.0.22</Version>
+      </PackageReference>
+      <PackageReference Include="Xamarin.Firebase.Messaging">
+        <Version>124.1.1.2</Version>
+      </PackageReference>
     </ItemGroup>
 
 </Project>

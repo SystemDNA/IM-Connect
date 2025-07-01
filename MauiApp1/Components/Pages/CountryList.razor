@@ -21,8 +21,8 @@
             {
                 foreach (var p in CountriesList)
                 {
-                    <li class="list-group-item border-0">
-                        <img src="@p.ImagePath" alt="@p.sCountryName" />
+                    <li class="list-group-item border-0" style="background-image:url('@p.ImagePath')">
+                        @* <img src="@p.ImagePath" alt="@p.sCountryName" /> *@
                         <NavLink href="@($"/countrydata/{p.ID}/{Uri.EscapeDataString(string.IsNullOrWhiteSpace(p.sCountryName) ? "Unknown" : p.sCountryName)}")">
                             <div class="mask"></div>
                             <div class="image-caption">
