@@ -65,7 +65,7 @@ namespace MauiApp1
                 string fcmToken = (string)tokenResult;
 
                 // Save the FCM token for later use
-                var tokenRetriever = DependencyService.Get<FirebaseTokenRetriever>();
+                var tokenRetriever = DependencyService.Get<IFirebaseTokenRetriever>();
                 tokenRetriever.SaveToken(fcmToken);
 
                 // Log the FCM token for debugging purposes
