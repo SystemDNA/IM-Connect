@@ -15,12 +15,12 @@ namespace MauiApp1
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 });
 
+            builder.Services.AddSingleton<IDeviceRegistrationService, DeviceRegistrationService>();
+            builder.Services.AddSingleton<IFirebaseTokenRetriever, FirebaseTokenRetriever>();
             builder.Services.AddSingleton<BiometricAuthService>();
            
             builder.Services.AddSingleton<UserLocationService>();
 
-            builder.Services.AddSingleton<IDeviceRegistrationService, DeviceRegistrationService>();
-            builder.Services.AddSingleton<IFirebaseTokenRetriever, FirebaseTokenRetriever>();
             builder.Services.AddMauiBlazorWebView();
             builder.Services.AddSingleton<ProductService>();
             builder.Services.AddSingleton<CountriesListService>();
@@ -47,7 +47,10 @@ namespace MauiApp1
             builder.Services.AddBlazorWebViewDeveloperTools();
     		builder.Logging.AddDebug();
 #endif
-            return builder.Build();
+            var app = builder.Build();
+            ServiceLocator.Services = app.Services;
+            return app;
+            //return builder.Build();
         }
     }
 }
