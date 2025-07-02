@@ -6,48 +6,103 @@
 @inject IJSRuntime JS
 @using Microsoft.AspNetCore.Components
 
-<div class="page-title d-flex px-3 py-3 align-items-center">
-    <h2>@countryname<span class="fs-2">@GetSubtitle()</span></h2>
-    <NavLink class="btn btn-sm text-muted ms-auto" href="/home"><i class="fas fa-home"></i> Home</NavLink>
+<div class="page-title d-flex px-3 pt-4 pb-0 align-items-center justify-content-center">
+    <h1>@countryname<span class="fs-2">@GetSubtitle()</span></h1>
+    @* <NavLink class="btn btn-sm text-muted ms-auto" href="/home"><i class="fas fa-home"></i> Home</NavLink> *@
 </div>
 
-<div class="notification-list img-list-btn" style="@GetListVisibility()">
-    <ul class="list-group gap-2">
-        @if (CountriesData == null)
+<div class="content-section container" style="@GetListVisibility()">    
+    @if (CountriesData == null)
+    {
+        @* <p>Loading...</p> *@
+        <div class="loader-container">
+            <div class="im-loader">
+                <span class="im-text">IM</span>
+                <div class="im-spinner"></div>
+            </div>
+        </div>
+    }
+    else if (CountriesData.Count == 0)
+    {
+        <div class="container">
+            <div class="alert alert-danger">No countries data found.</div>
+        </div>
+    }
+    else
+    {
+        <ul class="row g-3">
+        @foreach (var p in CountriesData)
         {
-            <p>Loading...</p>
+                <li class="col-6 country-@p.sName">
+                @* <img src="@p.ImagePath" alt="@p.sName" /> *@
+                    
+                @*  <NavLink @onclick="@(() => ShowTab(p.Name))" class="@GetTabClass(p.Name)">
+                    <div class="mask"></div>
+                    <div class="image-caption">
+                        <h4>@p.Name</h4>
+                    </div>
+                </NavLink> *@
+                    <NavLink href="@($"/eventsdata/{p.ID}/{countryname}/{p.sName}")" class="d-flex align-items-center justify-content-center py-2 bg-white shadow-lg-light rounded-3">
+                        <i class="fas fa-@p.sName fs-10 me-2 text-muted"></i>
+                    @* <div class="mask"></div> *@
+                    <span class="fw-bold fs-3 text-color">@p.sName</span>
+                </NavLink>
+            </li>
         }
-        else if (CountriesData.Count == 0)
-        {
-            <p>No countries data found.</p>
-        }
-        else
-        {
-            foreach (var p in CountriesData)
-            {
-                <li class="list-group-item border-0" style="background-image:url('@p.ImagePath')">
-                     <img src="@p.ImagePath" alt="@p.sName" /> 
-                   @*  <NavLink @onclick="@(() => ShowTab(p.Name))" class="@GetTabClass(p.Name)">
-                        <div class="mask"></div>
-                        <div class="image-caption">
-                            <h4>@p.Name</h4>
-                        </div>
-                    </NavLink> *@
-                    <NavLink href="@($"/eventsdata/{p.ID}/{countryname}/{p.sName}")">
-                        <div class="mask"></div>
-                        <div class="image-caption">
-                            <h4>@p.sName</h4>
-                        </div>
-                    </NavLink>
-
-                </li>
-            }
-        }
-    </ul>
-    <NavLink href="/login">Back</NavLink>
+        </ul>
+    }    
+    @* <NavLink href="/login">Back</NavLink> *@
+    
 </div>
-
-
+<div class="content-section container">
+    <h2 class="fw-bold text-primary">News today</h2>
+    <div class="slider">
+        <div class="swiper col-1-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide shadow-lg-light">
+                    <div class="img-container">
+                        <div class="mask"></div>
+                        <img src="images/events/abu-dhabi.png" />
+                    </div>                        
+                    <div class="image-caption">
+                        <h4 class="title-post">Omaya Yachts celebrates a successful week at the International Multihull Show in La Grande-Motte</h4>
+                        <span class="category-tag">Yachts <i class="fas fa-circle"></i></span>
+                        <span class="date">25 April 2025</span>
+                    </div>                    
+                </div>
+                <div class="swiper-slide shadow-lg-light">
+                    <div class="img-container">
+                        <div class="mask"></div>
+                        <img src="images/events/apex-vid1.png" />
+                    </div>
+                    <div class="image-caption">
+                        <h4 class="title-post">SAY 52 Undergoing Final Preparations Ahead of Palma Boat Show</h4>
+                        <span class="category-tag">MEDIA ALERT <i class="fas fa-circle"></i></span>
+                        <span class="date">April, 2025</span>
+                    </div>                    
+                </div>
+                <div class="swiper-slide shadow-lg-light">
+                    <div class="img-container">
+                        <div class="mask"></div>
+                        <img src="images/events/apex-vid2.png" />
+                    </div>                        
+                    <div class="image-caption">
+                        <h4 class="title-post">This Earth Day, Arksen and 10% For The Ocean Announce Co-Production</h4>
+                        <span class="category-tag">News <i class="fas fa-circle"></i></span>
+                        <span class="date">22 April 2025</span>
+                    </div>                    
+                </div>
+            </div>
+            <!-- Optional navigation -->
+            @* <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div> *@
+            @* <div class="swiper-pagination"></div> *@
+        </div>
+    </div>
+</div>
+<div class="content-section container">
+    <h2 class="fw-bold text-primary">Latest today</h2>
+</div>
 @code {
     [Parameter]
     public int id { get; set; }
