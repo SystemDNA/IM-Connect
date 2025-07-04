@@ -10,15 +10,16 @@ namespace MauiApp1.Services
 {
     public class EventsDataService
     {
-        private readonly HttpClient _http;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public EventsDataService(HttpClient http)
+        public EventsDataService(IHttpClientFactory httpClientFactory)
         {
-            _http = http;
+            _httpClientFactory = httpClientFactory;
         }
 
         public async Task<List<EventItem>> GetEventsByCountryId(int countryId)
         {
+             var _http = _httpClientFactory.CreateClient("DynamicData");
             var result = await _http.GetFromJsonAsync<List<EventItem>>($"api/events/{countryId}");
             return result ?? new List<EventItem>();
         }

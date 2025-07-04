@@ -10,18 +10,19 @@ namespace MauiApp1.Services
 {
     class NewsService
     {
-        private readonly HttpClient _http;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public NewsService(HttpClient http)
+        public NewsService(IHttpClientFactory httpClientFactory)
         {
-            _http = http;
+            _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<List<News>> GetNewsAsync(int Eventid)
+        public async Task<List<News>> GetNewsAsync(int Eventid,int CountryID)
         {
             try
             {
-                var requestUrl = $"api/news/{Eventid}";
+                var _http = _httpClientFactory.CreateClient("DynamicData");
+                var requestUrl = $"api/news/{Eventid}/{CountryID}";
                 return await _http.GetFromJsonAsync<List<News>>(requestUrl)
                        ?? new List<News>();
             }
@@ -33,8 +34,9 @@ namespace MauiApp1.Services
         }
         public async Task<List<NewsContent>> GetNewsContentAsync(int EventID)
         {
-            try { 
-            var requestUrl = $"api/news/newscontent/{EventID}";
+            try {
+                var _http = _httpClientFactory.CreateClient("DynamicData");
+                var requestUrl = $"api/news/newscontent/{EventID}";
             return await _http.GetFromJsonAsync<List<NewsContent>>(requestUrl)
                    ?? new List<NewsContent>();
             }

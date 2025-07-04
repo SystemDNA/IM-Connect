@@ -126,7 +126,7 @@ else if (EventsDataList.Count > 0)
         try
         {
             EventsDataList = await ListofEventDataService.GetEventsByCountryId(id);
-            newsItems = await NewsService.GetNewsAsync(id);
+            newsItems = await NewsService.GetNewsAsync(id,0);
             if (EventsDataList != null && EventsDataList.Count > 0)
             {
                 activeTab = EventsDataList[0].sTitle.ToLower();

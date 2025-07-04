@@ -15,6 +15,8 @@ namespace MauiApp1.Components.Models
         public int FKiCountryID { get; set; }
         public int FKiDataID { get; set; }
         public bool IsExpanded { get; set; } = false;
+        public DateTime? XICreatedWhen { get; set; }
+        public string? ImagePath { get; set; }
     }
     public class NewsContent
     {

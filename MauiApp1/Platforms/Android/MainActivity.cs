@@ -61,14 +61,15 @@ namespace MauiApp1
             try
             {
                 // Get the FCM token
-                var tokenResult = FirebaseMessaging.Instance.GetToken();
+                var tokenResult = FirebaseMessaging.Instance.GetToken().Result;
+
                 string fcmToken = (string)tokenResult;
 
                 // Save the FCM token for later use
                 //var tokenRetriever = DependencyService.Get<IFirebaseTokenRetriever>();
+                //tokenRetriever.SaveToken(fcmToken);
                 var tokenRetriever = ServiceLocator.Services.GetService<IFirebaseTokenRetriever>();
                 tokenRetriever.SaveToken(fcmToken);
-                //tokenRetriever.SaveToken(fcmToken);
 
                 // Log the FCM token for debugging purposes
                 Log.Debug("MainActivity", $"FCM registration token: {fcmToken}");

@@ -10,17 +10,18 @@ namespace MauiApp1.Services
 {
     internal class CountriesDataService
     {
-        private readonly HttpClient _http;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public CountriesDataService(HttpClient http)
+        public CountriesDataService(IHttpClientFactory httpClientFactory)
         {
-            _http = http;
+            _httpClientFactory = httpClientFactory;
         }
 
         public async Task<List<CountriesData>> GetCountriesDataAsync(int countryid)
         {
             try
             {
+                var _http = _httpClientFactory.CreateClient("DynamicData");
                 var response = await _http.GetFromJsonAsync<List<CountriesData>>($"api/countriesdata/{countryid}");
                 return response ?? new List<CountriesData>();
             }
