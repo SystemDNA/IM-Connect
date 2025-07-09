@@ -43,7 +43,7 @@
                         <h4>@p.Name</h4>
                     </div>
                 </NavLink> *@
-                    <NavLink href="@($"/eventsdata/{p.ID}/{countryname}/{p.sName}")" class="d-flex align-items-center justify-content-center py-2 bg-white shadow-lg-light rounded-3">
+                    <NavLink href="@($"/eventsdata/{p.id}/{countryname}/{p.sName}")" class="d-flex align-items-center justify-content-center py-2 bg-white shadow-lg-light rounded-3">
                         <i class="fas fa-@p.sName fs-10 me-2 text-muted"></i>
                     @* <div class="mask"></div> *@
                     <span class="fw-bold fs-3 text-color">@p.sName</span>
@@ -77,12 +77,12 @@ else if (newsItems.Count > 0)
                     {
                     <div class="img-container">
                                 <div class="mask"></div>
-                      <img src="@news.ImagePath" />
+                      <img src="@news.imagePath" />
                     </div>
                     <div class="image-caption">
                                 <h4 class="title-post">@news.sContent</h4>
                                 <span class="category-tag">@news.sName <i class="fas fa-circle"></i></span>
-                                <span class="date">@news.XICreatedWhen</span>
+                                <span class="date">@news.xicreatedWhen</span>
                     </div>
                     }
                  </div>

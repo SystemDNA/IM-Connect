@@ -2,34 +2,32 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace MauiApp1.Services
 {
-    internal class CountriesDataService
+    internal class NewsExpandingService
     {
+
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public CountriesDataService(IHttpClientFactory httpClientFactory)
+        public NewsExpandingService(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
-
-        public async Task<List<CountriesData>> GetCountriesDataAsync(int countryid)
+        public async Task<List<ExpandingData>> GetNewsExpandingDataAsync(int NewsID)
         {
             try
             {
                 var _http = _httpClientFactory.CreateClient("DynamicData");
-                //var response = await _http.GetFromJsonAsync<List<CountriesData>>($"api/countriesdata/{countryid}");
-                var response = await _http.GetAsync($"api/CountriesData/{countryid}");
+                var response = await _http.GetAsync($"api/NewsExpanding/{NewsID}");
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-                    var result = JsonSerializer.Deserialize<List<CountriesData>>(json);
-                    return result ?? new List<CountriesData>();
+                    var result = JsonSerializer.Deserialize<List<ExpandingData>>(json);
+                    return result ?? new List<ExpandingData>();
                 }
                 else
                 {
@@ -41,7 +39,7 @@ namespace MauiApp1.Services
             catch (Exception ex)
             {
                 Console.WriteLine($"API call failed: {ex.Message}");
-                return new List<CountriesData>();
+                return new List<ExpandingData>();
             }
         }
 

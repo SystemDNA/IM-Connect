@@ -28,6 +28,7 @@ namespace MauiApp1
             builder.Services.AddScoped<TemplateService>(); 
             builder.Services.AddScoped<SelectedCountryService>();
             builder.Services.AddSingleton<NewsService>();
+            builder.Services.AddSingleton<NewsExpandingService>();
             //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://platformfactory.uk:6888/") });
             //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://oneplatformfactory.com/IM_API/") });
             builder.Services.AddHttpClient("Authentication", client =>

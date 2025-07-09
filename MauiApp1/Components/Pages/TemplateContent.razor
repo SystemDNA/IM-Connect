@@ -26,14 +26,11 @@ else
     <header class="header header-fixed">
         <div class="header-content">
             <div class="left-content">
-                @*  <a class="back-btn pf-icon d-flex align-items-center text-light py-3 pe-3" @onclick="ClosePanel" @onclick:preventDefault>
-                    <i class="fas fa-arrow-left fs-5"></i>
-                </a> *@
-                <NavLink href="@($"/eventsdata/{fkicountryid}/{countryname}/{title}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
+                     <NavLink href="@($"/eventsdata/{fkicountryid}/{countryname}/{title}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
                     <i class="fas fa-chevron-left fs-5"></i>
                 </NavLink>
-                <div>
-                    <h2 class="fw-bold m-0">@countryname</h2>
+                    <div>
+                        <h2 class="fw-bold m-0">@countryname</h2>
                     <p class="m-0 small fw-bold text-primary">Events / @title</p>
                 </div>
             </div>
@@ -45,9 +42,10 @@ else
     </header>      
     @foreach (var item in TemplateDataContent)
     {
-        @* @(item.sContent) *@
-        @((MarkupString)item.sContent)
-        @* <li>@item.sContent</li> *@
+        <a href="@($"/newsexpand/{item.id}")">
+            <img src="@item.imagePath" />
+            @((MarkupString)item.sContent)
+        </a>
     }
 }
 

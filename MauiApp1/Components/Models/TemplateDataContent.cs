@@ -8,9 +8,11 @@ namespace MauiApp1.Components.Models
 {
     public class TemplateDataContent
     {
-        public int ID { get; set; }
+        public int id { get; set; }
         public string? sContent { get; set; }
-        public int FKiCountryID { get; set; }
-        public int FKiEventID { get; set; }
+        public int fKiCountryID { get; set; }
+        public int fKiEventID { get; set; }
+        public int? sImages {  get; set; }
+        public string? imagePath { get; set; }
     }
 }

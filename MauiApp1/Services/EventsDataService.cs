@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Json;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace MauiApp1.Services
@@ -20,8 +21,18 @@ namespace MauiApp1.Services
         public async Task<List<EventItem>> GetEventsByCountryId(int countryId)
         {
              var _http = _httpClientFactory.CreateClient("DynamicData");
-            var result = await _http.GetFromJsonAsync<List<EventItem>>($"api/events/{countryId}");
-            return result ?? new List<EventItem>();
+            var response = await _http.GetAsync($"api/events/{countryId}");
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var result = JsonSerializer.Deserialize<List<EventItem>>(json);
+                return result ?? new List<EventItem>();
+            }
+            else
+            {
+                Console.WriteLine($"Error: {response.StatusCode}");
+                return null;
+            }
         }
     }
 }

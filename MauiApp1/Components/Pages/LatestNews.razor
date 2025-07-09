@@ -11,20 +11,6 @@ else if (LatestNewsData.Count > 0)
 {
     <div class="notification-list">
         <ul class="list-group gap-2">
-              <header class="header header-sticky">
-        <div class="header-content">
-            <div class="left-content">
-                @*  <a class="back-btn pf-icon d-flex align-items-center text-light py-3 pe-3" @onclick="ClosePanel" @onclick:preventDefault>
-                    <i class="fas fa-arrow-left fs-5"></i>
-                </a> *@
-                <NavLink href="@($"/eventsdata/{fkicountryid}/{countryname}/{title}")" class="back-btn pf-icon d-flex align-items-center text-light py-3 pe-3"><i class="fas fa-arrow-left fs-5"></i></NavLink>
-            </div>
-            <div class="mid-content"><h6 class="title"></h6></div>
-            <div class="right-content">
-                <NavLink href="/countrylist" class="pf-icon fs-5 icon-sm text-light py-3 ps-3"><i class="fas fa-home fs-5"></i></NavLink>
-            </div>
-        </div>
-    </header>
             @foreach (var newsContent in LatestNewsData)
             {
                 <div class="mid-content"><h6 class="title">@newsContent.sTitle</h6></div>

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Json;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace MauiApp1.Services
@@ -23,8 +24,19 @@ namespace MauiApp1.Services
             try
             {
                 var client = _httpClientFactory.CreateClient("DynamicData");
-                var response = await client.GetFromJsonAsync<List<CountryLists>>("api/countries") ?? new List<CountryLists>();
-                return response;
+                var response = await client.GetAsync("api/countries");
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    var result = JsonSerializer.Deserialize<List<CountryLists>>(json);
+                    return result ?? new List<CountryLists>();
+                }
+                else
+                {
+                    Console.WriteLine($"Error: {response.StatusCode}");
+                    return null;
+                }
+                //return response;
             }
             catch(Exception ex)
             {

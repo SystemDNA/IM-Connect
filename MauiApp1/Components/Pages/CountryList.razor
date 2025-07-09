@@ -29,9 +29,9 @@
                 @foreach (var p in CountriesList)
                 {
                 <li class="col-6">
-                    <div class="countryListContent" style="background-image:url(@p.ImagePath)">
+                        <div class="countryListContent" style="background-image:url(@p.imagePath)">
                         @* <img src="@p.ImagePath" alt="@p.sCountryName" /> *@
-                        <NavLink href="@($"/countrydata/{p.ID}/{Uri.EscapeDataString(string.IsNullOrWhiteSpace(p.sCountryName) ? "Unknown" : p.sCountryName)}")">
+                        <NavLink href="@($"/countrydata/{p.id}/{Uri.EscapeDataString(string.IsNullOrWhiteSpace(p.sCountryName) ? "Unknown" : p.sCountryName)}")">
                             @* <div class="mask"></div> *@
                             <h4 class="fw-bold">@(p.sCountryName ?? "Unknown")</h4>                            
                         </NavLink>

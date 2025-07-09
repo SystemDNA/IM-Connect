@@ -29,7 +29,7 @@ else if (EventsDataList.Count > 0)
                 @foreach (var p in EventsDataList)
                 {
                 <li class="col-12 col-sm-6 rounded shadow-lg-light">
-                    <a class="media align-items-center" href="@($"/templatecontent/{p.ID}/{p.FKiCountryDataId}/{countryname}/{@p.sTitle}")">
+                    <a class="media align-items-center" href="@($"/templatecontent/{p.id}/{p.fKiCountryDataId}/{countryname}/{@p.sTitle}")">
                         <div class="media-50 rounded-3 border d-flex align-items-center justify-content-center">
                             <span class="fas fs-10 icon-@p.sTitle text-color"></span>
                         </div>
@@ -70,7 +70,7 @@ else if (EventsDataList.Count > 0)
                                     <div class="list-content">
                                         <h6 class="small text-primary m-0 fw-bold">IM News</h6>
                                         <h6 class="title ellips1">@news.sName</h6>
-                                    <a href="@($"/latestnews/{@news.ID}/{news.FKiCountryID}/{countryname}/{titlename}")">
+                                    <a href="@($"/latestnews/{@news.id}/{news.fkiCountryID}/{countryname}/{titlename}")">
                                         @news.sContent
                                     </a>
                                     @* <div @onclick="() => ToggleText(news)"
@@ -141,10 +141,10 @@ else if (EventsDataList.Count > 0)
 
     string GetCssClass(News item)
     {
-        return item.IsExpanded ? "expanded-text" : "truncate-text";
+        return item.isExpanded ? "expanded-text" : "truncate-text";
     }
     void ToggleText(News item)
     {
-        item.IsExpanded = !item.IsExpanded;
+        item.isExpanded = !item.isExpanded;
     }
 }

@@ -8,11 +8,18 @@ namespace MauiApp1.Components.Models
 {
     public class EventItem
     {
-        public int ID { get; set; }
-        public int FKiCountryDataId { get; set; }
+        public int id { get; set; }
+        public int fKiCountryDataId { get; set; }
         public string? sName { get; set; }
         public string? sTitle { get; set; }
         public string? sImages { get; set; }
-        public string? ImagePath { get; set; }
+        public string? imagePath { get; set; }
+    }
+    public class ExpandingData
+    {
+        public int id { get; set; }
+        public int fKiTemplateID { get; set; }
+        public string? sName { get; set; }
+        public string? sFullContent { get; set; }
     }
 }
