@@ -61,13 +61,14 @@
                     }
                 </div>
             </div>
-        </header>
+            <div class="header-curv"></div>
+        </header>        
     }
     <main class="page-content space-top space-bottom">
         <article class="position-relative page-transition @transitionClass">
             @if (!hideWhatsApp)
             {
-                <div class="input-group whatsapp-btn py-3">
+                <div class="input-group whatsapp-btn py-4 py-2">
                     <a href="https://api.whatsapp.com/send/?phone=%2B447979213225&amp;text=please+invite+me+to+the+Dubai+event&amp;type=phone_number&amp;app_absent=0" target="_blank" class="btn btn-success d-flex align-items-center"><i class="fab fa-whatsapp fs-10 me-2"></i>Please invite me to the event</a>
                 </div>
             }
@@ -96,7 +97,8 @@
     </main>
     @if (!hideHeaderAndWhatsApp)
     {
-        <footer class="menubar-area footer-fixed bottom-tabs">       
+        <footer class="menubar-area footer-fixed bottom-tabs">
+            <div class="header-curv"></div>
             <div class="toolbar-inner menubar-nav bottom-scroll-tab">
             <NavLink href="/home" class="tab nav-link" activeClass="active-tab" Match="NavLinkMatch.All">
                 @* <img src="images/icon/news.svg" /> *@

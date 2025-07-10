@@ -680,7 +680,7 @@ ul {
 }
 
 .page-content.space-bottom {
-    padding-bottom: 65px;
+    padding-bottom: 75px;
 }
 
 .page-content.space-bottom2 {
@@ -831,7 +831,7 @@ html, body {
     background-color: #ffffff;
     min-height: var(--headheight);
     max-width: var(--headwidth);
-    padding: 0 15px;
+    /*padding: 0 15px;*/
     /*border-bottom: 1px solid #ffffff;
     background-color: #ffffff;
     min-height: var(--headheight);
@@ -842,6 +842,11 @@ html, body {
     background-position: center;
     background-size: 170%;
     background-repeat: no-repeat;*/
+    /*background-image: url(../images/header-strip.svg);
+    background-size: 170%;
+    background-position: center;
+    background-repeat: no-repeat;*/
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.12);
 }
 
     .header .header-content {
@@ -849,6 +854,7 @@ html, body {
         height: 100%;
         min-height: var(--headheight);
         align-items: center;
+        padding: 0 15px;
     }
 
     .header .left-content .title, .header .mid-content .title, .header .right-content .title {
@@ -949,10 +955,14 @@ header .top-scroll-tab {
         right: 0;
         z-index: 10;
         padding-bottom: env(safe-area-inset-bottom);
+        box-shadow: 0 0px 20px 10px rgba(0, 0, 0, 0.12);
     }
-
+        .menubar-area.footer-fixed .header-curv {
+            transform: rotate(180deg);
+            top: -19px;
+        }
     .menubar-area .toolbar-inner {
-        padding: 5px 10px 5px;
+        padding: 10px 10px 10px;
         display: flex;
         max-width: var(--frame-width);
         margin-right: auto;
@@ -2752,14 +2762,17 @@ textarea.form-control-lg {
     .menubar-area .menubar-nav.bottom-scroll-tab > a.nav-link>img{
         height:24px;
     }
-    .header-curv {
-        position: sticky;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1080' height='54.681' viewBox='0 0 1080 54.681'%3E%3Cpath id='Union_1' data-name='Union 1' d='M1030,5V5H49.992A50.14,50.14,0,0,0,0,54.55H0V0H1080V5h-.45V54.681A50.208,50.208,0,0,0,1030,5Z' fill='%232a2d33'/%3E%3C/svg%3E%0A");
-        background-size: 100%;
-        background-repeat: no-repeat;
-        padding-top: 5%;
-        top: 60px;
-    }
+.header-curv {
+    position: absolute;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1080' height='54.681' viewBox='0 0 1080 54.681'%3E%3Cpath id='Union_1' data-name='Union 1' d='M1030,5V5H49.992A50.14,50.14,0,0,0,0,54.55H0V0H1080V5h-.45V54.681A50.208,50.208,0,0,0,1030,5Z' fill='%23ffffff'/%3E%3C/svg%3E%0A");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding-top: 5%;
+    top: 90px;
+    left:0;
+    z-index: 1020;
+    width: 100%;
+}
 
 /*==== 6. Components ====*/
 .accordion-button {
@@ -3376,7 +3389,6 @@ textarea.form-control-lg {
     height: calc(100vh - 60px);
     display: flex;
     flex-direction: column;
-    background:#ffffff;
 }
 /*.register-bg {
     background: #000;
@@ -3399,14 +3411,15 @@ textarea.form-control-lg {
     padding: 2rem 1rem 1rem;
     /*margin-top: -190px;*/
 }
-.register-section > .container {
-    position: relative;
-    padding: 1.3rem 1rem;
-    background: #fff;
-    /*border-radius: 15px;
+    .register-section > .container {
+        position: relative;
+        padding: 1.3rem 1rem;
+        background: #fff;
+        border-radius: 10px;
+        /*border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     z-index: 1;*/
-}
+    }
     
     .register-section .btn, .register-section input {
         padding: 0.875rem 1.5rem;
