@@ -5,6 +5,7 @@
 @inject NavigationManager Navigation
 @inject IJSRuntime JS
 @using Microsoft.AspNetCore.Components
+@inject NewsService NewsService
 
 <div class="page-title d-flex px-3 pt-4 pb-0 align-items-center justify-content-center">
     <h1>@countryname<span class="fs-2">@GetSubtitle()</span></h1>
@@ -42,7 +43,7 @@
                         <h4>@p.Name</h4>
                     </div>
                 </NavLink> *@
-                    <NavLink href="@($"/eventsdata/{p.ID}/{countryname}/{p.sName}")" class="d-flex align-items-center justify-content-center py-2 bg-white shadow-lg-light rounded-3">
+                    <NavLink href="@($"/eventsdata/{p.id}/{countryname}/{p.sName}")" class="d-flex align-items-center justify-content-center py-2 bg-white shadow-lg-light rounded-3">
                         <i class="fas fa-@p.sName fs-10 me-2 text-muted"></i>
                     @* <div class="mask"></div> *@
                     <span class="fw-bold fs-3 text-color">@p.sName</span>
@@ -54,60 +55,53 @@
     @* <NavLink href="/login">Back</NavLink> *@
     
 </div>
-<div class="content-section container">
+@if (newsItems == null)
+{
+    @* <p>Loading latest news...</p> *@
+    <div class="loader-container">
+        <div class="im-loader">
+            <span class="im-text">IM</span>
+            <div class="im-spinner"></div>
+        </div>
+    </div>
+}
+else if (newsItems.Count > 0)
+{
+   <div class="content-section container">
     <h2 class="fw-bold text-primary">News today</h2>
     <div class="slider">
         <div class="swiper col-1-swiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide shadow-sm mb-2">
+                <div class="swiper-slide shadow-lg-light">
+                    @foreach (var news in newsItems)
+                    {
                     <div class="img-container">
-                        <div class="mask"></div>
-                        <img src="images/events/abu-dhabi.png" />
-                    </div>                        
-                    <div class="image-caption">
-                        <h4 class="title-post">Omaya Yachts celebrates a successful week at the International Multihull Show in La Grande-Motte</h4>
-                        <span class="category-tag">Yachts <i class="fas fa-circle"></i></span>
-                        <span class="date">25 April 2025</span>
-                    </div>                    
-                </div>
-                <div class="swiper-slide shadow-sm mb-2">
-                    <div class="img-container">
-                        <div class="mask"></div>
-                        <img src="images/events/apex-vid1.png" />
+                                <div class="mask"></div>
+                      <img src="@news.imagePath" />
                     </div>
                     <div class="image-caption">
-                        <h4 class="title-post">SAY 52 Undergoing Final Preparations Ahead of Palma Boat Show</h4>
-                        <span class="category-tag">MEDIA ALERT <i class="fas fa-circle"></i></span>
-                        <span class="date">April, 2025</span>
-                    </div>                    
-                </div>
-                <div class="swiper-slide shadow-sm mb-2">
-                    <div class="img-container">
-                        <div class="mask"></div>
-                        <img src="images/events/apex-vid2.png" />
-                    </div>                        
-                    <div class="image-caption">
-                        <h4 class="title-post">This Earth Day, Arksen and 10% For The Ocean Announce Co-Production</h4>
-                        <span class="category-tag">News <i class="fas fa-circle"></i></span>
-                        <span class="date">22 April 2025</span>
-                    </div>                    
-                </div>
+                                <h4 class="title-post">@news.sContent</h4>
+                                <span class="category-tag">@news.sName <i class="fas fa-circle"></i></span>
+                                <span class="date">@news.xicreatedWhen</span>
+                    </div>
+                    }
+                 </div>
             </div>
-            <!-- Optional navigation -->
-            @* <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div> *@
-            @* <div class="swiper-pagination"></div> *@
         </div>
     </div>
-</div>
-<div class="content-section container">
-    <h2 class="fw-bold text-primary">Latest today</h2>
-</div>
+  </div>
+}
+
 @code {
     [Parameter]
     public int id { get; set; }
     [Parameter] public string countryname { get; set; } = string.Empty;
+    
+    [Parameter] public string titlename { get; set; } = string.Empty;
 
+    
+
+    private List<News> newsItems;
 
     private List<CountriesData> CountriesData;
     private string activeTab = "";
@@ -119,7 +113,8 @@
         try
         {
             CountriesData = await ListofCountriesDataService.GetCountriesDataAsync(id);
-
+            
+            newsItems = await NewsService.GetNewsAsync(0,id);
             if (CountriesData != null && CountriesData.Count > 0)
             {
                 // foreach (var item in CountriesData)

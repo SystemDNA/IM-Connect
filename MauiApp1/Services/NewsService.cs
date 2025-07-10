@@ -4,26 +4,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Json;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace MauiApp1.Services
 {
     class NewsService
     {
-        private readonly HttpClient _http;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public NewsService(HttpClient http)
+        public NewsService(IHttpClientFactory httpClientFactory)
         {
-            _http = http;
+            _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<List<News>> GetNewsAsync(int Eventid)
+        public async Task<List<News>> GetNewsAsync(int Eventid,int CountryID)
         {
             try
             {
-                var requestUrl = $"api/news/{Eventid}";
-                return await _http.GetFromJsonAsync<List<News>>(requestUrl)
-                       ?? new List<News>();
+                var _http = _httpClientFactory.CreateClient("DynamicData");
+                var requestUrl = $"api/news/{Eventid}/{CountryID}";
+                var response= await _http.GetAsync(requestUrl);
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    var result = JsonSerializer.Deserialize<List<News>>(json);
+                    return result ?? new List<News>();
+                }
+                else
+                {
+                    Console.WriteLine($"Error: {response.StatusCode}");
+                    return null;
+                }
             }
             catch(Exception ex)
             {
@@ -33,10 +45,21 @@ namespace MauiApp1.Services
         }
         public async Task<List<NewsContent>> GetNewsContentAsync(int EventID)
         {
-            try { 
-            var requestUrl = $"api/news/newscontent/{EventID}";
-            return await _http.GetFromJsonAsync<List<NewsContent>>(requestUrl)
-                   ?? new List<NewsContent>();
+            try {
+                var _http = _httpClientFactory.CreateClient("DynamicData");
+                var requestUrl = $"api/news/newscontent/{EventID}";
+                var response= await _http.GetAsync(requestUrl);
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    var result = JsonSerializer.Deserialize<List<NewsContent>>(json);
+                    return result ?? new List<NewsContent>();
+                }
+                else
+                {
+                    Console.WriteLine($"Error: {response.StatusCode}");
+                    return null;
+                }
             }
             catch (Exception ex)
             {

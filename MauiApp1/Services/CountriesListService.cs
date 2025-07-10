@@ -1,33 +1,55 @@
-﻿using MauiApp1.Components.Models;
+﻿//using Intents;
+using MauiApp1.Components.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Json;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace MauiApp1.Services
 {
     internal class CountriesListService
     {
-        private readonly HttpClient _http;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public CountriesListService(HttpClient http)
+        public CountriesListService(IHttpClientFactory httpClientFactory)
         {
-            _http = http;
+            _httpClientFactory = httpClientFactory;
         }
 
         public async Task<List<CountryLists>> GetCountriesAsync()
         {
-            return await _http.GetFromJsonAsync<List<CountryLists>>("api/countries") ?? new List<CountryLists>();
+            try
+            {
+                var client = _httpClientFactory.CreateClient("DynamicData");
+                var response = await client.GetAsync("api/countries");
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    var result = JsonSerializer.Deserialize<List<CountryLists>>(json);
+                    return result ?? new List<CountryLists>();
+                }
+                else
+                {
+                    Console.WriteLine($"Error: {response.StatusCode}");
+                    return null;
+                }
+                //return response;
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
             //return result ?? new List<CountryLists>();
         }
 
 
-        public async Task AddPCountriesAsync(CountryLists list)
-        {
-            var response = await _http.PostAsJsonAsync("api/Countries", list);
-            response.EnsureSuccessStatusCode();
-        }
+        //public async Task AddPCountriesAsync(CountryLists list)
+        //{
+        //    var response = await _http.PostAsJsonAsync("api/Countries", list);
+        //    response.EnsureSuccessStatusCode();
+        //}
     }
 }

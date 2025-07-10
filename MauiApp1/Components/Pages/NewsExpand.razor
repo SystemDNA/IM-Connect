@@ -1,0 +1,50 @@
+﻿@page "/newsexpand/{id:int}"
+@using MauiApp1.Services
+@using MauiApp1.Components.Models
+@inject NewsExpandingService ExpandingNews
+
+@if (NewsExpanding == null)
+{
+    @* <p>Loading events...</p> *@
+    <div class="loader-container">
+        <div class="im-loader">
+            <span class="im-text">IM</span>
+            <div class="im-spinner"></div>
+        </div>
+    </div>
+}
+else if (NewsExpanding.Count > 0)
+{
+    <div class="content-section container">
+        <div class="container notification-list">
+            <ul class="row gap-2">
+                @foreach (var item in NewsExpanding)
+                {
+                <li class="col-12 col-sm-6 rounded shadow-lg-light">
+                    @((MarkupString)item.sFullContent)
+                </li>
+                }
+            </ul>
+        </div>
+    </div>
+}
+@code {
+    [Parameter] public int id { get; set; }
+
+    
+
+    private List<ExpandingData> NewsExpanding;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            NewsExpanding = await ExpandingNews.GetNewsExpandingDataAsync(id);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error loading ExpandingNews method: " + ex.Message);
+            NewsExpanding = new List<ExpandingData>();
+        }
+    }
+}

@@ -30,8 +30,8 @@ namespace MauiApp1
 
             #region "TOKEN"
 
-            // Register the Firebase token retriever service to handle the retrieval and storage of the Firebase Cloud Messaging token.
-            DependencyService.Register<FirebaseTokenRetriever>();
+            //// Register the Firebase token retriever service to handle the retrieval and storage of the Firebase Cloud Messaging token.
+            //DependencyService.Register<FirebaseTokenRetriever>();
 
             // Get the application context. This is used to initialize FirebaseApp.
             var context = Android.App.Application.Context;
@@ -61,11 +61,14 @@ namespace MauiApp1
             try
             {
                 // Get the FCM token
-                var tokenResult = FirebaseMessaging.Instance.GetToken();
+                var tokenResult = FirebaseMessaging.Instance.GetToken().Result;
+
                 string fcmToken = (string)tokenResult;
 
                 // Save the FCM token for later use
-                var tokenRetriever = DependencyService.Get<IFirebaseTokenRetriever>();
+                //var tokenRetriever = DependencyService.Get<IFirebaseTokenRetriever>();
+                //tokenRetriever.SaveToken(fcmToken);
+                var tokenRetriever = ServiceLocator.Services.GetService<IFirebaseTokenRetriever>();
                 tokenRetriever.SaveToken(fcmToken);
 
                 // Log the FCM token for debugging purposes
