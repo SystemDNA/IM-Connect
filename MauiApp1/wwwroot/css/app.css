@@ -3640,6 +3640,6 @@ certificate {
 .icon-Videos:before {
     content: "\f03d";
 }
-.icon-MediaEvent:before {
+.icon-MediaEvent:before, .icon-Media.Event:before {
     content: "\f073";
 }
