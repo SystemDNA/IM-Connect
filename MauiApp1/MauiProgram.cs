@@ -1,4 +1,5 @@
-﻿using MauiApp1.Services;
+﻿using CommunityToolkit.Maui;
+using MauiApp1.Services;
 using Microsoft.Extensions.Logging;
 
 namespace MauiApp1
@@ -10,6 +11,7 @@ namespace MauiApp1
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                 .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -29,6 +31,7 @@ namespace MauiApp1
             builder.Services.AddScoped<SelectedCountryService>();
             builder.Services.AddSingleton<NewsService>();
             builder.Services.AddSingleton<NewsExpandingService>();
+            builder.Services.AddSingleton<ShareService>();
             //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://platformfactory.uk:6888/") });
             //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://oneplatformfactory.com/IM_API/") });
             builder.Services.AddHttpClient("Authentication", client =>

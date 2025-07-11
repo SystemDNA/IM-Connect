@@ -23,26 +23,22 @@ else if (TemplateDataContent.Count == 0)
 }
 else
 {
-    <header class="header header-fixed">
-        <div class="header-content">
-            <div class="left-content">
-                     <NavLink href="@($"/eventsdata/{fkicountryid}/{countryname}/{title}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
-                    <i class="fas fa-chevron-left fs-5"></i>
-                </NavLink>
-                    <div>
-                        <h2 class="fw-bold m-0">@countryname</h2>
-                    <p class="m-0 small fw-bold text-primary">Events / @title</p>
-                </div>
-            </div>
-            <div class="mid-content">@* <h6 class="title">@title</h6> *@</div>
+    <div class="page-title d-flex px-3 pt-4 pb-0 align-items-center justify-content-center">
+        <NavLink href="@($"/eventsdata/{fkicountryid}/{countryname}/{title}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
+            <i class="fas fa-chevron-left fs-5"></i>
+        </NavLink>
+        <div>
+            <h2 class="fw-bold m-0">@countryname</h2>
+            <p class="m-0 small fw-bold text-primary">Events / @title</p>
+        </div>
+    </div>
+    @*  <div class="mid-content"> <h6 class="title">@title</h6> </div>
             <div class="right-content">
                 <NavLink href="/countrylist" class="pf-icon fs-5 icon-sm py-3 ps-3"><i class="fas fa-home fs-5"></i></NavLink>
-            </div>
-        </div>
-    </header>      
+            </div> *@
     @foreach (var item in TemplateDataContent)
     {
-        <a href="@($"/newsexpand/{item.id}")">
+        <a href="@($"/newsexpand/{item.id}/{item.fKiEventID}/{item.fKiCountryID}/{countryname}/{title}")">
             <img src="@item.imagePath" />
             @((MarkupString)item.sContent)
         </a>
@@ -68,7 +64,7 @@ else
         {
             TemplateDataContent = null; // show loading
             TemplateDataContent = await TemplateDataService.GetContentData(id, fkicountryid);
-            
+
 
         }
         catch (Exception ex)
@@ -77,15 +73,15 @@ else
             TemplateDataContent = new List<TemplateDataContent>();
         }
     }
-//     readonly Dictionary<string, string> tabDisplayNames = new()
-// {
-//     { "events", "Events" },
-//     { "investor", "Investor" },
-//     { "yachting", "Yachting" },
-//     { "luxury", "Luxury" },
-//     { "tourist", "Tourist" },
-//     { "luxury_yachting", "Luxury Yachting" }
-// };
+    //     readonly Dictionary<string, string> tabDisplayNames = new()
+    // {
+    //     { "events", "Events" },
+    //     { "investor", "Investor" },
+    //     { "yachting", "Yachting" },
+    //     { "luxury", "Luxury" },
+    //     { "tourist", "Tourist" },
+    //     { "luxury_yachting", "Luxury Yachting" }
+    // };
 
     // string GetSubtitle()
     // {
