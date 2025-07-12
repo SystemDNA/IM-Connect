@@ -51,12 +51,18 @@ else
             </div> *@
     @foreach (var item in TemplateDataContent)
     {
-        <a href="@($"/newsexpand/{item.id}/{item.fKiEventID}/{item.fKiCountryID}/{countryname}/{title}")">
-            <div class="img-container"><img src="@item.imagePath" /></div>
-            <div class="content-section container bg-white">
-                @((MarkupString)item.sContent)
-            </div>
-        </a>
+        <div class="row">
+            <a href="@($"/newsexpand/{item.id}/{item.fKiEventID}/{item.fKiCountryID}/{countryname}/{title}")" class="col-sm-4">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="img-container mb-3"><img src="@item.imagePath" /></div>
+                        <div class="bg-white">
+                            @((MarkupString)item.sContent)
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
     }
 }
 

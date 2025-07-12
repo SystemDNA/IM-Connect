@@ -7,13 +7,24 @@
 @inject NavigationManager Navigation
 
 
-<div class="page-title d-flex px-3 pt-4 pb-0 align-items-center justify-content-center">
+@* <div class="page-title d-flex px-3 pt-4 pb-0 align-items-center justify-content-center">
     <NavLink href="@($"/countrydata/{id}/{countryname}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
         <i class="fas fa-chevron-left fs-5"></i>
      </NavLink>
-    <h1>@countryname<span class="fs-6"> / </span><span class="fs-6 text-primary">@titlename</span></h1>
+    <h1>@countryname<span class="fs-6"> / </span><span class="fs-6 text-primary">@titlename</span></h1> *@
     @* <NavLink class="btn btn-sm text-muted ms-auto" href="/countrylist"><i class="fas fa-home"></i> Home</NavLink> *@
-</div>
+@* </div> *@
+<header class="header page-title  shadow-none bg-transparent">
+    <div class="header-content">
+        <div class="left-content">
+            <NavLink href="@($"/countrydata/{id}/{countryname}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
+                <i class="fas fa-chevron-left fs-5"></i>
+            </NavLink>
+        </div>
+        <div class="mid-content"><h1>@countryname<span class="fs-6"> / </span><span class="fs-6 text-primary">@titlename</span></h1></div>
+        <div class="right-content"></div>
+    </div>
+</header>
  
 @if (EventsDataList == null)
 {
