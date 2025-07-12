@@ -2770,7 +2770,7 @@ textarea.form-control-lg {
     padding-top: 5%;
     top: 90px;
     left:0;
-    z-index: 1020;
+    /*z-index: 1020;*/
     width: 100%;
 }
 
@@ -3306,6 +3306,10 @@ textarea.form-control-lg {
         padding: 0;
     }
     /********************/
+.header.page-title, .header.page-title .header-content {
+    min-height: auto;
+    margin-top: 1rem;
+}
     .page-title {
     }
 
