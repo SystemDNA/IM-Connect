@@ -23,7 +23,20 @@ else if (TemplateDataContent.Count == 0)
 }
 else
 {
-    <div class="page-title d-flex px-3 pt-4 pb-0 align-items-center justify-content-center">
+    <header class="header header-fixed">
+        <div class="header-content">
+            <div class="left-content">
+                <NavLink href="@($"/eventsdata/{fkicountryid}/{countryname}/{title}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
+                    <i class="fas fa-chevron-left fs-5"></i>
+                </NavLink>
+                <div>
+                    <h2 class="fw-bold m-0">@countryname</h2>
+                    <p class="m-0 small fw-bold text-primary">Events / @title</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    @* <div class="page-title d-flex px-3 pt-4 pb-0 align-items-center justify-content-center">
         <NavLink href="@($"/eventsdata/{fkicountryid}/{countryname}/{title}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
             <i class="fas fa-chevron-left fs-5"></i>
         </NavLink>
@@ -31,7 +44,7 @@ else
             <h2 class="fw-bold m-0">@countryname</h2>
             <p class="m-0 small fw-bold text-primary">Events / @title</p>
         </div>
-    </div>
+    </div> *@
     @*  <div class="mid-content"> <h6 class="title">@title</h6> </div>
             <div class="right-content">
                 <NavLink href="/countrylist" class="pf-icon fs-5 icon-sm py-3 ps-3"><i class="fas fa-home fs-5"></i></NavLink>
@@ -39,8 +52,10 @@ else
     @foreach (var item in TemplateDataContent)
     {
         <a href="@($"/newsexpand/{item.id}/{item.fKiEventID}/{item.fKiCountryID}/{countryname}/{title}")">
-            <img src="@item.imagePath" />
-            @((MarkupString)item.sContent)
+            <div class="img-container"><img src="@item.imagePath" /></div>
+            <div class="content-section container bg-white">
+                @((MarkupString)item.sContent)
+            </div>
         </a>
     }
 }

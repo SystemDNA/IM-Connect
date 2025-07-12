@@ -54,10 +54,10 @@
                     }
                     else
                     {
-                    <div class="text-start">
+                    @* <div class="text-start">
                         <p class="fw-bold text-muted m-0">Hi,</p>
                         <div class="fw-bold">User name</div>
-                    </div>
+                    </div> *@
                     }
                 </div>
             </div>
@@ -97,25 +97,21 @@
     </main>
     @if (!hideHeaderAndWhatsApp)
     {
-        <footer class="menubar-area footer-fixed bottom-tabs">
+        @* <footer class="menubar-area footer-fixed bottom-tabs">
             <div class="header-curv"></div>
             <div class="toolbar-inner menubar-nav bottom-scroll-tab">
             <NavLink href="/home" class="tab nav-link" activeClass="active-tab" Match="NavLinkMatch.All">
-                @* <img src="images/icon/news.svg" /> *@
                 <i class="fas fa-newspaper fs-8"></i> News
                 </NavLink>
             <NavLink href="/dubai" class="tab nav-link" activeClass="active-tab">
-                @* <img src="images/icon/event.svg" /> *@
-                    <i class="far fa-calendar-alt fs-8"></i> Event
+                <i class="far fa-calendar-alt fs-8"></i> Event
                 </NavLink>
             <NavLink href="/dubai" class="tab nav-link" activeClass="active-tab">
-                @* <img src="images/icon/event.svg" /> *@
-                    <i class="fas fa-tv fs-8"></i> TV
+                <i class="fas fa-tv fs-8"></i> TV
                 </NavLink>
             <NavLink href="/dubai" class="tab nav-link" activeClass="active-tab">
-                @* <img src="images/icon/event.svg" /> *@
-                    <i class="fas fa-edit fs-8"></i> Editorial
-                </NavLink>
+                <i class="fas fa-edit fs-8"></i> Editorial
+                </NavLink> *@
             @* <NavLink href="/singapore" class="tab nav-link" activeClass="active-tab">
                 <img src="images/icon/invest.svg" />
                 <i class="fas fa-euro-sign fs-10"></i> Invest
@@ -124,8 +120,8 @@
                 <img src="images/icon/yatch.svg" />
                 <i class="fas fa-ship fs-10"></i> Yatching
                 </NavLink> *@
-        </div>
-    </footer>
+        @* </div>
+    </footer> *@
     }
 </div>
 @code {
@@ -212,9 +208,9 @@
     private void UpdateVisibility()
     {
         var currentUri = NavManager.Uri.ToLower();
-        hideHeaderAndWhatsApp = currentUri.Contains("/login") || currentUri.Contains("/verify") || currentUri.Contains("/certificates") || currentUri.Contains("/certificatesGroup") || currentUri.Contains("/details");
-        hideHeader = currentUri.Contains("/certificates") || currentUri.Contains("/certificatesGroup") || currentUri.Contains("/templatecontent");
-        hideWhatsApp = currentUri.Contains("/login") || currentUri.Contains("/verify") || currentUri.Contains("/certificates") || currentUri.Contains("/certificatesGroup") || currentUri.Contains("/details") || currentUri.Contains("/countrydata") || currentUri.Contains("/eventsdata") || currentUri.Contains("/templatecontent");
+        hideHeaderAndWhatsApp = currentUri.Contains("/login") || currentUri.Contains("/verify") || currentUri.Contains("/certificates") || currentUri.Contains("/certificatesGroup") || currentUri.Contains("/details") || currentUri.Contains("/newsexpand");
+        hideHeader = currentUri.Contains("/certificates") || currentUri.Contains("/certificatesGroup") || currentUri.Contains("/templatecontent") || currentUri.Contains("/newsexpand");
+        hideWhatsApp = currentUri.Contains("/login") || currentUri.Contains("/verify") || currentUri.Contains("/certificates") || currentUri.Contains("/certificatesGroup") || currentUri.Contains("/details") || currentUri.Contains("/countrydata") || currentUri.Contains("/eventsdata") || currentUri.Contains("/templatecontent") || currentUri.Contains("/newsexpand");
     }
 
     private async Task FetchLocation()

@@ -7,12 +7,22 @@
 @using Microsoft.AspNetCore.Components
 @inject NewsService NewsService
 
-<div class="page-title d-flex px-3 pt-4 pb-0 align-items-center justify-content-center">
+@* <div class="page-title d-flex px-3 pt-4 pb-0 align-items-center justify-content-center">
     <NavLink href="@($"/countrylist")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
         <i class="fas fa-chevron-left fs-5"></i>
     </NavLink>
     <h1>@countryname<span class="fs-2">@GetSubtitle()</span></h1>
-</div>
+</div> *@
+<header class="header">
+    <div class="header-content">
+        <div class="left-content">
+            <NavLink href="@($"/countrylist")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
+                <i class="fas fa-chevron-left fs-5"></i>
+            </NavLink>
+        </div>
+        <div class="mid-content"><h1>@countryname<span class="fs-2">@GetSubtitle()</span></h1></div>
+    </div>
+</header>
 
 <div class="content-section container" style="@GetListVisibility()">    
     @if (CountriesData == null)
