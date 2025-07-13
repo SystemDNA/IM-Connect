@@ -7,7 +7,7 @@
 <div class="register-container">
     <div class="register-bg"></div>
     <div class="register-section">
-        <h5 class="text-white">Hi @userName</h5>
+        <div class="mb-3 fw-bold">Hi, <span class="text-primary">@userName</span></div>
         <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-md-3 d-flex flex-column px-3 gap-2">
@@ -32,11 +32,11 @@
 
                         @if (IsMpinRegistered)
                         {
-                            <button class="btn btn-primary rounded-pill w-100 mt-3" @onclick="ValidateMpin">Login with MPIN</button>
+                            <button class="btn btn-primary rounded-pill w-100 mt-3 fw-bold" @onclick="ValidateMpin">Login with MPIN</button>
                         }
                         else
                         {
-                            <button class="btn btn-success rounded-pill w-100 mt-3" @onclick="RegisterMpin">Register MPIN</button>
+                            <button class="btn btn-success rounded-pill w-100 mt-3 fw-bold" @onclick="RegisterMpin">Register MPIN</button>
                         }
                     </div>
 

@@ -11,7 +11,7 @@
                     @if (!otpSent)
                     {
                         <input class="form-control" placeholder="Enter email" @bind="email" @oninput="ValidateEmail" />
-                        <button class="btn btn-primary w-100" @onclick="SendOtp" disabled="@(!isEmailValid)">Send OTP</button>
+                        <button class="btn btn-primary w-100 fw-bold" @onclick="SendOtp" disabled="@(!isEmailValid)">Send OTP</button>
                         @* <NavLink href="/countrylist">Countries</NavLink> *@
                         @if (!string.IsNullOrEmpty(email) && !isEmailValid)
                         {
@@ -20,15 +20,15 @@
                     }
                     else
                     {
-                        <p class="text-white">OTP sent to <strong>@email</strong></p>
+                        <div>OTP sent to <strong>@email</strong></div>
                         <input class="form-control" placeholder="Enter 6-digit OTP"
                                @bind="otp"
                                maxlength="6"
                                inputmode="numeric"
                                pattern="\d*"
                                @oninput="ValidateOtp" />
-                        <button class="btn btn-success w-100" @onclick="VerifyOtp" disabled="@(!isOtpValid)">Verify OTP</button>
-                            <button class="btn btn-link text-white" @onclick="ResendOtp">Resend OTP</button>
+                        <button class="btn btn-success w-100 fw-bold" @onclick="VerifyOtp" disabled="@(!isOtpValid)">Verify OTP</button>
+                        <button class="btn btn-link fw-bold" @onclick="ResendOtp">Resend OTP</button>
                         @if (!string.IsNullOrEmpty(otp) && !isOtpValid)
                         {
                             <small class="text-warning">OTP must be 6 numeric digits.</small>
