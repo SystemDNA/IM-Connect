@@ -1,12 +1,9 @@
-﻿@page "/templatecontent/{id:int}/{fkicountryid:int}/{countryname}/{title}"
+﻿@page "/templatecontent/{id:int}/{fkicountryid:int}/{countryname}/{firsttitle}/{title}"
 @using MauiApp1.Services
 @using MauiApp1.Components.Models
 @inject TemplateService TemplateDataService
+@inject NavigationManager Navigation
 
-@* <div class="page-title d-flex px-3 py-3 align-items-center">
-    <h2>@countryname<span class="fs-2">/@title</span></h2>
-    <NavLink class="btn btn-sm text-muted ms-auto" href="/countrylist"><i class="fas fa-home"></i> Home</NavLink>
-</div> *@
 
 @if (TemplateDataContent == null)
 {
@@ -26,7 +23,7 @@ else
     <header class="header page-title shadow-none bg-transparent">
         <div class="header-content">
             <div class="left-content">
-                <NavLink href="@($"/eventsdata/{fkicountryid}/{countryname}/{title}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
+                <NavLink href="@($"/eventsdata/{fkicountryid}/{countryname}/{firsttitle}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
                     <i class="fas fa-chevron-left fs-5"></i>
                 </NavLink>
                 <div>
@@ -36,19 +33,6 @@ else
             </div>
         </div>
     </header>
-    @* <div class="page-title d-flex px-3 pt-4 pb-0 align-items-center justify-content-center">
-        <NavLink href="@($"/eventsdata/{fkicountryid}/{countryname}/{title}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
-            <i class="fas fa-chevron-left fs-5"></i>
-        </NavLink>
-        <div>
-            <h2 class="fw-bold m-0">@countryname</h2>
-            <p class="m-0 small fw-bold text-primary">Events / @title</p>
-        </div>
-    </div> *@
-    @*  <div class="mid-content"> <h6 class="title">@title</h6> </div>
-            <div class="right-content">
-                <NavLink href="/countrylist" class="pf-icon fs-5 icon-sm py-3 ps-3"><i class="fas fa-home fs-5"></i></NavLink>
-            </div> *@
     <div class="container content-section">
     @foreach (var item in TemplateDataContent)
     {
@@ -75,6 +59,7 @@ else
     [Parameter] public int fkicountryid { get; set; }
     [Parameter] public string countryname { get; set; } = string.Empty;
     [Parameter] public string title { get; set; } = string.Empty;
+    [Parameter] public string firsttitle { get; set; } = string.Empty;
 
 
     private List<TemplateDataContent> TemplateDataContent;
@@ -128,6 +113,4 @@ else
         isClosingPanel = false;
         StateHasChanged(); // Refresh after closing
     }
-
-
 }
