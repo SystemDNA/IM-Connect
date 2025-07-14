@@ -9,11 +9,11 @@ namespace MauiApp1.Components.Models
     public class News
     {
         public int id { get; set; }
-        public int fkiCategoryId { get; set; }
+        public int fKiCategoryId { get; set; }
         public string? sName { get; set; }
         public string? sContent { get; set; }
-        public int fkiCountryID { get; set; }
-        public int fkiDataID { get; set; }
+        public int fKiCountryID { get; set; }
+        public int fKiDataID { get; set; }
         public bool isExpanded { get; set; } = false;
         public DateTime? xicreatedWhen { get; set; }
         public string? imagePath { get; set; }

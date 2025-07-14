@@ -85,10 +85,9 @@ else if (EventsDataList.Count > 0)
                                     <div class="list-content">
                                         <h6 class="small text-primary m-0 fw-bold">IM News</h6>
                                         <h6 class="title ellips1">@news.sName</h6>
-                                   @*  <a href="@($"/latestnews/{@news.id}/{news.fkiCountryID}/{countryname}/{titlename}")">
+                                        <a href="@($"/latestnews/{@news.id}/{news.fKiCountryID}/{countryname}/{titlename}")">
                                         @news.sContent
-                                    </a> *@
-                                        @news.sContent
+                                    </a>
                                     @* <div @onclick="() => ToggleText(news)"
                                          class="@GetCssClass(news)"
                                          title="@news.Content">
