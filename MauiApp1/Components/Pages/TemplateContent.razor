@@ -37,7 +37,7 @@ else
     @foreach (var item in TemplateDataContent)
     {
         <div class="row">
-            <a href="@($"/newsexpand/{item.id}/{item.fKiEventID}/{item.fKiCountryID}/{countryname}/{title}")" class="col-sm-4">
+                <a href="@($"/newsexpand/{item.id}/{item.fKiEventID}/{item.fKiCountryID}/{countryname}/{firsttitle}/{title}")" class="col-sm-4">
                 <div class="card mb-3">
                         <div class="card-body shadow-sm">
                         <div class="img-container mb-3"><img src="@item.imagePath" /></div>

@@ -1,4 +1,4 @@
-﻿@page "/newsexpand/{id:int}/{eventid:int}/{fkicountryid:int}/{countryname}/{title}"
+﻿@page "/newsexpand/{id:int}/{eventid:int}/{fkicountryid:int}/{countryname}/{firsttitle}/{title}"
 @using MauiApp1.Services
 @using MauiApp1.Components.Models
 @inject NewsExpandingService ExpandingNews
@@ -20,7 +20,7 @@ else if (NewsExpanding.Count > 0)
     <header class="header header-fixed">
         <div class="header-content">
             <div class="left-content">
-                <NavLink href="@($"/templatecontent/{eventid}/{fkicountryid}/{countryname}/{title}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
+                <NavLink href="@($"/templatecontent/{eventid}/{fkicountryid}/{countryname}/{firsttitle}/{title}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
                     <i class="fas fa-chevron-left fs-5"></i>
                 </NavLink>
             </div>
@@ -55,6 +55,7 @@ else if (NewsExpanding.Count > 0)
     [Parameter] public int fkicountryid { get; set; }
     [Parameter] public string countryname { get; set; } = string.Empty;
     [Parameter] public string title { get; set; } = string.Empty;
+    [Parameter] public string firsttitle { get; set; } = string.Empty;
 
     private string ShareContent = "";
     private List<ExpandingData> NewsExpanding;

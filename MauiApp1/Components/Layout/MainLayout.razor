@@ -217,6 +217,10 @@
     {
         var _location = await LocationService.GetUserLocationAndCountryAsync();
         _country = _location.Country;
+        if (_country != null && _country.ToLower() == "error")
+        {
+            _country = "UK";
+        }
     }
 
     private void ShowTools()
