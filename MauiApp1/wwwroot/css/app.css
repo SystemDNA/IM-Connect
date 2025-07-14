@@ -830,7 +830,7 @@ html, body {
 .header {
     background-color: #ffffff;
     min-height: var(--headheight);
-    max-width: var(--headwidth);
+    /*max-width: var(--headwidth);*/
     /*padding: 0 15px;*/
     /*border-bottom: 1px solid #ffffff;
     background-color: #ffffff;

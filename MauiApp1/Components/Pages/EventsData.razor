@@ -43,7 +43,7 @@ else if (EventsDataList.Count > 0)
             <ul class="row gap-2">
                 @foreach (var p in EventsDataList)
                 {
-                <li class="col-12 col-sm-6 rounded shadow-lg-light">
+                <li class="col-sm-12 rounded shadow-lg-light">
                         <a class="media align-items-center" href="@($"/templatecontent/{p.id}/{p.fKiCountryDataId}/{countryname}/{titlename}/{@p.sTitle}")">
                         <div class="media-50 rounded-3 border d-flex align-items-center justify-content-center">
                             <span class="fas fs-10 icon-@p.sTitle text-color"></span>
