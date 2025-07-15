@@ -846,7 +846,7 @@ html, body {
     background-size: 170%;
     background-position: center;
     background-repeat: no-repeat;*/
-    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.08);
 }
 
     .header .header-content {
@@ -2767,11 +2767,13 @@ textarea.form-control-lg {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1080' height='54.681' viewBox='0 0 1080 54.681'%3E%3Cpath id='Union_1' data-name='Union 1' d='M1030,5V5H49.992A50.14,50.14,0,0,0,0,54.55H0V0H1080V5h-.45V54.681A50.208,50.208,0,0,0,1030,5Z' fill='%23ffffff'/%3E%3C/svg%3E%0A");
     background-size: 100%;
     background-repeat: no-repeat;
-    padding-top: 5%;
+    /*padding-top: 5%;*/
+    height:100%;
     top: 90px;
     left:0;
     /*z-index: 1020;*/
     width: 100%;
+    display:none;
 }
 
 /*==== 6. Components ====*/
