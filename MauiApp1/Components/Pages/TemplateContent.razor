@@ -4,7 +4,19 @@
 @inject TemplateService TemplateDataService
 @inject NavigationManager Navigation
 
-
+<header class="header page-title shadow-none bg-transparent">
+    <div class="header-content">
+        <div class="left-content">
+            <NavLink href="@($"/eventsdata/{fkicountryid}/{countryname}/{firsttitle}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
+                <i class="fas fa-chevron-left fs-5"></i>
+            </NavLink>
+            <div>
+                <h2 class="fw-bold m-0">@countryname</h2>
+                <p class="m-0 small fw-bold text-primary">@firsttitle / @title</p>
+            </div>
+        </div>
+    </div>
+</header>
 @if (TemplateDataContent == null)
 {
     <div class="loader-container">
@@ -20,19 +32,7 @@ else if (TemplateDataContent.Count == 0)
 }
 else
 {
-    <header class="header page-title shadow-none bg-transparent">
-        <div class="header-content">
-            <div class="left-content">
-                <NavLink href="@($"/eventsdata/{fkicountryid}/{countryname}/{firsttitle}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
-                    <i class="fas fa-chevron-left fs-5"></i>
-                </NavLink>
-                <div>
-                    <h2 class="fw-bold m-0">@countryname</h2>
-                    <p class="m-0 small fw-bold text-primary">Events / @title</p>
-                </div>
-            </div>
-        </div>
-    </header>
+    
     <div class="container content-section">
     @foreach (var item in TemplateDataContent)
     {
@@ -80,37 +80,5 @@ else
             Console.WriteLine("Error loading template content: " + ex.Message);
             TemplateDataContent = new List<TemplateDataContent>();
         }
-    }
-    //     readonly Dictionary<string, string> tabDisplayNames = new()
-    // {
-    //     { "events", "Events" },
-    //     { "investor", "Investor" },
-    //     { "yachting", "Yachting" },
-    //     { "luxury", "Luxury" },
-    //     { "tourist", "Tourist" },
-    //     { "luxury_yachting", "Luxury Yachting" }
-    // };
-
-    // string GetSubtitle()
-    // {
-    //     if (string.IsNullOrWhiteSpace(activeTab))
-    //         return string.Empty;
-
-    //     return tabDisplayNames.TryGetValue(activeTab.ToLower(), out var displayName)
-    //         ? $" / {displayName}"
-    //         : $" / {char.ToUpper(activeTab[0]) + activeTab.Substring(1)}";
-    // }
-
-    private string? openPanel = null;
-    private bool isClosingPanel = false;
-    async void ClosePanel()
-    {
-        isClosingPanel = true;
-        StateHasChanged(); // Trigger UI update to apply "slide-out"
-
-        await Task.Delay(300); // Match CSS animation time
-        openPanel = null;
-        isClosingPanel = false;
-        StateHasChanged(); // Refresh after closing
     }
 }

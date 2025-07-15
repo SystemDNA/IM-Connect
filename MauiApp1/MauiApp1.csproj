@@ -100,6 +100,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Remove="my-release-key.keystore" />
       <None Remove="Resources\AppIcon\appiconfg.svg" />
     </ItemGroup>
 

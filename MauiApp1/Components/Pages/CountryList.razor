@@ -9,7 +9,6 @@
     <div class="content-section container countryList">
         @if (CountriesList == null)
             {
-                @* <p>Loading...</p> *@
                 <div class="loader-container">
                     <div class="im-loader">
                         <span class="im-text">IM</span>
@@ -22,7 +21,6 @@
                 <p>No countries found.</p>
             }
             else
-            @* @if (CountriesList != null && CountriesList.Any()) *@
             {
             <h1 class="m-0 pb-4 text-center fw-bold">Yacht and Private Jet <span class="text-primary">CO2 emissions</span> for sustainable living</h1>
             <ul class="row g-2">
@@ -30,9 +28,7 @@
                 {
                 <li class="col-6">
                         <div class="countryListContent" style="background-image:url(@p.imagePath)">
-                        @* <img src="@p.ImagePath" alt="@p.sCountryName" /> *@
                         <NavLink href="@($"/countrydata/{p.id}/{Uri.EscapeDataString(string.IsNullOrWhiteSpace(p.sCountryName) ? "Unknown" : p.sCountryName)}")">
-                            @* <div class="mask"></div> *@
                             <h4 class="fw-bold">@(p.sCountryName ?? "Unknown")</h4>                            
                         </NavLink>
                     </div>
@@ -42,11 +38,9 @@
             }
     </div>
 </div>
-@* <NavLink href="/login">Back</NavLink> *@
 @code {
     private List<CountryLists> CountriesList;
 
-    // public string countryName = "";
     protected override async Task OnInitializedAsync()
     {
         try
@@ -59,13 +53,4 @@
             CountriesList = new List<CountryLists>();
         }
     }
-    // private void OnCountrySelected(CountryLists p)
-    // {
-    //     SelectedCountryService.SelectedCountryName = p.CountryName;
-    //     Navigation.NavigateTo($"/countrydata/{p.ID}");
-    // }
-    // private void SetSelectedCountry(string name)
-    // {
-    //     SelectedCountryService.SelectedCountryName = name;
-    // }
 }

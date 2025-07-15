@@ -6,14 +6,6 @@
 @inject NewsService NewsService
 @inject NavigationManager Navigation
 
-
-@* <div class="page-title d-flex px-3 pt-4 pb-0 align-items-center justify-content-center">
-    <NavLink href="@($"/countrydata/{id}/{countryname}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
-        <i class="fas fa-chevron-left fs-5"></i>
-     </NavLink>
-    <h1>@countryname<span class="fs-6"> / </span><span class="fs-6 text-primary">@titlename</span></h1> *@
-    @* <NavLink class="btn btn-sm text-muted ms-auto" href="/countrylist"><i class="fas fa-home"></i> Home</NavLink> *@
-@* </div> *@
 <header class="header page-title  shadow-none bg-transparent">
     <div class="header-content">
         <div class="left-content">
@@ -35,6 +27,9 @@
             <div class="im-spinner"></div>
         </div>
     </div>
+}
+else if (EventsDataList.Count == 0){
+
 }
 else if (EventsDataList.Count > 0)
 {
@@ -106,35 +101,15 @@ else if (EventsDataList.Count > 0)
         </div>
     </div>
 }
-<style>
-    .truncate-text {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: block;
-        width: 300px; /* adjust as needed */
-        cursor: pointer;
-    }
-
-    .expanded-text {
-        white-space: normal;
-        display: block;
-        width: 300px; /* match the width or make it auto */
-        cursor: pointer;
-    }
-</style>
 
 @code {
     [Parameter] public int id { get; set; }
     [Parameter] public string countryname { get; set; } = string.Empty;
     [Parameter] public string titlename { get; set; } = string.Empty;
 
-    
-
     private List<News> newsItems;
     private List<EventItem> EventsDataList;
     private Dictionary<string, string> tabDisplayNames = new();
-    private string activeTab = "";
 
     protected override async Task OnInitializedAsync()
     {
@@ -142,24 +117,11 @@ else if (EventsDataList.Count > 0)
         {
             EventsDataList = await ListofEventDataService.GetEventsByCountryId(id);
             newsItems = await NewsService.GetNewsAsync(id,0);
-            if (EventsDataList != null && EventsDataList.Count > 0)
-            {
-                activeTab = EventsDataList[0].sTitle.ToLower();
-            }
         }
         catch (Exception ex)
         {
             Console.WriteLine("Error loading events: " + ex.Message);
             EventsDataList = new List<EventItem>();
         }
-    }
-
-    string GetCssClass(News item)
-    {
-        return item.isExpanded ? "expanded-text" : "truncate-text";
-    }
-    void ToggleText(News item)
-    {
-        item.isExpanded = !item.isExpanded;
     }
 }
