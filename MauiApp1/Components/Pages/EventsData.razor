@@ -6,6 +6,11 @@
 @inject NewsService NewsService
 @inject NavigationManager Navigation
 
+@* //space top bottom *@
+@using MauiApp1.Components.Layout
+@layout MainLayout
+@inherits LayoutComponentBase
+
 <header class="header page-title  shadow-none bg-transparent">
     <div class="header-content">
         <div class="left-content">
@@ -109,9 +114,13 @@ else if (EventsDataList.Count > 0)
     [Parameter] public string countryname { get; set; } = string.Empty;
     [Parameter] public string titlename { get; set; } = string.Empty;
 
+    [CascadingParameter] private MainLayout? MainLayout { get; set; }//space top bottom function
+
     private List<News> newsItems;
     private List<EventItem> EventsDataList;
     private Dictionary<string, string> tabDisplayNames = new();
+
+    private bool spacingSet = false;//space top bottom function
 
     protected override async Task OnInitializedAsync()
     {
@@ -124,6 +133,14 @@ else if (EventsDataList.Count > 0)
         {
             Console.WriteLine("Error loading events: " + ex.Message);
             EventsDataList = new List<EventItem>();
+        }
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            MainLayout.SetPageSpacing(top: true, bottom: false);//space top bottom function
+            spacingSet = true;//space top bottom function
         }
     }
 }
