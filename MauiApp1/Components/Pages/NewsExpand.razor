@@ -87,12 +87,12 @@ else if (NewsExpanding.Count > 0)
         var plainText = ShareService.StripHtmlTags(content);
         await ShareService.ShareText(plainText, "Share News");
     }
-    // Optional: Call swiper on first render
+    
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            MainLayout.SetPageSpacing(top: true, bottom: false);//space top bottom function
+            MainLayout.SetPageSpacing(top: false, bottom: false);//space top bottom function
             spacingSet = true;//space top bottom function
         }
     }

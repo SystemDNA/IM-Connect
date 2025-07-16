@@ -12,14 +12,15 @@
 @layout MainLayout
 @inherits LayoutComponentBase
 
-<header class="header page-title  shadow-none bg-transparent page-title ">
+<header class="header page-title shadow-none bg-transparent page-title ">
     <div class="header-content">
         <div class="left-content">
             <NavLink href="@($"/countrylist")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
-                <i class="fas fa-chevron-left fs-5"></i>
+                <i class="fas fa-chevron-left fs-7"></i>
             </NavLink>
+            <h1>@countryname</h1>
         </div>
-        <div class="mid-content"><h1>@countryname</h1></div>
+        <div class="mid-content"></div>
         <div class="right-content"></div>
     </div>
 </header>
