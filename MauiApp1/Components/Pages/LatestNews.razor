@@ -3,8 +3,11 @@
 @using MauiApp1.Components.Models
 @inject NewsService NewsService
 @inject NavigationManager Navigation
-
-<header class="header header-fixed">
+@* //space top bottom *@
+@using MauiApp1.Components.Layout
+@layout MainLayout
+@inherits LayoutComponentBase
+@* <header class="header header-fixed">
     <div class="header-content">
         <div class="left-content">
             <NavLink href="@($"/eventsdata/{fkicountryid}/{countryname}/{title}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
@@ -15,21 +18,26 @@
         <div class="right-content"></div>
     </div>
     <div class="header-curv"></div>
-</header>
+</header> *@
 @if (LatestNewsData == null)
 {
     <p>Loading latest news...</p>
 }
 else if (LatestNewsData.Count > 0)
 {
-    <div class="notification-list">
-        <ul class="list-group gap-2">
+    <div class="content-section container FullContentView">
+        <NavLink href="@($"/eventsdata/{fkicountryid}/{countryname}/{title}")" class="btn-close FullContentViewClose"></NavLink>
+        
             @foreach (var newsContent in LatestNewsData)
             {
-                <div class="mid-content"><h6 class="title">@newsContent.sTitle</h6></div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="title">@newsContent.sTitle</h4>
                 @((MarkupString)newsContent.sContent)
+                </div>
+</div>
             }
-        </ul>
+        
     </div>
 
 }
@@ -41,9 +49,11 @@ else if (LatestNewsData.Count > 0)
     [Parameter] public int fkicountryid { get; set; }
     [Parameter] public string countryname { get; set; } = string.Empty;
     [Parameter] public string title { get; set; } = string.Empty;
-
+    [CascadingParameter] private MainLayout? MainLayout { get; set; }//space top bottom function
 
     private List<NewsContent> LatestNewsData;
+
+    private bool spacingSet = false;//space top bottom function
     protected override async Task OnInitializedAsync()
     {
         try
@@ -57,5 +67,12 @@ else if (LatestNewsData.Count > 0)
             LatestNewsData = new List<NewsContent>();
         }
     }
-
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            MainLayout.SetPageSpacing(top: false, bottom: false);//space top bottom function
+            spacingSet = true;//space top bottom function
+        }
+    }
 }

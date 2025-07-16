@@ -64,7 +64,9 @@
             <div class="header-curv"></div>
         </header>        
     }
-    <main class="page-content space-top space-bottom">
+    <CascadingValue Value="this">
+    <main class="page-content @MainContentClass">
+        @* space-top space-bottom *@
         <article class="position-relative page-transition @transitionClass">
             @if (!hideWhatsApp)
             {
@@ -95,6 +97,7 @@
             </div>
         }
     </main>
+    </CascadingValue>
     @if (!hideHeaderAndWhatsApp)
     {
         @* <footer class="menubar-area footer-fixed bottom-tabs">
@@ -208,9 +211,9 @@
     private void UpdateVisibility()
     {
         var currentUri = NavManager.Uri.ToLower();
-        hideHeaderAndWhatsApp = currentUri.Contains("/login") || currentUri.Contains("/verify") || currentUri.Contains("/certificates") || currentUri.Contains("/certificatesGroup") || currentUri.Contains("/details") || currentUri.Contains("/newsexpand");
-        hideHeader = currentUri.Contains("/certificates") || currentUri.Contains("/certificatesGroup") || currentUri.Contains("/newsexpand");
-        hideWhatsApp = currentUri.Contains("/login") || currentUri.Contains("/verify") || currentUri.Contains("/certificates") || currentUri.Contains("/certificatesGroup") || currentUri.Contains("/details") || currentUri.Contains("/countrydata") || currentUri.Contains("/eventsdata") || currentUri.Contains("/templatecontent") || currentUri.Contains("/newsexpand");
+        hideHeaderAndWhatsApp = currentUri.Contains("/login") || currentUri.Contains("/verify") || currentUri.Contains("/certificates") || currentUri.Contains("/certificatesGroup") || currentUri.Contains("/details") || currentUri.Contains("/newsexpand") || currentUri.Contains("/latestnews");
+        hideHeader = currentUri.Contains("/certificates") || currentUri.Contains("/certificatesGroup") || currentUri.Contains("/newsexpand") || currentUri.Contains("/latestnews");
+        hideWhatsApp = currentUri.Contains("/login") || currentUri.Contains("/verify") || currentUri.Contains("/certificates") || currentUri.Contains("/certificatesGroup") || currentUri.Contains("/details") || currentUri.Contains("/countrydata") || currentUri.Contains("/eventsdata") || currentUri.Contains("/templatecontent") || currentUri.Contains("/newsexpand") || currentUri.Contains("/latestnews");
     }
 
     private async Task FetchLocation()

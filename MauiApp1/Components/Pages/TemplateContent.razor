@@ -61,10 +61,8 @@ else
     [Parameter] public string title { get; set; } = string.Empty;
     [Parameter] public string firsttitle { get; set; } = string.Empty;
 
-
     private List<TemplateDataContent> TemplateDataContent;
     readonly Dictionary<string, string> ActiveTabs = new();
-
 
     protected override async Task OnParametersSetAsync()
     {
@@ -80,5 +78,6 @@ else
             Console.WriteLine("Error loading template content: " + ex.Message);
             TemplateDataContent = new List<TemplateDataContent>();
         }
-    }
+    }   
+
 }

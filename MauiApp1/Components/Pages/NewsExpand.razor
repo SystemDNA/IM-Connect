@@ -3,7 +3,10 @@
 @using MauiApp1.Components.Models
 @inject NewsExpandingService ExpandingNews
 @inject ShareService ShareService
-
+@* //space top bottom *@
+@using MauiApp1.Components.Layout
+@layout MainLayout
+@inherits LayoutComponentBase
 
 @if (NewsExpanding == null)
 {
@@ -17,7 +20,7 @@
 }
 else if (NewsExpanding.Count > 0)
 {
-    <header class="header header-fixed">
+    @* <header class="header header-fixed">
         <div class="header-content">
             <div class="left-content">
                 <NavLink href="@($"/templatecontent/{eventid}/{fkicountryid}/{countryname}/{firsttitle}/{title}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
@@ -28,13 +31,14 @@ else if (NewsExpanding.Count > 0)
             <div class="right-content"></div>
         </div>
         <div class="header-curv"></div>
-    </header>
+    </header> *@
     @* <div class="page-title d-flex px-3 pt-4 pb-0 align-items-center justify-content-center">
         <NavLink href="@($"/templatecontent/{eventid}/{fkicountryid}/{countryname}/{title}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
             <i class="fas fa-chevron-left fs-5"></i>
         </NavLink>
     </div> *@
-    <div class="content-section container">
+    <div class="content-section container FullContentView">
+        <NavLink href="@($"/templatecontent/{eventid}/{fkicountryid}/{countryname}/{firsttitle}/{title}")" class="btn-close FullContentViewClose"></NavLink>
         @foreach (var item in NewsExpanding)
         {            
             <div class="card">
@@ -56,10 +60,13 @@ else if (NewsExpanding.Count > 0)
     [Parameter] public string countryname { get; set; } = string.Empty;
     [Parameter] public string title { get; set; } = string.Empty;
     [Parameter] public string firsttitle { get; set; } = string.Empty;
+    [CascadingParameter] private MainLayout? MainLayout { get; set; }//space top bottom function
 
     private string ShareContent = "";
     private List<ExpandingData> NewsExpanding;
     private string ShareContentAll => string.Join("\n", NewsExpanding.Select(x => ShareService.StripHtmlTags(x.sFullContent)));
+
+    private bool spacingSet = false;//space top bottom function
 
     protected override async Task OnInitializedAsync()
     {
@@ -77,5 +84,13 @@ else if (NewsExpanding.Count > 0)
     {
         var plainText = ShareService.StripHtmlTags(content);
         await ShareService.ShareText(plainText, "Share News");
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            MainLayout.SetPageSpacing(top: false, bottom: false);//space top bottom function
+            spacingSet = true;//space top bottom function
+        }
     }
 }

@@ -7,6 +7,11 @@
 @using Microsoft.AspNetCore.Components
 @inject NewsService NewsService
 
+@* //space top bottom *@
+@using MauiApp1.Components.Layout
+@layout MainLayout
+@inherits LayoutComponentBase
+
 <header class="header page-title  shadow-none bg-transparent page-title ">
     <div class="header-content">
         <div class="left-content">
@@ -95,7 +100,7 @@ else if (newsItems.Count > 0)
     
     [Parameter] public string titlename { get; set; } = string.Empty;
 
-    
+    [CascadingParameter] private MainLayout? MainLayout { get; set; }//space top bottom function
 
     private List<News> newsItems;
 
@@ -103,6 +108,8 @@ else if (newsItems.Count > 0)
     private string activeTab = "";
     private List<string> tabsdata = new();
     private readonly HashSet<string> tabsToHideList = new();
+
+    private bool spacingSet = false;//space top bottom function
 
     protected override async Task OnInitializedAsync()
     {
@@ -117,7 +124,8 @@ else if (newsItems.Count > 0)
             Console.WriteLine("Error fetching Countries: " + ex.Message);
             CountriesData = new List<CountriesData>();
         }
-    }
+    }    
+
     private string GetListVisibility()
     {
         return string.IsNullOrEmpty(activeTab) || !tabsToHideList.Contains(activeTab)
@@ -144,6 +152,9 @@ else if (newsItems.Count > 0)
         if (firstRender)
         {
             await JS.InvokeVoidAsync("initSwiper");
+
+            MainLayout.SetPageSpacing(top: true, bottom: false);//space top bottom function
+            spacingSet = true;//space top bottom function
         }
     }
 }
