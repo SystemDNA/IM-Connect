@@ -1,4 +1,4 @@
-﻿@page "/templatecontent/{id:int}/{fkicountryid:int}/{countryname}/{firsttitle}/{title}"
+﻿@page "/templatecontent/{templateid:int}/{eventid:int}/{countryname}/{firsttitle}/{title}/{fkicountryid:int}"
 @using MauiApp1.Services
 @using MauiApp1.Components.Models
 @inject TemplateService TemplateDataService
@@ -7,7 +7,7 @@
 <header class="header page-title shadow-none bg-transparent">
     <div class="header-content">
         <div class="left-content">
-            <NavLink href="@($"/eventsdata/{fkicountryid}/{countryname}/{firsttitle}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
+            <NavLink href="@($"/eventsdata/{eventid}/{fkicountryid}/{countryname}/{firsttitle}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
                 <i class="fas fa-chevron-left fs-5"></i>
             </NavLink>
             <div>
@@ -37,13 +37,21 @@ else
     @foreach (var item in TemplateDataContent)
     {
         <div class="row">
-                <a href="@($"/newsexpand/{item.id}/{item.fKiEventID}/{item.fKiCountryID}/{countryname}/{firsttitle}/{title}")" class="col-sm-12">
+                <a href="@($"/newsexpand/{item.id}/{item.fKiEventID}/{item.fKiCountryID}/{countryname}/{firsttitle}/{title}/{templateid}/{eventid}")" class="col-sm-12">
                 <div class="card mb-3">
-                        <div class="card-body shadow-sm">
-                        <div class="img-container mb-3"><img src="@item.imagePath" /></div>
-                        <div class="bg-white">
-                            @((MarkupString)item.sContent)
+                        <div>
+                            @((MarkupString)"<h1 class='test'>Hello World</h1><p>This is rendered as HTML</p>")
                         </div>
+                        <div class="card-body shadow-sm">
+                            @if (item.imagePath != null && item.imagePath!="")
+                            {
+                        <div class="img-container mb-3"><img src="@item.imagePath" /></div>
+                            }
+                            @if (item.sContent!=null){
+                        <div class="bg-white">
+                           @((MarkupString)@item.sContent)
+                        </div>
+                            }
                     </div>
                 </div>
             </a>
@@ -55,8 +63,9 @@ else
 
 
 @code {
-    [Parameter] public int id { get; set; }
+    [Parameter] public int templateid { get; set; }
     [Parameter] public int fkicountryid { get; set; }
+    [Parameter] public int eventid { get; set; }
     [Parameter] public string countryname { get; set; } = string.Empty;
     [Parameter] public string title { get; set; } = string.Empty;
     [Parameter] public string firsttitle { get; set; } = string.Empty;
@@ -71,7 +80,7 @@ else
         try
         {
             TemplateDataContent = null; // show loading
-            TemplateDataContent = await TemplateDataService.GetContentData(id, fkicountryid);
+            TemplateDataContent = await TemplateDataService.GetContentData(templateid, fkicountryid);
 
 
         }

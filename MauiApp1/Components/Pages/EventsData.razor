@@ -1,4 +1,4 @@
-﻿@page "/eventsdata/{id:int}/{countryname}/{titlename}"
+﻿@page "/eventsdata/{id:int}/{countryid:int}/{countryname}/{titlename}"
 @using MauiApp1.Services
 @using MauiApp1.Components.Models
 @inject EventsDataService ListofEventDataService
@@ -9,7 +9,7 @@
 <header class="header page-title  shadow-none bg-transparent">
     <div class="header-content">
         <div class="left-content">
-            <NavLink href="@($"/countrydata/{id}/{countryname}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
+            <NavLink href="@($"/countrydata/{countryid}/{countryname}")" class="back-btn pf-icon d-flex align-items-center py-3 pe-3">
                 <i class="fas fa-chevron-left fs-5"></i>
             </NavLink>
         </div>
@@ -39,7 +39,7 @@ else if (EventsDataList.Count > 0)
                 @foreach (var p in EventsDataList)
                 {
                 <li class="col-sm-12 rounded shadow-lg-light">
-                        <a class="media align-items-center" href="@($"/templatecontent/{p.id}/{p.fKiCountryDataId}/{countryname}/{titlename}/{@p.sTitle}")">
+                        <a class="media align-items-center" href="@($"/templatecontent/{p.id}/{p.fKiCountryDataId}/{countryname}/{titlename}/{@p.sTitle}/{countryid}")">
                         <div class="media-50 rounded-3 border d-flex align-items-center justify-content-center">
                             <span class="fas fs-10 icon-@p.sTitle text-color"></span>
                         </div>
@@ -54,7 +54,7 @@ else if (EventsDataList.Count > 0)
     </div>
     <div class="content-section container">
         <div class="latest-news-section">
-            <h2 class="fw-bold text-primary">Latest News</h2>
+            
             @if (newsItems == null)
             {
                 @* <p>Loading latest news...</p> *@
@@ -67,6 +67,7 @@ else if (EventsDataList.Count > 0)
             }
             else if (newsItems.Count > 0)
             {
+                <h2 class="fw-bold text-primary">Latest News</h2>
                 <div class="notification-list">
                     <ul class="list-group gap-2">
                 @foreach (var news in newsItems)
@@ -80,7 +81,7 @@ else if (EventsDataList.Count > 0)
                                     <div class="list-content">
                                         <h6 class="small text-primary m-0 fw-bold">IM News</h6>
                                         <h6 class="title ellips1">@news.sName</h6>
-                                        <a href="@($"/latestnews/{@news.id}/{news.fKiCountryID}/{countryname}/{titlename}")">
+                                        <a href="@($"/latestnews/{@news.id}/{news.fKiCountryID}/{countryname}/{titlename}/{id}")">
                                         @news.sContent
                                     </a>
                                     @* <div @onclick="() => ToggleText(news)"
@@ -104,6 +105,7 @@ else if (EventsDataList.Count > 0)
 
 @code {
     [Parameter] public int id { get; set; }
+    [Parameter] public int countryid { get; set; }
     [Parameter] public string countryname { get; set; } = string.Empty;
     [Parameter] public string titlename { get; set; } = string.Empty;
 
