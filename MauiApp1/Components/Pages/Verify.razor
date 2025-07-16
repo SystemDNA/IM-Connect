@@ -3,6 +3,10 @@
 @using Microsoft.Maui.Storage
 @inject NavigationManager Navigation
 @inject IJSRuntime JS
+@* //space top bottom *@
+@using MauiApp1.Components.Layout
+@layout MainLayout
+@inherits LayoutComponentBase
 
 <div class="register-container">
     <div class="register-bg"></div>
@@ -80,11 +84,14 @@
 
 @code {
     public string userName = "Guest";
+
+    [CascadingParameter] private MainLayout? MainLayout { get; set; }//space top bottom function
+
     private string mpin1 = "";
     private string mpin2 = "";
     private string mpin3 = "";
     private string mpin4 = "";
-    private bool IsMpinRegistered = false;
+    private bool IsMpinRegistered = false;    
 
     private ElementReference inputRef1;
     private ElementReference inputRef2;
@@ -92,6 +99,8 @@
     private ElementReference inputRef4;
 
     private string InputMpin => string.Concat(mpin1, mpin2, mpin3, mpin4).Trim();
+
+    private bool spacingSet = false;//space top bottom function
 
     protected override async Task OnInitializedAsync()
     {
@@ -178,6 +187,14 @@
             case 2:
                 if (!string.IsNullOrWhiteSpace(mpin3)) await inputRef4.FocusAsync();
                 break;
+        }
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            MainLayout.SetPageSpacing(top: true, bottom: false);//space top bottom function
+            spacingSet = true;//space top bottom function
         }
     }
 }
