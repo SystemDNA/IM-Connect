@@ -3,7 +3,10 @@
 @using MauiApp1.Components.Models
 @inject TemplateService TemplateDataService
 @inject NavigationManager Navigation
-
+@* //space top bottom *@
+@using MauiApp1.Components.Layout
+@layout MainLayout
+@inherits LayoutComponentBase
 <header class="header page-title shadow-none bg-transparent">
     <div class="header-content">
         <div class="left-content">
@@ -66,8 +69,9 @@ else
     [Parameter] public string countryname { get; set; } = string.Empty;
     [Parameter] public string title { get; set; } = string.Empty;
     [Parameter] public string firsttitle { get; set; } = string.Empty;
-
+    [CascadingParameter] private MainLayout? MainLayout { get; set; }//space top bottom function
     private List<TemplateDataContent> TemplateDataContent;
+    private bool spacingSet = false;//space top bottom function
     readonly Dictionary<string, string> ActiveTabs = new();
 
     protected override async Task OnParametersSetAsync()
@@ -85,5 +89,12 @@ else
             TemplateDataContent = new List<TemplateDataContent>();
         }
     }   
-
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            MainLayout.SetPageSpacing(top: true, bottom: false);//space top bottom function
+            spacingSet = true;//space top bottom function
+        }
+    }
 }
