@@ -26,7 +26,7 @@
 else if (LatestNewsData.Count > 0)
 {
     <div class="content-section container FullContentView">
-        <NavLink href="@($"/eventsdata/{fkicountryid}/{countryname}/{title}")" class="btn-close FullContentViewClose"></NavLink>
+        <NavLink href="@($"/eventsdata/{eventid}/{fkicountryid}/{countryname}/{title}")" class="btn-close FullContentViewClose"></NavLink>
         
             @foreach (var newsContent in LatestNewsData)
             {

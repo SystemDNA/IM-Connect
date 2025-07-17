@@ -35,7 +35,7 @@
 else if (NewsExpanding.Count > 0)
 {
     <div class="content-section container FullContentView">
-        <NavLink href="@($"/templatecontent/{eventid}/{fkicountryid}/{countryname}/{firsttitle}/{title}")" class="btn-close FullContentViewClose"></NavLink>
+        <NavLink href="@($"/templatecontent/{templateid}/{Templateeventid}/{countryname}/{firsttitle}/{title}/{fkicountryid}")" class="btn-close FullContentViewClose"></NavLink>
         @foreach (var item in NewsExpanding)
         {            
             <div class="card">

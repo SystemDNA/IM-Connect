@@ -47,9 +47,10 @@ else if (EventsDataList.Count > 0)
                 <li class="col-sm-12 rounded shadow-lg-light">
                         <a class="media align-items-center" href="@($"/templatecontent/{p.id}/{p.fKiCountryDataId}/{countryname}/{titlename}/{@p.sTitle}/{countryid}")">
                         <div class="media-50 rounded-3 border d-flex align-items-center justify-content-center">
-                            <span class="fas fs-10 icon-@p.sTitle text-color"></span>
+                            <img src="@p.imagePath" alt="" />
+                            @* <span class="fas fs-10 icon-@p.sTitle text-color"></span> *@
                         </div>
-                        @* <img src="@p.ImagePath" alt="" /> *@
+                        
                         <div class="list-content"><span class="title fs-8">@p.sTitle</span></div>
                         <span class="fas fa-chevron-right ms-auto text-muted"></span>
                     </a>
@@ -80,21 +81,19 @@ else if (EventsDataList.Count > 0)
                         {
                             <li class="list-group-item border-0 rounded-3">
                                 <div class="media">
-                                @* <a href="#" class="media" @onclick="@(() => OpenPanel("panel-1"))" @onclick:preventDefault> *@
-                                    <div class="media-50 rounded-3 border">
-                                     <img src="@news.imagePath" alt="">
-                                    </div>
+                                    @* <a href="#" class="media" @onclick="@(() => OpenPanel("panel-1"))" @onclick:preventDefault> *@
+                                    @if (news.imagePath != "")
+                                    {
+                                        <div class="media-50 rounded-3 border">
+                                            <img src="@news.imagePath" alt="">
+                                        </div>
+                                    }
                                     <div class="list-content">
                                         <h6 class="small text-primary m-0 fw-bold">IM News</h6>
                                         <h6 class="title ellips1">@news.sName</h6>
                                         <a href="@($"/latestnews/{@news.id}/{news.fKiCountryID}/{countryname}/{titlename}/{id}")">
                                         @news.sContent
                                     </a>
-                                    @* <div @onclick="() => ToggleText(news)"
-                                         class="@GetCssClass(news)"
-                                         title="@news.Content">
-                                        @news.Content
-                                    </div> *@
                                     </div>
                                 @* </a> *@
                                 </div>

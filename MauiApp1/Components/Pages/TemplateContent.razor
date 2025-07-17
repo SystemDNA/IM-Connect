@@ -39,18 +39,15 @@ else
         <div class="row">
                 <a href="@($"/newsexpand/{item.id}/{item.fKiEventID}/{item.fKiCountryID}/{countryname}/{firsttitle}/{title}/{templateid}/{eventid}")" class="col-sm-12">
                 <div class="card mb-3">
-                        <div>
-                            @((MarkupString)"<h1 class='test'>Hello World</h1><p>This is rendered as HTML</p>")
-                        </div>
                         <div class="card-body shadow-sm">
                             @if (item.imagePath != null && item.imagePath!="")
                             {
-                        <div class="img-container mb-3"><img src="@item.imagePath" /></div>
+                                <div class="img-container mb-3"><img src="@item.imagePath" /></div>
                             }
                             @if (item.sContent!=null){
-                        <div class="bg-white">
-                           @((MarkupString)@item.sContent)
-                        </div>
+                                <div class="bg-white">
+                                   @((MarkupString)item.sContent)
+                                </div>
                             }
                     </div>
                 </div>
