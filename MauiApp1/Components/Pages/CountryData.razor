@@ -82,7 +82,7 @@ else if (newsItems.Count > 0)
                       <img src="@news.imagePath" />
                     </div>
                     <div class="image-caption">
-                                <h4 class="title-post">@news.sContent</h4>
+                                <h4 class="title-post">@((MarkupString) news.sContent)</h4>
                                 <span class="category-tag">@news.sName <i class="fas fa-circle"></i></span>
                                 <span class="date">@news.xicreatedWhen</span>
                     </div>

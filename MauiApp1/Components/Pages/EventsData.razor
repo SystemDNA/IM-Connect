@@ -92,7 +92,7 @@ else if (EventsDataList.Count > 0)
                                         <h6 class="small text-primary m-0 fw-bold">IM News</h6>
                                         <h6 class="title ellips1">@news.sName</h6>
                                         <a href="@($"/latestnews/{@news.id}/{news.fKiCountryID}/{countryname}/{titlename}/{id}")">
-                                        @news.sContent
+                                        @((MarkupString)news.sContent)
                                     </a>
                                     </div>
                                 @* </a> *@
@@ -126,7 +126,7 @@ else if (EventsDataList.Count > 0)
     {
         try
         {
-            EventsDataList = await ListofEventDataService.GetEventsByCountryId(id);
+            EventsDataList = await ListofEventDataService.GetEventsByCountryId(id,countryid);
             newsItems = await NewsService.GetNewsAsync(id,0);
         }
         catch (Exception ex)

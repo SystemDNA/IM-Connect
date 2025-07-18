@@ -10,6 +10,7 @@ namespace MauiApp1.Components.Models
     {
         public int id { get; set; }
         public int fKiCountryDataId { get; set; }
+        public int fKiCountryID { get; set; }
         public string? sName { get; set; }
         public string? sTitle { get; set; }
         public string? sImages { get; set; }

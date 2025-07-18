@@ -18,10 +18,10 @@ namespace MauiApp1.Services
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<List<EventItem>> GetEventsByCountryId(int countryId)
+        public async Task<List<EventItem>> GetEventsByCountryId(int eventId, int countryId)
         {
              var _http = _httpClientFactory.CreateClient("DynamicData");
-            var response = await _http.GetAsync($"api/events/{countryId}");
+            var response = await _http.GetAsync($"api/events/{eventId}/{countryId}");
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();
