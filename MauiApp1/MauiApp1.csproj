@@ -98,8 +98,20 @@
       <None Remove="Components\NewFolder\**" />
       <None Remove="Components\Pages\NewFolder\**" />
     </ItemGroup>
+    <ItemGroup>
+      <Content Remove="Components\Pages\Cyprus.razor" />
+      <Content Remove="Components\Pages\Dubai.razor" />
+      <Content Remove="Components\Pages\Home.razor" />
+      <Content Remove="Components\Pages\Monaco.razor" />
+      <Content Remove="Components\Pages\Montenegro.razor" />
+      <Content Remove="Components\Pages\Singapore.razor" />
+    </ItemGroup>
 
     <ItemGroup>
+      <None Remove="Components\Pages\Dubai.razor copy" />
+      <None Remove="Components\Pages\FileName.html" />
+      <None Remove="Components\Pages\Monaco.razor copy" />
+      <None Remove="Components\Pages\Montenegro.razor copy" />
       <None Remove="my-release-key.keystore" />
       <None Remove="Resources\AppIcon\appiconfg.svg" />
     </ItemGroup>
