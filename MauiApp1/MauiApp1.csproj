@@ -99,6 +99,8 @@
       <None Remove="Components\Pages\NewFolder\**" />
     </ItemGroup>
     <ItemGroup>
+      <Content Remove="Components\Pages\Business.razor" />
+      <Content Remove="Components\Pages\CertificatesTab1.razor" />
       <Content Remove="Components\Pages\Cyprus.razor" />
       <Content Remove="Components\Pages\Dubai.razor" />
       <Content Remove="Components\Pages\Home.razor" />
