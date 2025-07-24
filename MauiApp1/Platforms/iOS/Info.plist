@@ -31,7 +31,7 @@
     <key>CFBundleName</key>
    <string>im</string>
     <key>CFBundleIdentifier</key>
-    <string>com.teamxit.com</string>
+    <string>com.teamx.imworld</string>
 <key>NSFaceIDUsageDescription</key>
 <string>This app uses Face ID to protect your data.</string>
 

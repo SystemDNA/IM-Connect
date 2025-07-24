@@ -2212,11 +2212,12 @@ textarea.form-control-lg {
     padding-bottom: 1.1rem;
 }
 .FullContentView{
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: absolute;
     height: 100%;
+    height: calc(100vh - 20px);
     overflow: auto;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom:env(safe-area-inset-bottom);
 }
 .FullContentViewClose {
     position: absolute;

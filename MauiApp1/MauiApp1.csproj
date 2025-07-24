@@ -12,7 +12,7 @@
             The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
             either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
         <!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
-
+<!-- <RuntimeIdentifiers>ios-arm64;iossimulator-x64;iossimulator-arm64</RuntimeIdentifiers> -->
         <OutputType>Exe</OutputType>
         <RootNamespace>MauiApp1</RootNamespace>
         <UseMaui>true</UseMaui>
@@ -25,19 +25,20 @@
         <ApplicationTitle>IM</ApplicationTitle>
 
         <!-- App Identifier -->
-        <ApplicationId>34MW9KXL9U.com.teamxit.com</ApplicationId>
+        <!-- <ApplicationId>Z9LMBBT3XE.com.teamxit.com</ApplicationId> -->
+        <ApplicationId>com.teamx.imworld</ApplicationId>
 
         <CodesignEntitlements>Platforms/iOS/Entitlements.plist</CodesignEntitlements>
 
         <!-- Versions -->
-        <ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
-        <ApplicationVersion>1</ApplicationVersion>
+        <ApplicationDisplayVersion>2.0.0</ApplicationDisplayVersion>
+        <ApplicationVersion>2</ApplicationVersion>
 
          <CodesignKey>Apple Distribution: Tirumaleswara Reddy Kareddy (34MW9KXL9U)</CodesignKey>
         <CodesignTeamId>34MW9KXL9U</CodesignTeamId> <!-- Replace with your actual Team ID -->
 
  
-        <CodesignProvision>teamxconnectim</CodesignProvision>
+        <CodesignProvision>imworld</CodesignProvision>
         <!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
         <WindowsPackageType>None</WindowsPackageType>
 
@@ -65,6 +66,7 @@
 <ItemGroup>
   <None Include="Platforms/iOS/Entitlements.plist">
     <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <!-- <PublishFolderType>AppBundleResource</PublishFolderType> -->
   </None>
 </ItemGroup>
     <ItemGroup>
