@@ -37,26 +37,25 @@ else
 {
     
     <div class="container content-section">
-    @foreach (var item in TemplateDataContent)
-    {
-        <div class="row">
-                <a href="@($"/newsexpand/{item.id}/{item.fKiEventID}/{item.fKiCountryID}/{countryname}/{firsttitle}/{title}/{templateid}/{eventid}")" class="col-sm-12">
-                <div class="card mb-3">
-                        <div class="card-body shadow-sm">
-                            @if (item.imagePath != null && item.imagePath!="")
-                            {
-                                <div class="img-container mb-3"><img src="@item.imagePath" /></div>
-                            }
-                            @if (item.sContent!=null){
-                                <div class="bg-white">
-                                   @((MarkupString)item.sContent)
-                                </div>
-                            }
+        <div class="notification-list">
+        <ul class="list-group gap-2">
+            @foreach (var item in TemplateDataContent)
+            {
+                <li class="list-group-item border-0 rounded-3">
+                    <div href="@($"/newsexpand/{item.id}/{item.fKiEventID}/{item.fKiCountryID}/{countryname}/{firsttitle}/{title}/{templateid}/{eventid}")">
+                        @if (item.imagePath != null && item.imagePath!="")
+                        {
+                            <div class="media-50 rounded-3 border"><img src="@item.imagePath" /></div>
+                        }
+                        @if (item.sContent!=null){
+                                @((MarkupString)item.sContent)
+                            
+                        }
                     </div>
-                </div>
-            </a>
+                </li>
+            }
+        </ul>
         </div>
-    }
     </div>
 }
 
