@@ -126,8 +126,13 @@
             // Redirect to home if MPIN already registered and flag is set
             if (IsMpinRegistered && isMpinSetup)
             {
-                Navigation.NavigateTo("/countrylist");
-               // Navigation.NavigateTo("/products");
+            mpin1 = "";
+            mpin2 = "";
+            mpin3 = "";
+            mpin4 = "";
+                Navigation.NavigateTo("/verify");
+               // navigation.navigateto("/products");
+            
             }
         }
         catch
