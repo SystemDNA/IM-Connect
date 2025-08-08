@@ -42,7 +42,7 @@ else
             @foreach (var item in TemplateDataContent)
             {
                 <li class="list-group-item border-0 rounded-3">
-                    <div href="@($"/newsexpand/{item.id}/{item.fKiEventID}/{item.fKiCountryID}/{countryname}/{firsttitle}/{title}/{templateid}/{eventid}")">
+                    <div href="@($"/newsexpand/{item.id}/{item.fKiEventID}/{item.fKiCountryID}/{countryname}/{firsttitle}/{title}/{templateid}/{eventid}")" class="media">
                         @if (item.imagePath != null && item.imagePath!="")
                         {
                             <div class="media-50 rounded-3 border"><img src="@item.imagePath" /></div>
